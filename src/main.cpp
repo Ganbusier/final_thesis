@@ -26,13 +26,8 @@ int main(int argc, char **argv) {
     energyMinimization.setDataTerm();
     energyMinimization.setSmoothnessTerm();
     energyMinimization.optimize();
-
-    std::vector<int> preserved;
-    std::vector<int> removed;
-    energyMinimization.getResults(preserved, removed);
-
-    LOG(INFO) << "Preserved: " << preserved.size() << ", Removed: " << removed.size();
-
+    energyMinimization.getResults();
+    energyMinimization.saveResults(inputFilePath);
 
     return 0;
 }

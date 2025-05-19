@@ -3,6 +3,7 @@
 
 #include <easy3d/core/graph.h>
 #include <easy3d/core/point_cloud.h>
+#include <easy3d/fileio/graph_io.h>
 #include <easy3d/kdtree/kdtree_search_eth.h>
 #include <gco/GCoptimization.h>
 #include <queue>
@@ -35,20 +36,35 @@ struct DataTermParams {
 
 class EnergyMinimization {
 private:
+  /*
+  m_numNodes: number of nodes in the graph
+
+  m_numNeighborPairs: number of neighbor pairs in the graph
+
+  m_scaleFactor: scale factor for the smoothness term, scale both term
+  from [0, 1] to [0, scaleFactor], float to int
+
+  m_numLabels: number of labels in the graph, for wireframe extraction, 2
+  labels: removed (0) or preserved (1)
+
+  m_lambda: weight for the smoothness term
+
+  m_V: V(0,0), V(1,0), V(0,1), V(1,1), must satisfy: V(0, 0) + V(1, 1) <= V(0,1)
+  + V(1,0)
+  */
   int m_numNodes = 0;
   int m_numNeighborPairs = 0;
-  int m_scaleFactor =
-      100; // scale both term from [0, 1] to [0, scaleFactor], float to int
-  int m_numLabels =
-      2; // for wireframe extraction, 2 labels: removed (0) or preserved (1)
-  float m_lambda = 0.1; // weight for the smoothness term
-  int m_V[4] = {0, 1, 1,
-                0}; // V[label1 + num_label*label2] --> V(0,0), V(1,0), V(0,1),
-                    // V(1,1) must satisfy: V(0, 0) + V(1, 1) <= V(0,1) + V(1,0)
+  int m_scaleFactor = 100;
+  int m_numLabels = 2;
+  float m_lambda = 0.1;
+  int m_V[4] = {0, 1, 1, 0};
+
   DataTermParams m_dataTermParams;
 
   GCoptimizationGeneralGraph *m_gc;
   easy3d::Graph *m_graph;
+  easy3d::Graph *m_preservedGraph;
+  easy3d::Graph *m_removedGraph;
   easy3d::PointCloud *m_pointCloud;
   std::vector<int> m_dataTerm;
   std::vector<float> m_inlierProbTerm;
@@ -68,7 +84,8 @@ public:
   void setDataTerm();
   void setSmoothnessTerm();
   void optimize();
-  void getResults(std::vector<int> &preserved, std::vector<int> &removed);
+  void getResults();
+  void saveResults(const std::string &filename);
 };
 
 } // namespace energyMinimization

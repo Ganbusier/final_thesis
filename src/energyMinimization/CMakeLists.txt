@@ -16,6 +16,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${Thesis_EXTERNAL_DIR})
 # add easy3d and gco
 target_link_libraries(${PROJECT_NAME} PRIVATE 
     easy3d::core
+    easy3d::fileio
     easy3d::kdtree
     gco
 )

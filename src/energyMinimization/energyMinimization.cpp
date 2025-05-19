@@ -11,9 +11,15 @@ EnergyMinimization::EnergyMinimization(int num_nodes, int num_neighborPairs,
   m_dataTerm = std::vector<int>(m_numNodes, m_scaleFactor);
   m_inlierProbTerm = std::vector<float>(m_numNodes, 0.0f);
   m_edgeLengthTerm = std::vector<float>(m_numNodes, 1.0f);
+  m_preservedGraph = new easy3d::Graph;
+  m_removedGraph = new easy3d::Graph;
 }
 
-EnergyMinimization::~EnergyMinimization() { delete m_gc; }
+EnergyMinimization::~EnergyMinimization() {
+  delete m_gc;
+  delete m_preservedGraph;
+  delete m_removedGraph;
+}
 
 void EnergyMinimization::setDataTerm() {
   LOG(INFO) << "Setting data term";
@@ -49,20 +55,6 @@ void EnergyMinimization::optimize() {
   LOG(INFO) << "Energy after optimization: " << m_gc->compute_energy()
             << "; Data energy: " << m_gc->giveDataEnergy()
             << "; Smoothness energy: " << m_gc->giveSmoothEnergy();
-}
-
-void EnergyMinimization::getResults(std::vector<int> &preserved,
-                                    std::vector<int> &removed) {
-  LOG(INFO) << "Getting results";
-  for (int i = 0; i < m_numNodes; i++) {
-    if (m_gc->whatLabel(i) == 1) {
-      preserved.push_back(i);
-    } else if (m_gc->whatLabel(i) == 0) {
-      removed.push_back(i);
-    } else {
-      LOG(ERROR) << "Error: invalid label for node " << i;
-    }
-  }
 }
 
 void EnergyMinimization::computeDataTerm() {
@@ -281,6 +273,85 @@ void EnergyMinimization::computeNeighborPairWeights() {
     processVertex(source);
     processVertex(target);
   }
+}
+
+void EnergyMinimization::getResults() {
+  std::unordered_map<int, easy3d::Graph::Vertex> preservedVertexMap;
+  std::unordered_map<int, easy3d::Graph::Vertex> removedVertexMap;
+  
+  int preservedEdgeCount = 0;
+  int removedEdgeCount = 0;
+  
+  try {
+    for (const auto& e : m_graph->edges()) {
+      auto source = m_graph->source(e);
+      auto target = m_graph->target(e);
+      
+      if (!source.is_valid() || !target.is_valid()) {
+        LOG(ERROR) << "Invalid vertex found for edge " << e.idx();
+        continue;
+      }
+      
+      auto sourcePos = m_graph->position(source);
+      auto targetPos = m_graph->position(target);
+      
+      int label = m_gc->whatLabel(e.idx());
+      
+      if (label == 1) {
+        easy3d::Graph::Vertex newSource, newTarget;
+        
+        if (preservedVertexMap.find(source.idx()) == preservedVertexMap.end()) {
+          newSource = m_preservedGraph->add_vertex(sourcePos);
+          preservedVertexMap[source.idx()] = newSource;
+        } else {
+          newSource = preservedVertexMap[source.idx()];
+        }
+        
+        if (preservedVertexMap.find(target.idx()) == preservedVertexMap.end()) {
+          newTarget = m_preservedGraph->add_vertex(targetPos);
+          preservedVertexMap[target.idx()] = newTarget;
+        } else {
+          newTarget = preservedVertexMap[target.idx()];
+        }
+        
+        m_preservedGraph->add_edge(newSource, newTarget);
+        preservedEdgeCount++;
+      } else if (label == 0) {
+        easy3d::Graph::Vertex newSource, newTarget;
+        
+        if (removedVertexMap.find(source.idx()) == removedVertexMap.end()) {
+          newSource = m_removedGraph->add_vertex(sourcePos);
+          removedVertexMap[source.idx()] = newSource;
+        } else {
+          newSource = removedVertexMap[source.idx()];
+        }
+        
+        if (removedVertexMap.find(target.idx()) == removedVertexMap.end()) {
+          newTarget = m_removedGraph->add_vertex(targetPos);
+          removedVertexMap[target.idx()] = newTarget;
+        } else {
+          newTarget = removedVertexMap[target.idx()];
+        }
+        
+        m_removedGraph->add_edge(newSource, newTarget);
+        removedEdgeCount++;
+      } else {
+        LOG(ERROR) << "Error: invalid label " << label << " for edge " << e.idx();
+      }
+    }
+  } catch (const std::exception& e) {
+    LOG(ERROR) << "Exception in getResults: " << e.what();
+    throw;
+  } catch (...) {
+    LOG(ERROR) << "Unknown exception in getResults";
+    throw;
+  }
+}
+
+void EnergyMinimization::saveResults(const std::string &filename) {
+  LOG(INFO) << "Saving results to " << filename;
+  easy3d::io::save_ply(filename + "_preserved.ply", m_preservedGraph, false);
+  easy3d::io::save_ply(filename + "_removed.ply", m_removedGraph, false);
 }
 
 } // namespace energyMinimization
