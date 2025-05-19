@@ -5,6 +5,13 @@
 
 namespace regionGrowing {
 
+struct Cylinder {
+  Point_3 start;
+  Point_3 end;
+  FT radius;
+  FT length;
+};
+
 struct CylinderRegionGrowingParams {
   std::size_t k = 16;
   FT maxDistance = FT(0.1);
@@ -44,6 +51,7 @@ class CylinderRegionGrowing {
   void detect();
 
   const std::vector<Primitive_and_region>& getRegions() const;
+  const std::vector<Cylinder>& getCylinders() const;
 };
 
 }  // namespace regionGrowing
