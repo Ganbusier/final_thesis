@@ -1,16 +1,16 @@
 #ifndef CGAL_DEFINES_RG_H
 #define CGAL_DEFINES_RG_H
 
-#include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
 #include <CGAL/Point_set_3.h>
 #include <CGAL/Shape_detection/Region_growing/Point_set.h>
 #include <CGAL/Shape_detection/Region_growing/Region_growing.h>
+#include <CGAL/Simple_cartesian.h>
 #include <CGAL/Random.h>
 
 using Kernel = CGAL::Simple_cartesian<double>;
-using Point_3 = Kernel::Point_3;
-using Vector_3 = Kernel::Vector_3;
-using FT = Kernel::FT;
+using Point_3 = typename Kernel::Point_3;
+using Vector_3 = typename Kernel::Vector_3;
+using FT = typename Kernel::FT;
 
 using Point_set = CGAL::Point_set_3<Point_3>;
 using Point_map = typename Point_set::Point_map;
