@@ -6,19 +6,22 @@
 #include <easy3d/fileio/graph_io.h>
 #include <easy3d/kdtree/kdtree_search_eth.h>
 #include <gco/GCoptimization.h>
+
 #include <queue>
 #include <unordered_set>
 #include <vector>
 
+
 // define a has function for std::pair<int, int> to use in std::unordered_set
 namespace std {
-template <> struct hash<std::pair<int, int>> {
+template <>
+struct hash<std::pair<int, int>> {
   size_t operator()(const std::pair<int, int> &p) const {
     return hash<long long>()(((long long)p.first) ^
                              (((long long)p.second) << 32));
   }
 };
-} // namespace std
+}  // namespace std
 
 namespace energyMinimization {
 
@@ -35,7 +38,7 @@ struct DataTermParams {
 };
 
 class EnergyMinimization {
-private:
+ private:
   /*
   m_numNodes: number of nodes in the graph
 
@@ -71,13 +74,13 @@ private:
   std::vector<float> m_edgeLengthTerm;
   std::vector<NeighborPair> m_neighborPairs;
 
-private:
+ private:
   void computeDataTerm();
   void computeInlierProbTerm();
   void computeEdgeLengthTerm();
   void computeNeighborPairWeights();
 
-public:
+ public:
   EnergyMinimization(int num_nodes, int num_neighborPairs, easy3d::Graph *graph,
                      easy3d::PointCloud *pointCloud);
   ~EnergyMinimization();
@@ -88,6 +91,6 @@ public:
   void saveResults(const std::string &filename);
 };
 
-} // namespace energyMinimization
+}  // namespace energyMinimization
 
-#endif // ENERGY_MINIMIZATION_H
+#endif  // ENERGY_MINIMIZATION_H
