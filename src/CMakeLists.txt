@@ -1,5 +1,6 @@
 add_subdirectory(energyMinimization)
 add_subdirectory(graph)
+add_subdirectory(regionGrowing)
 
 
 add_executable(${PROJECT_NAME} main.cpp)
@@ -14,6 +15,7 @@ find_package(CGAL REQUIRED PATHS ${CGAL_DIR})
 target_link_libraries(${PROJECT_NAME} 
     energyMinimization
     graph
+    regionGrowing
 
     gco
     CGAL::CGAL
