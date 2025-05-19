@@ -1,10 +1,4 @@
-#include <CGAL/Bbox_3.h>
-#include <easy3d/fileio/point_cloud_io.h>
-#include <easy3d/viewer/viewer.h>
-#include <energyMinimization/energyMinimization.h>
-#include <gco/GCoptimization.h>
-#include <graph/graph.h>
-
+#include "functions.h"
 
 int main(int argc, char **argv) {
   if (argc < 2) {
@@ -13,22 +7,14 @@ int main(int argc, char **argv) {
   }
 
   std::string inputFilePath = argv[1];
-
   auto pointCloud = easy3d::PointCloudIO::load(inputFilePath);
+  if (pointCloud->empty()) {
+    LOG(ERROR) << "Failed to load point cloud from " << inputFilePath;
+    return -1;
+  }
 
-  graph::Graph graph(pointCloud, 10, 2.0f);
-  graph.buildMixGraph();
-  auto mixGraph = graph.getMixGraph();
-  graph.buildDualGraph(mixGraph);
-  auto dualGraph = graph.getDualGraph();
 
-  energyMinimization::EnergyMinimization energyMinimization(
-      dualGraph->n_vertices(), dualGraph->n_edges(), mixGraph, pointCloud);
-  energyMinimization.setDataTerm();
-  energyMinimization.setSmoothnessTerm();
-  energyMinimization.optimize();
-  energyMinimization.getResults();
-  energyMinimization.saveResults(inputFilePath);
+  run_EnergyMinimization(pointCloud, "../data/gco");
 
   return 0;
 }

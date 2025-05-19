@@ -3,7 +3,7 @@ add_subdirectory(graph)
 add_subdirectory(regionGrowing)
 
 
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} main.cpp functions.cpp)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${Thesis_EXTERNAL_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR})

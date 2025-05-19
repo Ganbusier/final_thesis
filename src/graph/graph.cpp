@@ -9,12 +9,7 @@ Graph::Graph(easy3d::PointCloud *pointCloud, int k, float maxEdgeLength)
   m_dualGraph = new easy3d::Graph;
 }
 
-Graph::~Graph() {
-  delete m_knnGraph;
-  delete m_dtGraph;
-  delete m_mixGraph;
-  delete m_dualGraph;
-}
+Graph::~Graph() {}
 
 easy3d::Graph *Graph::getKNNGraph() const { return m_knnGraph; }
 

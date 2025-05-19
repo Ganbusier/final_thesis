@@ -17,11 +17,7 @@ EnergyMinimization::EnergyMinimization(int num_nodes, int num_neighborPairs,
   m_removedGraph = new easy3d::Graph;
 }
 
-EnergyMinimization::~EnergyMinimization() {
-  delete m_gc;
-  delete m_preservedGraph;
-  delete m_removedGraph;
-}
+EnergyMinimization::~EnergyMinimization() {}
 
 void EnergyMinimization::setDataTerm() {
   LOG(INFO) << "Setting data term";
@@ -281,77 +277,73 @@ void EnergyMinimization::getResults() {
   int preservedEdgeCount = 0;
   int removedEdgeCount = 0;
 
-  try {
-    for (const auto &e : m_graph->edges()) {
-      auto source = m_graph->source(e);
-      auto target = m_graph->target(e);
+  for (const auto &e : m_graph->edges()) {
+    auto source = m_graph->source(e);
+    auto target = m_graph->target(e);
 
-      if (!source.is_valid() || !target.is_valid()) {
-        LOG(ERROR) << "Invalid vertex found for edge " << e.idx();
-        continue;
-      }
-
-      auto sourcePos = m_graph->position(source);
-      auto targetPos = m_graph->position(target);
-
-      int label = m_gc->whatLabel(e.idx());
-
-      if (label == 1) {
-        easy3d::Graph::Vertex newSource, newTarget;
-
-        if (preservedVertexMap.find(source.idx()) == preservedVertexMap.end()) {
-          newSource = m_preservedGraph->add_vertex(sourcePos);
-          preservedVertexMap[source.idx()] = newSource;
-        } else {
-          newSource = preservedVertexMap[source.idx()];
-        }
-
-        if (preservedVertexMap.find(target.idx()) == preservedVertexMap.end()) {
-          newTarget = m_preservedGraph->add_vertex(targetPos);
-          preservedVertexMap[target.idx()] = newTarget;
-        } else {
-          newTarget = preservedVertexMap[target.idx()];
-        }
-
-        m_preservedGraph->add_edge(newSource, newTarget);
-        preservedEdgeCount++;
-      } else if (label == 0) {
-        easy3d::Graph::Vertex newSource, newTarget;
-
-        if (removedVertexMap.find(source.idx()) == removedVertexMap.end()) {
-          newSource = m_removedGraph->add_vertex(sourcePos);
-          removedVertexMap[source.idx()] = newSource;
-        } else {
-          newSource = removedVertexMap[source.idx()];
-        }
-
-        if (removedVertexMap.find(target.idx()) == removedVertexMap.end()) {
-          newTarget = m_removedGraph->add_vertex(targetPos);
-          removedVertexMap[target.idx()] = newTarget;
-        } else {
-          newTarget = removedVertexMap[target.idx()];
-        }
-
-        m_removedGraph->add_edge(newSource, newTarget);
-        removedEdgeCount++;
-      } else {
-        LOG(ERROR) << "Error: invalid label " << label << " for edge "
-                   << e.idx();
-      }
+    if (!source.is_valid() || !target.is_valid()) {
+      LOG(ERROR) << "Invalid vertex found for edge " << e.idx();
+      continue;
     }
-  } catch (const std::exception &e) {
-    LOG(ERROR) << "Exception in getResults: " << e.what();
-    throw;
-  } catch (...) {
-    LOG(ERROR) << "Unknown exception in getResults";
-    throw;
+
+    auto sourcePos = m_graph->position(source);
+    auto targetPos = m_graph->position(target);
+
+    int label = m_gc->whatLabel(e.idx());
+
+    if (label == 1) {
+      easy3d::Graph::Vertex newSource, newTarget;
+
+      if (preservedVertexMap.find(source.idx()) == preservedVertexMap.end()) {
+        newSource = m_preservedGraph->add_vertex(sourcePos);
+        preservedVertexMap[source.idx()] = newSource;
+      } else {
+        newSource = preservedVertexMap[source.idx()];
+      }
+
+      if (preservedVertexMap.find(target.idx()) == preservedVertexMap.end()) {
+        newTarget = m_preservedGraph->add_vertex(targetPos);
+        preservedVertexMap[target.idx()] = newTarget;
+      } else {
+        newTarget = preservedVertexMap[target.idx()];
+      }
+
+      m_preservedGraph->add_edge(newSource, newTarget);
+      preservedEdgeCount++;
+    } else if (label == 0) {
+      easy3d::Graph::Vertex newSource, newTarget;
+
+      if (removedVertexMap.find(source.idx()) == removedVertexMap.end()) {
+        newSource = m_removedGraph->add_vertex(sourcePos);
+        removedVertexMap[source.idx()] = newSource;
+      } else {
+        newSource = removedVertexMap[source.idx()];
+      }
+
+      if (removedVertexMap.find(target.idx()) == removedVertexMap.end()) {
+        newTarget = m_removedGraph->add_vertex(targetPos);
+        removedVertexMap[target.idx()] = newTarget;
+      } else {
+        newTarget = removedVertexMap[target.idx()];
+      }
+
+      m_removedGraph->add_edge(newSource, newTarget);
+      removedEdgeCount++;
+    } else {
+      LOG(ERROR) << "Error: invalid label " << label << " for edge " << e.idx();
+    }
   }
+
+  LOG(INFO) << "Processed " << preservedEdgeCount << " preserved edges and " 
+            << removedEdgeCount << " removed edges";
 }
 
 void EnergyMinimization::saveResults(const std::string &filename) {
   LOG(INFO) << "Saving results to " << filename;
   easy3d::io::save_ply(filename + "_preserved.ply", m_preservedGraph, false);
   easy3d::io::save_ply(filename + "_removed.ply", m_removedGraph, false);
+  LOG(INFO) << "Results saved to " << filename + "_preserved.ply"
+            << " and " << filename + "_removed.ply";
 }
 
 }  // namespace energyMinimization
