@@ -1,0 +1,7 @@
+#ifndef CGAL_DEFINITIONS_H
+#define CGAL_DEFINITIONS_H
+
+
+
+#endif // CGAL_DEFINITIONS_H
+

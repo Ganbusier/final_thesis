@@ -1,0 +1,27 @@
+add_subdirectory(energyMinimization)
+add_subdirectory(graph)
+
+
+add_executable(${PROJECT_NAME} main.cpp)
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${Thesis_EXTERNAL_DIR})
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR})
+
+# find CGAL
+set(CGAL_DIR ${Thesis_EXTERNAL_DIR}/CGAL)
+find_package(CGAL REQUIRED PATHS ${CGAL_DIR})
+
+target_link_libraries(${PROJECT_NAME} 
+    energyMinimization
+    graph
+
+    gco
+    CGAL::CGAL
+    easy3d::viewer
+    easy3d::renderer
+    easy3d::algo
+    easy3d::core
+    easy3d::fileio
+    easy3d::util
+    easy3d::kdtree
+)
