@@ -1,14 +1,17 @@
 #include "functions.h"
 
+std::string g_outputFolderPath;
+
 bool EnergyMinimization(easy3d::Viewer* viewer, easy3d::Model* model);
 
 int main(int argc, char **argv) {
-  if (argc < 2) {
-    std::cerr << "Usage: " << argv[0] << " <input_file_path>" << std::endl;
+  if (argc < 3) {
+    std::cerr << "Usage: " << argv[0] << " <input_file_path> <output_folder_path>" << std::endl;
     return -1;
   }
 
   std::string inputFilePath = argv[1];
+  g_outputFolderPath = argv[2];
 
   easy3d::initialize(true);
   LOG(INFO) << "Easy3D initialized";
@@ -32,7 +35,7 @@ int main(int argc, char **argv) {
 }
 
 bool EnergyMinimization(easy3d::Viewer* viewer, easy3d::Model* model) {
-  std::string savefilepath = "output/result.txt";
+  std::string savefilepath = g_outputFolderPath;
   run_EnergyMinimization(viewer, model, savefilepath);
   return true;
 }
