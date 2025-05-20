@@ -3,10 +3,11 @@
 
 #include <CGAL/Bbox_3.h>
 #include <CGAL/Point_set_3.h>
+#include <CGAL/Random.h>
 #include <CGAL/Shape_detection/Region_growing/Point_set.h>
 #include <CGAL/Shape_detection/Region_growing/Region_growing.h>
 #include <CGAL/Simple_cartesian.h>
-#include <CGAL/Random.h>
+
 
 using Kernel = CGAL::Simple_cartesian<double>;
 using Point_3 = typename Kernel::Point_3;
@@ -24,6 +25,7 @@ using Cylinder_Region_type = CGAL::Shape_detection::Point_set::
 using Cylinder_Region_growing =
     CGAL::Shape_detection::Region_growing<Neighbor_query, Cylinder_Region_type>;
 
-using Primitive_and_region = typename Cylinder_Region_growing::Primitive_and_region;
+using Primitive_and_region =
+    typename Cylinder_Region_growing::Primitive_and_region;
 
 #endif  // CGAL_DEFINES_RG_H

@@ -1,8 +1,11 @@
 #ifndef REGION_GROWING_H
 #define REGION_GROWING_H
 
-#include "cgalDefines_rg.h"
+#include <easy3d/algo/point_cloud_normals.h>
 #include <easy3d/core/point_cloud.h>
+
+#include "cgalDefines_rg.h"
+
 
 namespace regionGrowing {
 
@@ -22,6 +25,9 @@ struct CylinderRegionGrowingParams {
   FT maxRadius = FT(1.0);
   std::size_t minRegionSize = 4;
 };
+
+bool makePointSet(easy3d::PointCloud* pointCloud, Point_set& pointSet,
+                  size_t knn = 16);
 
 class CylinderRegionGrowing {
  private:
@@ -57,9 +63,8 @@ class CylinderRegionGrowing {
         m_regionGrowing(m_pointSet, m_neighborQuery, m_regionType) {}
 
   void detect();
-
-  const std::vector<Primitive_and_region>& getRegions() const;
-  const std::vector<Cylinder>& getCylinders() const;
+  void getRegions(std::vector<Primitive_and_region>& regions) const;
+  void getCylinders(std::vector<Cylinder>& cylinders) const;
 };
 
 }  // namespace regionGrowing

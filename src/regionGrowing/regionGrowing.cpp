@@ -2,6 +2,28 @@
 
 namespace regionGrowing {
 
+bool makePointSet(easy3d::PointCloud* pointCloud, Point_set& pointSet,
+                  size_t knn) {
+  auto normals = pointCloud->get_vertex_property<easy3d::vec3>("v:normal");
+  auto points = pointCloud->get_vertex_property<easy3d::vec3>("v:point");
+  if (!normals) {
+    LOG(INFO) << "Point cloud does not have normals, estimating normals";
+    if (!easy3d::PointCloudNormals::estimate(pointCloud, knn)) {
+      LOG(ERROR) << "Failed to estimate normals";
+      return false;
+    }
+    normals = pointCloud->get_vertex_property<easy3d::vec3>("v:normal");
+  }
+
+  for (const auto& vertex : pointCloud->vertices()) {
+    const easy3d::vec3 p = points[vertex];
+    const easy3d::vec3 n = normals[vertex];
+    pointSet.insert(Point_3(p[0], p[1], p[2]), Vector_3(n[0], n[1], n[2]));
+  }
+  LOG(INFO) << "Point set size: " << pointSet.size();
+  return true;
+}
+
 void CylinderRegionGrowing::detect() {
   CGAL::Random random;
   m_regionGrowing.detect(std::back_inserter(m_regions));
@@ -9,13 +31,14 @@ void CylinderRegionGrowing::detect() {
   constructUnassignedIndices();
 }
 
-const std::vector<Primitive_and_region>& CylinderRegionGrowing::getRegions()
-    const {
-  return m_regions;
+void CylinderRegionGrowing::getRegions(
+    std::vector<Primitive_and_region>& regions) const {
+  regions = m_regions;
 }
 
-const std::vector<Cylinder>& CylinderRegionGrowing::getCylinders() const {
-  return m_cylinders;
+void CylinderRegionGrowing::getCylinders(
+    std::vector<Cylinder>& cylinders) const {
+  cylinders = m_cylinders;
 }
 
 void CylinderRegionGrowing::constructCylinders() {
