@@ -1,6 +1,7 @@
 #ifndef CGAL_DEFINES_RG_H
 #define CGAL_DEFINES_RG_H
 
+#include <CGAL/Bbox_3.h>
 #include <CGAL/Point_set_3.h>
 #include <CGAL/Shape_detection/Region_growing/Point_set.h>
 #include <CGAL/Shape_detection/Region_growing/Region_growing.h>
