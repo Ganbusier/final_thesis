@@ -1,5 +1,6 @@
 #include <easy3d/core/point_cloud.h>
 #include <easy3d/fileio/point_cloud_io.h>
+#include <easy3d/renderer/drawable_lines.h>
 
 #include "functions.h"
 
@@ -47,9 +48,23 @@ bool run_RegionGrowing(easy3d::Viewer* viewer, easy3d::Model* model,
   std::vector<regionGrowing::Cylinder> cylinders;
   regionGrowing.getCylinders(cylinders);
 
-  for (const auto& cylinder : cylinders) {
-    LOG(INFO) << "Cylinder: " << cylinder.start << " " << cylinder.end << " "
-              << cylinder.radius << " " << cylinder.length;
+  if (cylinders.empty()) {
+    LOG(INFO) << "No cylinders found";
+    return true;
+  }
+
+  // TODO: Add cylinder visualization to easy3d viewer
+  for (size_t i = 0; i < cylinders.size(); ++i) {
+    auto cylinder = cylinders[i];
+    easy3d::vec3 start = easy3d::vec3(cylinder.start.x(), cylinder.start.y(), cylinder.start.z());
+    easy3d::vec3 end = easy3d::vec3(cylinder.end.x(), cylinder.end.y(), cylinder.end.z());
+    auto cylinderDrawable = new easy3d::LinesDrawable("cylinder" + std::to_string(i));
+    cylinderDrawable->set_impostor_type(easy3d::LinesDrawable::CYLINDER);
+    cylinderDrawable->set_line_width(cylinder.radius * 2.0f * 10.0f);
+    cylinderDrawable->set_uniform_coloring(easy3d::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+    cylinderDrawable->update_vertex_buffer({start, end});
+    cylinderDrawable->update_element_buffer({0, 1});
+    viewer->add_drawable(cylinderDrawable);
   }
 
   return true;
