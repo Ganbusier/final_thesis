@@ -13,7 +13,7 @@ add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_SOURCES} ${${PROJECT_NAME}_
 # add 3rd party path
 target_include_directories(${PROJECT_NAME} PRIVATE ${Thesis_EXTERNAL_DIR})
 
-# add easy3d and gco
+# add easy3d
 target_link_libraries(${PROJECT_NAME} PRIVATE 
     easy3d::core
     easy3d::fileio

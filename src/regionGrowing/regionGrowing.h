@@ -2,6 +2,7 @@
 #define REGION_GROWING_H
 
 #include "cgalDefines_rg.h"
+#include <easy3d/core/point_cloud.h>
 
 namespace regionGrowing {
 
@@ -10,6 +11,7 @@ struct Cylinder {
   Point_3 end;
   FT radius;
   FT length;
+  std::vector<size_t> inlierIndices;
 };
 
 struct CylinderRegionGrowingParams {
@@ -29,6 +31,12 @@ class CylinderRegionGrowing {
   Cylinder_Region_type m_regionType;
   Cylinder_Region_growing m_regionGrowing;
   std::vector<Primitive_and_region> m_regions;
+  std::vector<Cylinder> m_cylinders;
+  std::vector<size_t> m_unassignedIndices;
+
+ private:
+  void constructCylinders();
+  void constructUnassignedIndices();
 
  public:
   CylinderRegionGrowing(const Point_set& pointSet,
