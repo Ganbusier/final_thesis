@@ -3,14 +3,12 @@ get_filename_component(PROJECT_NAME ${CMAKE_CURRENT_LIST_DIR} NAME)
 set(${PROJECT_NAME}_HEADERS
     ./ransac3d.h
     ./ransac3d2d.h
-    ./CustomCylinderRANSAC.h
     ./CustomCylinderConstructor.h
 )
 
 set(${PROJECT_NAME}_SOURCES
     ./ransac3d.cpp
     ./ransac3d2d.cpp
-    ./CustomCylinderRANSAC.cpp
     ./CustomCylinderConstructor.cpp
 )
 

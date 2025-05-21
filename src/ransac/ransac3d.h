@@ -11,40 +11,41 @@
 
 namespace ransac {
 
-struct Cylinder {
+struct CustomCylinder {
     easy3d::vec3 start;
     easy3d::vec3 end;
+    easy3d::vec3 axisDir;
     float radius;
+    float length;
     std::vector<int> inlierIndices;
-}
+};
 
 class CustomCylinderRANSAC {
  public:
   CustomCylinderRANSAC();
   ~CustomCylinderRANSAC();
 
-  void setEpsilon(float epsilon) { epsilon_ = epsilon; }
-  void setBitmapResolution(float resolution) {
-    bitmap_resolution_ = resolution;
-  }
-  void setNormalThreshold(float threshold) { normal_threshold_ = threshold; }
-  void setMinSupport(int min_support) { min_support_ = min_support; }
-  void setProbability(float probability) { probability_ = probability; }
+  void setEpsilon(float epsilon) { m_epsilon = epsilon; }
+  void setBitmapResolution(float resolution) { m_bitmapResolution = resolution; }
+  void setNormalThreshold(float threshold) { m_normalThreshold = threshold; }
+  void setMinSupport(int min_support) { m_minSupport = min_support; }
+  void setProbability(float probability) { m_probability = probability; }
 
   void setRadiusRange(float min_radius, float max_radius) {
-    cylinder_constructor_.setRadiusRange(min_radius, max_radius);
+    m_cylinderConstructor.setRadiusRange(min_radius, max_radius);
   }
 
   void detect(easy3d::PointCloud* cloud);
 
  private:
-  float epsilon_ = 0.01f;
-  float bitmap_resolution_ = 0.02f;
-  float normal_threshold_ = 0.8f;
-  int min_support_ = 100;
-  float probability_ = 0.01f;
-  CustomCylinderConstructor cylinder_constructor_;
-  std::vector<CylinderPrimitiveShape> detected_cylinders_;
+  float m_epsilon = 0.01f;
+  float m_bitmapResolution = 0.02f;
+  float m_normalThreshold = 0.8f;
+  int m_minSupport = 100;
+  float m_probability = 0.01f;
+  CustomCylinderConstructor m_cylinderConstructor;
+  std::vector<CustomCylinder> m_cylinders;
+
 };
 
 }  // namespace ransac
