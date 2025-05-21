@@ -1,5 +1,5 @@
 #include "CustomCylinderConstructor.h"
-#include <easy3d/3rd_party/ransac/Cylinder.h>
+#include <efficientRansac/Cylinder.h>
 
 PrimitiveShape* CustomCylinderConstructor::Construct(
     const MiscLib::Vector<Vec3f>& points,

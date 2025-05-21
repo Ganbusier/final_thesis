@@ -1,19 +1,19 @@
 #ifndef CUSTOM_CYLINDER_CONSTRUCTOR_H
 #define CUSTOM_CYLINDER_CONSTRUCTOR_H
 
-#include <easy3d/3rd_party/ransac/CylinderPrimitiveShapeConstructor.h>
-#include <easy3d/3rd_party/ransac/CylinderPrimitiveShape.h>
+#include <efficientRansac/CylinderPrimitiveShapeConstructor.h>
+#include <efficientRansac/CylinderPrimitiveShape.h>
 
 class CustomCylinderConstructor : public CylinderPrimitiveShapeConstructor {
 public:
-    CustomCylinderConstructor(float min_radius = 0.0f, float max_radius = std::numeric_limits<float>::max())
+    CustomCylinderConstructor(float min_radius = 0.0001f, float max_radius = 1e6f)
         : min_radius_(min_radius), max_radius_(max_radius) {}
 
-    // 重写 Construct 方法
+    // rewrite the Construct method
     PrimitiveShape* Construct(const MiscLib::Vector<Vec3f>& points,
                             const MiscLib::Vector<Vec3f>& normals) const override;
 
-    // 设置半径范围
+    // set radius range
     void setRadiusRange(float min_radius, float max_radius) {
         min_radius_ = min_radius;
         max_radius_ = max_radius;

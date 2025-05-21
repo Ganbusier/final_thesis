@@ -1,7 +1,7 @@
 #ifndef RANSAC3D_H
 #define RANSAC3D_H
 
-#include <easy3d/3rd_party/ransac/RansacShapeDetector.h>
+#include <efficientRansac/RansacShapeDetector.h>
 #include <easy3d/core/point_cloud.h>
 
 #include <vector>
@@ -36,6 +36,8 @@ class CustomCylinderRANSAC {
   }
 
   void detect(easy3d::PointCloud* cloud);
+  std::vector<CustomCylinder> getCylinders() const;
+  std::vector<int> getLeftOverIndices() const;
 
  private:
   float m_epsilon = 0.01f;
@@ -45,6 +47,7 @@ class CustomCylinderRANSAC {
   float m_probability = 0.01f;
   CustomCylinderConstructor m_cylinderConstructor;
   std::vector<CustomCylinder> m_cylinders;
+  std::vector<int> m_leftOverIndices;
 
 };
 

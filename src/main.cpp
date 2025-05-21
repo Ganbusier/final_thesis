@@ -10,6 +10,7 @@ std::string g_outputFolderPath;
 
 bool EnergyMinimization(easy3d::Viewer* viewer, easy3d::Model* model);
 bool RegionGrowing(easy3d::Viewer* viewer, easy3d::Model* model);
+bool Ransac3d(easy3d::Viewer* viewer, easy3d::Model* model);
 
 int main(int argc, char** argv) {
   if (argc < 3) {
@@ -38,6 +39,9 @@ int main(int argc, char** argv) {
               easy3d::Viewer::MODIF_SHIFT);
   viewer.bind(RegionGrowing, model, easy3d::Viewer::KEY_G,
               easy3d::Viewer::MODIF_SHIFT);
+  viewer.bind(Ransac3d, model, easy3d::Viewer::KEY_R,
+              easy3d::Viewer::MODIF_SHIFT);
+
 
   viewer.fit_screen();
   viewer.run();
@@ -54,5 +58,11 @@ bool EnergyMinimization(easy3d::Viewer* viewer, easy3d::Model* model) {
 bool RegionGrowing(easy3d::Viewer* viewer, easy3d::Model* model) {
   std::string savefilepath = g_outputFolderPath;
   run_RegionGrowing(viewer, model, savefilepath);
+  return true;
+}
+
+bool Ransac3d(easy3d::Viewer* viewer, easy3d::Model* model) {
+  std::string savefilepath = g_outputFolderPath;
+  run_Ransac3d(viewer, model, savefilepath);
   return true;
 }
