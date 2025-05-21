@@ -1,7 +1,6 @@
 add_subdirectory(energyMinimization)
 add_subdirectory(graph)
 add_subdirectory(regionGrowing)
-add_subdirectory(ransac)
 
 add_executable(${PROJECT_NAME} main.cpp functions.cpp)
 
@@ -16,7 +15,6 @@ target_link_libraries(${PROJECT_NAME}
     energyMinimization
     graph
     regionGrowing
-    ransac
 
     gco
     CGAL::CGAL
