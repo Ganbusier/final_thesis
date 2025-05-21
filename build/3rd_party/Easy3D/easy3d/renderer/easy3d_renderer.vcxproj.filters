@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\ambient_occlusion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\average_color_blending.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\clipping_plane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\constraint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\drawable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\drawable_lines.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\drawable_points.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\drawable_triangles.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\dual_depth_peeling.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\eye_dome_lighting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\frame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\framebuffer_object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\frustum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\key_frame_interpolator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\manipulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\manipulated_camera_frame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\manipulated_frame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\opengl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\opengl_error.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\opengl_util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\opengl_timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\shape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\read_pixel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\buffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\shader_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\shader_program.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\shadow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\soft_shadow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\state.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\texture_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\text_renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\transform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\transform_decompose.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\vertex_array_object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\ambient_occlusion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\average_color_blending.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\clipping_plane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\constraint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\drawable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\drawable_lines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\drawable_points.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\drawable_triangles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\dual_depth_peeling.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\eye_dome_lighting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\framebuffer_object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\frustum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\key_frame_interpolator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\manipulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\manipulated_camera_frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\manipulated_frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\opengl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\opengl_error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\opengl_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\opengl_timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\shape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\read_pixel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\shader_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\shader_program.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\shadow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\soft_shadow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\state.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\texture_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\text_renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\transform_decompose.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\transparency.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\vertex_array_object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\renderer\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{32F5DB64-6114-3178-8837-C96556A9670A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{856EF968-F36E-3750-B531-1FB7297FD93C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

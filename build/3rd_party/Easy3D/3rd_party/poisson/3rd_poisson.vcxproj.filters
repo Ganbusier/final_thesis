@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\CmdLineParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\Factor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\Geometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\MarchingCubes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\Allocator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\Array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\BinaryNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\BSplineData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\CmdLineParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\Factor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\FunctionData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\Geometry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\MarchingCubes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\MAT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\MemoryUsage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\MultiGridOctreeData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\MyTime.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\Octree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\Ply.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\PointStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\Polynomial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\PPolynomial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\SparseMatrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\SurfaceTrimmer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\CmdLineParser.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\Geometry.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\Array.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\BSplineData.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\FunctionData.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\MAT.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\MultiGridOctreeData.Evaluation.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\MultiGridOctreeData.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\MultiGridOctreeData.IsoSurface.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\MultiGridOctreeData.SortedTreeNodes.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\MultiGridOctreeData.System.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\MultiGridOctreeData.WeightedSamples.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\MyTreeInit.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\Octree.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\PointStream.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\Polynomial.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\PPolynomial.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\SparseMatrix.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\poisson\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{32F5DB64-6114-3178-8837-C96556A9670A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{856EF968-F36E-3750-B531-1FB7297FD93C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

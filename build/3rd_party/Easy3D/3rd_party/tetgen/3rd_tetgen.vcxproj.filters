@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\tetgen\tetgen.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\tetgen\predicates.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\tetgen\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{856EF968-F36E-3750-B531-1FB7297FD93C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,202 @@
+EXPORTS 
+	??_R0?AV?$FaceProperty@U?$pair@HH@std@@@SurfaceMesh@easy3d@@@8 	 DATA
+	??_R0?AV?$Property@U?$pair@HH@std@@@easy3d@@@8 	 DATA
+	??_R0?AV?$Property@V?$Vec@$02M@easy3d@@@easy3d@@@8 	 DATA
+	??_R0?AV?$Property@_N@easy3d@@@8 	 DATA
+	??_R0?AV?$PropertyArray@U?$pair@HH@std@@@easy3d@@@8 	 DATA
+	??_R0?AV?$PropertyArray@V?$Vec@$02M@easy3d@@@easy3d@@@8 	 DATA
+	??_R0?AV?$PropertyArray@_N@easy3d@@@8 	 DATA
+	??_R0?AV?$VertexProperty@V?$Vec@$02M@easy3d@@@PointCloud@easy3d@@@8 	 DATA
+	??_R0?AV?$VertexProperty@V?$Vec@$02M@easy3d@@@SurfaceMesh@easy3d@@@8 	 DATA
+	??_R0?AV?$VertexProperty@_N@PointCloud@easy3d@@@8 	 DATA
+	??_R0?AVBasePropertyArray@easy3d@@@8 	 DATA
+	??_R0?AVModelPicker@easy3d@@@8 	 DATA
+	??_R0?AVNoCopy@base@el@@@8 	 DATA
+	??_R0?AVPicker@easy3d@@@8 	 DATA
+	??_R0?AVPointCloudPicker@easy3d@@@8 	 DATA
+	??_R0?AVSurfaceMeshPicker@easy3d@@@8 	 DATA
+	??_R0?AVWriter@base@el@@@8 	 DATA
+	??_R0?AVbad_alloc@std@@@8 	 DATA
+	??_R0?AVbad_array_new_length@std@@@8 	 DATA
+	??_R0?AVexception@std@@@8 	 DATA
+	??_R0_N@8 	 DATA
+	?fbo_@Picker@easy3d@@1PEAVFramebufferObject@2@EA 	 DATA
+	??$?6$$BY0EA@D@Writer@base@el@@QEAAAEAV012@AEAY0EA@$$CBD@Z
+	??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z
+	??$?6V?$Vec@$01M@easy3d@@@Writer@base@el@@QEAAAEAV012@AEBV?$Vec@$01M@easy3d@@@Z
+	??$?6V?$Vec@$02M@easy3d@@@Writer@base@el@@QEAAAEAV012@AEBV?$Vec@$02M@easy3d@@@Z
+	??$?RV<lambda_eaeae47b6cf45957992f0eca81121602>@@@<lambda_67e5049809f6209a04f08678d416f060>@@QEAA?A_PV<lambda_eaeae47b6cf45957992f0eca81121602>@@@Z
+	??$_Allocate_manually_vector_aligned@U_Default_allocate_traits@std@@@std@@YAPEAX_K@Z
+	??$_Assign_counted_range@PEAI@?$vector@IV?$allocator@I@std@@@std@@AEAAXPEAI_K@Z
+	??$_Checked_x86_x64_popcount@I@std@@YAHI@Z
+	??$_Copy_memmove@PEAIPEAI@std@@YAPEAIPEAI00@Z
+	??$_Copy_memmove@PEAPEAVBasePropertyArray@easy3d@@PEAPEAV12@@std@@YAPEAPEAVBasePropertyArray@easy3d@@PEAPEAV12@00@Z
+	??$_Copy_memmove@PEAUFace@SurfaceMesh@easy3d@@PEAU123@@std@@YAPEAUFace@SurfaceMesh@easy3d@@PEAU123@00@Z
+	??$_Copy_memmove@PEAV?$Vec@$01M@easy3d@@PEAV12@@std@@YAPEAV?$Vec@$01M@easy3d@@PEAV12@00@Z
+	??$_Copy_memmove_n@PEAIPEAI@std@@YAPEAIPEAI_K0@Z
+	??$_Count_vbool@V?$_Vb_iterator@U?$_Wrap_alloc@V?$allocator@I@std@@@std@@@std@@@std@@YA_JV?$_Vb_iterator@U?$_Wrap_alloc@V?$allocator@I@std@@@std@@@0@V10@_N@Z
+	??$_Destroy_range@V?$allocator@U?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@std@@@std@@YAXPEAU?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@0@QEAU10@AEAV?$allocator@U?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@0@@Z
+	??$_Destroy_range@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@std@@YAXPEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@QEAV10@AEAV?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@0@@Z
+	??$_Emplace_reallocate@AEBUFace@SurfaceMesh@easy3d@@@?$vector@UFace@SurfaceMesh@easy3d@@V?$allocator@UFace@SurfaceMesh@easy3d@@@std@@@std@@AEAAPEAUFace@SurfaceMesh@easy3d@@QEAU234@AEBU234@@Z
+	??$_Emplace_reallocate@PEAVBasePropertyArray@easy3d@@@?$vector@PEAVBasePropertyArray@easy3d@@V?$allocator@PEAVBasePropertyArray@easy3d@@@std@@@std@@AEAAPEAPEAVBasePropertyArray@easy3d@@QEAPEAV23@$$QEAPEAV23@@Z
+	??$_Emplace_reallocate@U?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@?$vector@U?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@V?$allocator@U?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@2@@std@@AEAAPEAU?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@1@QEAU21@$$QEAU21@@Z
+	??$_Emplace_reallocate@V?$Vec@$01M@easy3d@@@?$vector@V?$Vec@$01M@easy3d@@V?$allocator@V?$Vec@$01M@easy3d@@@std@@@std@@AEAAPEAV?$Vec@$01M@easy3d@@QEAV23@$$QEAV23@@Z
+	??$_Fill_memset@PEADD@std@@YAXPEADD_K@Z
+	??$_Fill_zero_memset@PEAI@std@@YAXPEAI_K@Z
+	??$_Fill_zero_memset@PEAM@std@@YAXPEAM_K@Z
+	??$_Fnv1a_append_value@PEAVDrawable@easy3d@@@std@@YA_K_KAEBQEAVDrawable@easy3d@@@Z
+	??$_Getvals@_W@?$time_get@DV?$istreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@IEAAX_WAEBV_Locinfo@1@@Z
+	??$_Getvals@_W@?$time_get@_WV?$istreambuf_iterator@_WU?$char_traits@_W@std@@@std@@@std@@IEAAX_WAEBV_Locinfo@1@@Z
+	??$_Hash_representation@PEAVDrawable@easy3d@@@std@@YA_KAEBQEAVDrawable@easy3d@@@Z
+	??$_Is_all_bits_zero@I@std@@YA_NAEBI@Z
+	??$_Is_all_bits_zero@M@std@@YA_NAEBM@Z
+	??$_Maklocstr@D@std@@YAPEADPEBDPEADAEBU_Cvtvec@@@Z
+	??$_Reallocate_grow_by@V<lambda_65e615be2a453ca0576c979606f46740>@@PEBD_K@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEAAAEAV01@_KV<lambda_65e615be2a453ca0576c979606f46740>@@PEBD_K@Z
+	??$_Resize_reallocate@I@?$vector@IV?$allocator@I@std@@@std@@AEAAX_KAEBI@Z
+	??$_Try_emplace@AEBQEAVDrawable@easy3d@@$$V@?$_Hash@V?$_Umap_traits@PEAVDrawable@easy3d@@VState@2@V?$_Uhash_compare@PEAVDrawable@easy3d@@U?$hash@PEAVDrawable@easy3d@@@std@@U?$equal_to@PEAVDrawable@easy3d@@@4@@std@@V?$allocator@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@@5@$0A@@std@@@std@@IEAA?AU?$pair@PEAU?$_List_node@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@PEAX@std@@_N@1@AEBQEAVDrawable@easy3d@@@Z
+	??$_Unchecked_x86_x64_popcount@I@std@@YAHI@Z
+	??$_Uninitialized_move@PEAU?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@V?$allocator@U?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@2@@std@@YAPEAU?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@0@QEAU10@0PEAU10@AEAV?$allocator@U?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@0@@Z
+	??$add@_N@PropertyContainer@easy3d@@QEAA?AV?$Property@_N@1@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z
+	??$fill@PEAV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@@std@@@std@@@std@@V12@@std@@YAXQEAV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@@std@@@std@@@0@0AEBV10@@Z
+	??$normalize@$02M@easy3d@@YA?AV?$Vec@$02M@0@AEBV10@@Z
+	??$uninitialized_fill@PEAV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@@std@@@std@@@std@@V12@@std@@YAXQEAV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@@std@@@std@@@0@0AEBV10@@Z
+	??$vertex_property@_N@PointCloud@easy3d@@QEAA?AV?$VertexProperty@_N@01@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z
+	??0?$GenericLine@$02M@easy3d@@AEAA@AEBV?$Vec@$02M@1@0@Z
+	??0?$GenericPlane@M@easy3d@@QEAA@AEBV?$Vec@$02M@1@0@Z
+	??0?$GenericSegment@$01M@easy3d@@QEAA@AEBV?$Vec@$01M@1@0@Z
+	??0?$GenericSegment@$02M@easy3d@@QEAA@AEBV?$Vec@$02M@1@0@Z
+	??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@AEBV01@@Z
+	??0?$vector@MV?$allocator@M@std@@@std@@QEAA@_KAEBMAEBV?$allocator@M@1@@Z
+	??0ModelPicker@easy3d@@QEAA@PEBVCamera@1@@Z
+	??0Picker@easy3d@@QEAA@PEBVCamera@1@@Z
+	??0PointCloudPicker@easy3d@@QEAA@PEBVCamera@1@@Z
+	??0SurfaceMeshPicker@easy3d@@QEAA@PEBVCamera@1@@Z
+	??0bad_alloc@std@@QEAA@AEBV01@@Z
+	??0bad_array_new_length@std@@QEAA@AEBV01@@Z
+	??0bad_array_new_length@std@@QEAA@XZ
+	??0exception@std@@QEAA@AEBV01@@Z
+	??1?$_Alloc_construct_ptr@V?$allocator@U?$_List_node@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@PEAX@std@@@std@@@std@@QEAA@XZ
+	??1?$_Hash@V?$_Umap_traits@PEAVDrawable@easy3d@@VState@2@V?$_Uhash_compare@PEAVDrawable@easy3d@@U?$hash@PEAVDrawable@easy3d@@@std@@U?$equal_to@PEAVDrawable@easy3d@@@4@@std@@V?$allocator@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@@5@$0A@@std@@@std@@QEAA@XZ
+	??1?$_Hash_vec@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@@std@@@std@@@std@@@std@@@std@@QEAA@XZ
+	??1?$_List_node_emplace_op2@V?$allocator@U?$_List_node@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@PEAX@std@@@std@@@std@@QEAA@XZ
+	??1?$_Vb_val@V?$allocator@_N@std@@@std@@QEAA@XZ
+	??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@XZ
+	??1?$list@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@V?$allocator@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@@2@@std@@QEAA@XZ
+	??1?$lock_guard@Vrecursive_mutex@std@@@std@@QEAA@XZ
+	??1?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@QEAA@XZ
+	??1?$vector@DV?$allocator@D@std@@@std@@QEAA@XZ
+	??1?$vector@MV?$allocator@M@std@@@std@@QEAA@XZ
+	??1?$vector@U?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@V?$allocator@U?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@2@@std@@QEAA@XZ
+	??1?$vector@UFace@SurfaceMesh@easy3d@@V?$allocator@UFace@SurfaceMesh@easy3d@@@std@@@std@@QEAA@XZ
+	??1?$vector@V?$Vec@$01M@easy3d@@V?$allocator@V?$Vec@$01M@easy3d@@@std@@@std@@QEAA@XZ
+	??1?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QEAA@XZ
+	??1?$vector@_NV?$allocator@_N@std@@@std@@QEAA@XZ
+	??1BasePropertyArray@easy3d@@UEAA@XZ
+	??1ModelPicker@easy3d@@UEAA@XZ
+	??1Picker@easy3d@@UEAA@XZ
+	??1State@easy3d@@UEAA@XZ
+	??1SurfaceMeshPicker@easy3d@@UEAA@XZ
+	??1Writer@base@el@@UEAA@XZ
+	??1_Sentry_base@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@XZ
+	??1bad_array_new_length@std@@UEAA@XZ
+	??1exception@std@@UEAA@XZ
+	??1sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@XZ
+	??A?$Property@U?$pair@HH@std@@@easy3d@@UEAAAEAU?$pair@HH@std@@_K@Z
+	??A?$Property@U?$pair@HH@std@@@easy3d@@UEBAAEBU?$pair@HH@std@@_K@Z
+	??A?$Property@UFaceConnectivity@SurfaceMesh@easy3d@@@easy3d@@UEBAAEBUFaceConnectivity@SurfaceMesh@1@_K@Z
+	??A?$Property@UHalfedgeConnectivity@SurfaceMesh@easy3d@@@easy3d@@UEBAAEBUHalfedgeConnectivity@SurfaceMesh@1@_K@Z
+	??A?$Property@V?$Vec@$02M@easy3d@@@easy3d@@UEAAAEAV?$Vec@$02M@1@_K@Z
+	??A?$Property@V?$Vec@$02M@easy3d@@@easy3d@@UEBAAEBV?$Vec@$02M@1@_K@Z
+	??A?$Property@_N@easy3d@@UEAA?AV?$_Vb_reference@U?$_Wrap_alloc@V?$allocator@I@std@@@std@@@std@@_K@Z
+	??A?$Property@_N@easy3d@@UEBA_N_K@Z
+	??H?$_Vb_iterator@U?$_Wrap_alloc@V?$allocator@I@std@@@std@@@std@@QEBA?AV01@_J@Z
+	??_7?$FaceProperty@U?$pair@HH@std@@@SurfaceMesh@easy3d@@6B@
+	??_7?$Property@U?$pair@HH@std@@@easy3d@@6B@
+	??_7?$Property@V?$Vec@$02M@easy3d@@@easy3d@@6B@
+	??_7?$Property@_N@easy3d@@6B@
+	??_7?$PropertyArray@_N@easy3d@@6B@
+	??_7?$VertexProperty@V?$Vec@$02M@easy3d@@@PointCloud@easy3d@@6B@
+	??_7?$VertexProperty@V?$Vec@$02M@easy3d@@@SurfaceMesh@easy3d@@6B@
+	??_7?$VertexProperty@_N@PointCloud@easy3d@@6B@
+	??_7BasePropertyArray@easy3d@@6B@
+	??_7ModelPicker@easy3d@@6B@
+	??_7Picker@easy3d@@6B@
+	??_7PointCloudPicker@easy3d@@6B@
+	??_7SurfaceMeshPicker@easy3d@@6B@
+	??_7Writer@base@el@@6B@
+	??_7bad_alloc@std@@6B@
+	??_7bad_array_new_length@std@@6B@
+	??_7exception@std@@6B@
+	?_Assign_grow@?$_Hash_vec@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@@std@@@std@@@std@@@std@@@std@@QEAAX_KV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@@std@@@std@@@2@@Z
+	?_Change_array@?$vector@IV?$allocator@I@std@@@std@@AEAAXQEAI_K1@Z
+	?_Change_array@?$vector@PEAVBasePropertyArray@easy3d@@V?$allocator@PEAVBasePropertyArray@easy3d@@@std@@@std@@AEAAXQEAPEAVBasePropertyArray@easy3d@@_K1@Z
+	?_Forced_rehash@?$_Hash@V?$_Umap_traits@PEAVDrawable@easy3d@@VState@2@V?$_Uhash_compare@PEAVDrawable@easy3d@@U?$hash@PEAVDrawable@easy3d@@@std@@U?$equal_to@PEAVDrawable@easy3d@@@4@@std@@V?$allocator@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@@5@$0A@@std@@@std@@IEAAX_K@Z
+	?_Insert_n@?$vector@_NV?$allocator@_N@std@@@std@@QEAA?AV?$_Vb_iterator@U?$_Wrap_alloc@V?$allocator@I@std@@@std@@@2@V?$_Vb_const_iterator@U?$_Wrap_alloc@V?$allocator@I@std@@@std@@@2@_KAEB_N@Z
+	?_Insert_x@?$vector@_NV?$allocator@_N@std@@@std@@QEAA_KV?$_Vb_const_iterator@U?$_Wrap_alloc@V?$allocator@I@std@@@std@@@2@_K@Z
+	?_Maklocwcs@std@@YAPEA_WPEB_W@Z
+	?_Reallocate_exactly@?$vector@IV?$allocator@I@std@@@std@@AEAAX_K@Z
+	?_Throw_bad_array_new_length@std@@YAXXZ
+	?_Unchecked_erase@?$_Hash@V?$_Umap_traits@PEAVDrawable@easy3d@@VState@2@V?$_Uhash_compare@PEAVDrawable@easy3d@@U?$hash@PEAVDrawable@easy3d@@@std@@U?$equal_to@PEAVDrawable@easy3d@@@4@@std@@V?$allocator@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@@5@$0A@@std@@@std@@AEAAPEAU?$_List_node@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@PEAX@2@PEAU32@QEAU32@@Z
+	?_Xlen@?$vector@_NV?$allocator@_N@std@@@std@@QEBAXXZ
+	?_Xlen_string@std@@YAXXZ
+	?_Xlength@?$vector@DV?$allocator@D@std@@@std@@CAXXZ
+	?_Xlength@?$vector@IV?$allocator@I@std@@@std@@CAXXZ
+	?_Xlength@?$vector@MV?$allocator@M@std@@@std@@CAXXZ
+	?_Xlength@?$vector@PEAVBasePropertyArray@easy3d@@V?$allocator@PEAVBasePropertyArray@easy3d@@@std@@@std@@CAXXZ
+	?_Xlength@?$vector@U?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@V?$allocator@U?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@2@@std@@CAXXZ
+	?_Xlength@?$vector@UFace@SurfaceMesh@easy3d@@V?$allocator@UFace@SurfaceMesh@easy3d@@@std@@@std@@CAXXZ
+	?_Xlength@?$vector@V?$Vec@$01M@easy3d@@V?$allocator@V?$Vec@$01M@easy3d@@@std@@@std@@CAXXZ
+	?allocate@?$allocator@D@std@@QEAAPEAD_K@Z
+	?allocate@?$allocator@I@std@@QEAAPEAI_K@Z
+	?allocate@?$allocator@PEAVBasePropertyArray@easy3d@@@std@@QEAAPEAPEAVBasePropertyArray@easy3d@@_K@Z
+	?clear@?$_Hash@V?$_Umap_traits@PEAVDrawable@easy3d@@VState@2@V?$_Uhash_compare@PEAVDrawable@easy3d@@U?$hash@PEAVDrawable@easy3d@@@std@@U?$equal_to@PEAVDrawable@easy3d@@@4@@std@@V?$allocator@U?$pair@QEAVDrawable@easy3d@@VState@2@@std@@@5@$0A@@std@@@std@@QEAAXXZ
+	?clone@?$PropertyArray@_N@easy3d@@UEBAPEAVBasePropertyArray@2@XZ
+	?copy@?$PropertyArray@_N@easy3d@@UEAAX_K0@Z
+	?deallocate@?$allocator@I@std@@QEAAXQEAI_K@Z
+	?deallocate@?$allocator@PEAVBasePropertyArray@easy3d@@@std@@QEAAXQEAPEAVBasePropertyArray@easy3d@@_K@Z
+	?deallocate@?$allocator@U?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@std@@QEAAXQEAU?$pair@W4AttribType@ShaderProgram@easy3d@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@_K@Z
+	?deallocate@?$allocator@UFace@SurfaceMesh@easy3d@@@std@@QEAAXQEAUFace@SurfaceMesh@easy3d@@_K@Z
+	?deallocate@?$allocator@V?$Vec@$01M@easy3d@@@std@@QEAAXQEAV?$Vec@$01M@easy3d@@_K@Z
+	?draw@ModelPicker@easy3d@@AEAAXAEBV?$vector@PEAVModel@easy3d@@V?$allocator@PEAVModel@easy3d@@@std@@@std@@@Z
+	?draw@ModelPicker@easy3d@@AEAAXPEAVDrawable@2@AEBV?$Vec@$03M@2@@Z
+	?empty_clone@?$PropertyArray@_N@easy3d@@UEBAPEAVBasePropertyArray@2@XZ
+	?erase@?$vector@_NV?$allocator@_N@std@@@std@@QEAA?AV?$_Vb_iterator@U?$_Wrap_alloc@V?$allocator@I@std@@@std@@@2@V?$_Vb_const_iterator@U?$_Wrap_alloc@V?$allocator@I@std@@@std@@@2@0@Z
+	?face_plane@SurfaceMeshPicker@easy3d@@AEBA?AV?$GenericPlane@M@2@PEAVSurfaceMesh@2@UFace@42@@Z
+	?faces@SurfaceMesh@easy3d@@QEBA?AVFaceContainer@12@XZ
+	?getCounter@RegisteredHitCounters@base@el@@QEAAPEBVHitCounter@23@PEBDK@Z
+	?intersect@?$GenericPlane@M@easy3d@@QEBA_NAEBV?$GenericLine@$02M@2@AEAV?$Vec@$02M@2@@Z
+	?normal@?$GenericPlane@M@easy3d@@QEBA?AV?$Vec@$02M@2@XZ
+	?pick@ModelPicker@easy3d@@QEAAPEAVModel@2@AEBV?$vector@PEAVModel@easy3d@@V?$allocator@PEAVModel@easy3d@@@std@@@std@@HH@Z
+	?pick_edge@SurfaceMeshPicker@easy3d@@QEAA?AUHalfedge@SurfaceMesh@2@PEAV42@HH@Z
+	?pick_edge@SurfaceMeshPicker@easy3d@@QEAA?AUHalfedge@SurfaceMesh@2@PEAV42@UFace@42@HH@Z
+	?pick_face@SurfaceMeshPicker@easy3d@@QEAA?AUFace@SurfaceMesh@2@PEAV42@HH@Z
+	?pick_face_cpu@SurfaceMeshPicker@easy3d@@AEAA?AUFace@SurfaceMesh@2@PEAV42@HH@Z
+	?pick_face_gpu@SurfaceMeshPicker@easy3d@@AEAA?AUFace@SurfaceMesh@2@PEAV42@HHPEAVShaderProgram@2@@Z
+	?pick_faces@SurfaceMeshPicker@easy3d@@QEAA?AV?$vector@UFace@SurfaceMesh@easy3d@@V?$allocator@UFace@SurfaceMesh@easy3d@@@std@@@std@@PEAVSurfaceMesh@2@AEBV?$GenericPolygon@M@2@@Z
+	?pick_faces@SurfaceMeshPicker@easy3d@@QEAA?AV?$vector@UFace@SurfaceMesh@easy3d@@V?$allocator@UFace@SurfaceMesh@easy3d@@@std@@@std@@PEAVSurfaceMesh@2@AEBV?$GenericRect@M@2@@Z
+	?pick_vertex@PointCloudPicker@easy3d@@QEAA?AUVertex@PointCloud@2@PEAV42@HH@Z
+	?pick_vertex@SurfaceMeshPicker@easy3d@@QEAA?AUVertex@SurfaceMesh@2@PEAV42@HH@Z
+	?pick_vertex@SurfaceMeshPicker@easy3d@@QEAA?AUVertex@SurfaceMesh@2@PEAV42@UFace@42@HH@Z
+	?pick_vertex_cpu@PointCloudPicker@easy3d@@AEAA?AUVertex@PointCloud@2@PEAV42@HH@Z
+	?pick_vertex_gpu_plain@PointCloudPicker@easy3d@@AEAA?AUVertex@PointCloud@2@PEAV42@HH@Z
+	?pick_vertex_gpu_sphere@PointCloudPicker@easy3d@@AEAA?AUVertex@PointCloud@2@PEAV42@HH@Z
+	?pick_vertices@PointCloudPicker@easy3d@@QEAAXPEAVPointCloud@2@AEBV?$GenericPolygon@M@2@_N@Z
+	?pick_vertices@PointCloudPicker@easy3d@@QEAAXPEAVPointCloud@2@AEBV?$GenericRect@M@2@_N@Z
+	?picked_face@SurfaceMeshPicker@easy3d@@QEBA?AUFace@SurfaceMesh@2@XZ
+	?picked_point@SurfaceMeshPicker@easy3d@@QEBA?AV?$Vec@$02M@2@PEAVSurfaceMesh@2@UFace@42@HH@Z
+	?picking_line@Picker@easy3d@@QEBA?AV?$GenericLine@$02M@2@HH@Z
+	?point_in_polygon@geom@easy3d@@YA_NAEBV?$Vec@$01M@2@AEBV?$vector@V?$Vec@$01M@easy3d@@V?$allocator@V?$Vec@$01M@easy3d@@@std@@@std@@@Z
+	?push_back@?$PropertyArray@_N@easy3d@@UEAAXXZ
+	?push_back@?$vector@_NV?$allocator@_N@std@@@std@@QEAAXAEB_N@Z
+	?reserve@?$PropertyArray@_N@easy3d@@UEAAX_K@Z
+	?reset@?$PropertyArray@_N@easy3d@@UEAAX_K@Z
+	?resize@?$PropertyArray@_N@easy3d@@UEAAX_K@Z
+	?resize@?$vector@_NV?$allocator@_N@std@@@std@@QEAAX_K_N@Z
+	?screen_to_opengl@Picker@easy3d@@QEBAXHHAEAH0HH@Z
+	?setup_framebuffer@Picker@easy3d@@IEAAXHH@Z
+	?shrink_to_fit@?$PropertyArray@_N@easy3d@@UEAAXXZ
+	?swap@?$PropertyArray@_N@easy3d@@UEAAX_K0@Z
+	?transfer@?$PropertyArray@_N@easy3d@@UEAA_NAEBVBasePropertyArray@2@@Z
+	?transfer@?$PropertyArray@_N@easy3d@@UEAA_NAEBVBasePropertyArray@2@_K1@Z
+	?type@?$PropertyArray@_N@easy3d@@UEBAAEBVtype_info@@XZ
+	?what@exception@std@@UEBAPEBDXZ

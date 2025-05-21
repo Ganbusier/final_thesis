@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E098B9C2-F28E-3833-9356-649B3C37713F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <VcpkgEnabled>false</VcpkgEnabled>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>3rd_lastools</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="do_not_import_user.props" Condition="exists('do_not_import_user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Files\GitHub\final_thesis\lib\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">3rd_lastools.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">3rd_lastools</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Files\GitHub\final_thesis\lib\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">3rd_lastools.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">3rd_lastools</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Files\GitHub\final_thesis\lib\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">3rd_lastools.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">3rd_lastools</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Files\GitHub\final_thesis\lib\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">3rd_lastools.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">3rd_lastools</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src;D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src;D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src;D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src;D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src;D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src;D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src;D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src;D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src;D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src;D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src;D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src;D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/Files/GitHub/final_thesis/3rd_party/Easy3D/3rd_party/lastools/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Files/GitHub/final_thesis -BD:/Files/GitHub/final_thesis/build --check-stamp-file D:/Files/GitHub/final_thesis/build/3rd_party/Easy3D/3rd_party/lastools/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Files\GitHub\final_thesis\build\3rd_party\Easy3D\3rd_party\lastools\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Files/GitHub/final_thesis/3rd_party/Easy3D/3rd_party/lastools/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Files/GitHub/final_thesis -BD:/Files/GitHub/final_thesis/build --check-stamp-file D:/Files/GitHub/final_thesis/build/3rd_party/Easy3D/3rd_party/lastools/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Files\GitHub\final_thesis\build\3rd_party\Easy3D\3rd_party\lastools\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/Files/GitHub/final_thesis/3rd_party/Easy3D/3rd_party/lastools/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Files/GitHub/final_thesis -BD:/Files/GitHub/final_thesis/build --check-stamp-file D:/Files/GitHub/final_thesis/build/3rd_party/Easy3D/3rd_party/lastools/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Files\GitHub\final_thesis\build\3rd_party\Easy3D\3rd_party\lastools\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/Files/GitHub/final_thesis/3rd_party/Easy3D/3rd_party/lastools/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Files/GitHub/final_thesis -BD:/Files/GitHub/final_thesis/build --check-stamp-file D:/Files/GitHub/final_thesis/build/3rd_party/Easy3D/3rd_party/lastools/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Files\GitHub\final_thesis\build\3rd_party\Easy3D\3rd_party\lastools\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\fopen_compressed.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lasfilter.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lasreader_asc.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lasreader_bil.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lasreader_bin.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lasreader_dtm.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lasreader_las.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lasreader_ply.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lasreader_qfit.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lasreader_shp.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lasreader_txt.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lasreader.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lasignore.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lasreaderbuffered.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lasreadermerged.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lasreaderpipeon.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lasreaderstored.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lastransform.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\laskdtree.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\lasutility.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\laswaveform13reader.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\laswaveform13writer.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\laswriter_bin.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\laswriter_las.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\laswriter_qfit.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\laswriter_txt.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\laswriter_wrl.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\laswriter.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\src\laswritercompatible.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\arithmeticdecoder.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\arithmeticencoder.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\arithmeticmodel.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\integercompressor.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasindex.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lascopc.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasinterval.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasquadtree.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasreaditemcompressed_v1.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasreaditemcompressed_v2.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasreaditemcompressed_v3.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasreaditemcompressed_v4.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasreadpoint.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laswriteitemcompressed_v1.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laswriteitemcompressed_v2.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laswriteitemcompressed_v3.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laswriteitemcompressed_v4.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laswritepoint.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laszip.cpp" />
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\mydefs.cpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lasdefinitions.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lasfilter.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lasreader_asc.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lasreader_bil.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lasreader_bin.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lasreader_dtm.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lasreader_las.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lasreader_ply.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lasreader_qfit.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lasreader_shp.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lasreader_txt.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lasreader.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lasreaderbuffered.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lasreadermerged.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lasreaderpipeon.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lasreaderstored.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lastransform.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\lasutility.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\laswaveform13reader.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\laswaveform13writer.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\laswriter_bin.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\laswriter_las.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\laswriter_qfit.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\laswriter_txt.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\laswriter_wrl.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\laswriter.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASlib\inc\laswritercompatible.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\arithmeticdecoder.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\arithmeticencoder.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\arithmeticmodel.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\bytestreamin_array.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\bytestreamin_file.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\bytestreamin_istream.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\bytestreamin.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\bytestreaminout_file.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\bytestreaminout.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\bytestreamout_array.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\bytestreamout_file.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\bytestreamout_nil.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\bytestreamout_ostream.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\bytestreamout.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\integercompressor.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasattributer.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasindex.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasinterval.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laspoint.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasquadtree.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasquantizer.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasreaditem.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasreaditemcompressed_v1.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasreaditemcompressed_v2.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasreaditemcompressed_v3.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasreaditemcompressed_v4.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasreaditemraw.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\lasreadpoint.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laswriteitem.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laswriteitemcompressed_v1.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laswriteitemcompressed_v2.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laswriteitemcompressed_v3.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laswriteitemcompressed_v4.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laswriteitemraw.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laswritepoint.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laszip_common_v1.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laszip_common_v2.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laszip_common_v3.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laszip_decompress_selective_v3.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\laszip.hpp" />
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\3rd_party\lastools\LASzip\src\mydefs.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\Files\GitHub\final_thesis\build\ZERO_CHECK.vcxproj">
+      <Project>{EFF41588-7DA6-3FB3-A9FA-64FD0599B15B}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

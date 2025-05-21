@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\kdtree\kdtree_search.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\kdtree\kdtree_search_ann.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\kdtree\kdtree_search_eth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\kdtree\kdtree_search_flann.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\kdtree\kdtree_search_nanoflann.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\kdtree\kdtree_search.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\kdtree\kdtree_search_ann.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\kdtree\kdtree_search_eth.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\kdtree\kdtree_search_flann.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\kdtree\kdtree_search_nanoflann.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\kdtree\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{32F5DB64-6114-3178-8837-C96556A9670A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{856EF968-F36E-3750-B531-1FB7297FD93C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\graph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\surface_mesh_builder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\matrix_algo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\point_cloud.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\surface_mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\poly_mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\box.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\constant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\curve.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\eigen_solver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\graph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\hash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\heap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\line.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\surface_mesh_builder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\mat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\matrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\matrix_algo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\oriented_line.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\plane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\point_cloud.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\principal_axes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\property.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\quat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\rect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\segment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\signal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\spline_curve_fitting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\spline_curve_interpolation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\spline_interpolation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\surface_mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\poly_mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\polygon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\vec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Files\GitHub\final_thesis\3rd_party\Easy3D\easy3d\core\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{32F5DB64-6114-3178-8837-C96556A9670A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{856EF968-F36E-3750-B531-1FB7297FD93C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

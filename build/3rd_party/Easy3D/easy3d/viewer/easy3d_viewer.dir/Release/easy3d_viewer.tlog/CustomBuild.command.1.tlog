@@ -1,0 +1,10 @@
+^D:\FILES\GITHUB\FINAL_THESIS\3RD_PARTY\EASY3D\EASY3D\VIEWER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Files/GitHub/final_thesis -BD:/Files/GitHub/final_thesis/build --check-stamp-file D:/Files/GitHub/final_thesis/build/3rd_party/Easy3D/easy3d/viewer/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

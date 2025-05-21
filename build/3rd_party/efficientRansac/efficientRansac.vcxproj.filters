@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\Bitmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\BitmapPrimitiveShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\Candidate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\Cone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\ConePrimitiveShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\ConePrimitiveShapeConstructor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\Cylinder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\CylinderPrimitiveShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\CylinderPrimitiveShapeConstructor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\LowStretchSphereParametrization.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\LowStretchTorusParametrization.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\Plane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\PlanePrimitiveShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\PlanePrimitiveShapeConstructor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\PointCloud.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\RansacShapeDetector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\SimpleTorusParametrization.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\solve.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\Sphere.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\SpherePrimitiveShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\SpherePrimitiveShapeConstructor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\Torus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\TorusPrimitiveShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\TorusPrimitiveShapeConstructor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\MiscLib\Random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\MiscLib\RefCount.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\BasePrimitiveShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\basic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\Bitmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\BitmapPrimitiveShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\Candidate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\Cone.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\ConePrimitiveShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\ConePrimitiveShapeConstructor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\Cylinder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\CylinderPrimitiveShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\CylinderPrimitiveShapeConstructor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\FlatNormalThreshPointCompatibilityFunc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\Grid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\IndexIterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\LevMarFitting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\LevMarFunc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\LevMarLSWeight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\LowStretchSphereParametrization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\LowStretchTorusParametrization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\Octree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\Plane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\PlanePrimitiveShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\PlanePrimitiveShapeConstructor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\PointCloud.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\PrimitiveShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\PrimitiveShapeConstructor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\PrimitiveShapeVisitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\RansacShapeDetector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\RebuildAACubeTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\ScoreAACubeTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\ScoreComputer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\ScorePrimitiveShapeVisitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\SimpleTorusParametrization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\Sphere.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\SpherePrimitiveShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\SpherePrimitiveShapeConstructor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\Torus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\TorusPrimitiveShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\TorusPrimitiveShapeConstructor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\AABox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\AABox.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\AACube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\AACube.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\AACubeTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\AACubeTree.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\AAKdTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\AAKdTree.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\AAPlane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\AAPlane.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\Array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\ArrayArithmetic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\BaseTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\BaseTree.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\BBoxBuildInformationTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\BBoxDistanceKdTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\BucketSizeMaxLevelSubdivisionTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\BucketSizeSubdivisionTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\CellBBoxBuildInformationKdTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\CellCenterAACubeTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\CellLevelTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\CellParentTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\CellRangeDataTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\CellSizeDataTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\Covariance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\DynVectorKernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\FaceNeighborAACubeTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\FlatCopyVector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\Frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\HyperplaneCoordinateSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\ImmediateTreeDataKernels.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\IncrementalDistanceKdTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\IndexedIterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\IndexedTreeDataKernels.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\IndexedTreeDataStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\Jacobi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\KdTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\KdTree.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\L1Norm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\L2Norm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\LevelBuildInformationTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\LimitedHeap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\MathHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\MatrixXX.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\MaxIntervalSplittingKdTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\MaxLevelSubdivisionTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\MaxNorm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\Mean.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\NearestNeighbor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\NearestNeighbors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\NullClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\NullStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\NullStrategy.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\NullTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\OnOff.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\Orientation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\Plane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\Plane.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\ScalarTypeConversion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\ScalarTypeDeferer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\ShuffleIndicesTreeDataKernelStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\SlidingMidpointSplittingKdTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\StdContainerAdaptor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\StdOverrides.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\Swap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\VectorKernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\VectorXD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\GfxTL\WeightFunc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\MiscLib\AlignedAllocator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\MiscLib\NoShrinkVector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\MiscLib\Pair.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\MiscLib\Performance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\MiscLib\Random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\MiscLib\RefCount.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\MiscLib\RefCounted.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\MiscLib\RefCountPtr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\MiscLib\Vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Files\GitHub\final_thesis\3rd_party\efficientRansac\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{32F5DB64-6114-3178-8837-C96556A9670A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{856EF968-F36E-3750-B531-1FB7297FD93C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
