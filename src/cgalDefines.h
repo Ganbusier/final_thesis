@@ -4,6 +4,7 @@
 #include <CGAL/Point_set_3.h>
 #include <CGAL/Simple_cartesian.h>
 
+// for CGAL Region Growing
 using Kernel = CGAL::Simple_cartesian<double>;
 using Point_3 = typename Kernel::Point_3;
 using Vector_3 = typename Kernel::Vector_3;
