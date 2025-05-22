@@ -11,7 +11,7 @@ class CustomCylinder : public CGAL::Shape_detection::Cylinder<Traits> {
   using FT = typename Traits::FT;
 
   CustomCylinder()
-      : Base(), m_min_radius(0), m_max_radius(std::numeric_limits<FT>::max()) {}
+      : Base(), m_minRadius(0), m_maxRadius(std::numeric_limits<FT>::max()) {}
 
   // set radius range
   void set_radius_range(FT minRadius, FT maxRadius) {

@@ -3,12 +3,7 @@
 
 #include <easy3d/core/model.h>
 #include <easy3d/viewer/viewer.h>
-#include <energyMinimization/energyMinimization.h>
-#include <graph/graph.h>
-#include <regionGrowing/regionGrowing.h>
-#include <ransac/ransac3d.h>
 
-#include "cgalDefines.h"
 
 
 bool run_EnergyMinimization(easy3d::Viewer* viewer, easy3d::Model* model,
