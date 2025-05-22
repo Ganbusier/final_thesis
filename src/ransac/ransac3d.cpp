@@ -40,10 +40,18 @@ void Ransac3d::pointCloudToPwnVector() {
 
 void Ransac3d::detect() {
   LOG(INFO) << "Detecting cylinders using RANSAC";
+  m_ransac.set_input(m_pwnVector);
+  m_ransac.add_shape_factory<Cylinder>();
   m_ransac.detect(m_params);
   if (m_ransac.shapes().empty()) {
     LOG(INFO) << "No cylinders detected";
     return;
+  }
+  auto shapes = m_ransac.shapes();
+  for (const auto& shape : shapes) {
+    if (Cylinder* cylinder = dynamic_cast<Cylinder*>(shape.get())) {
+      m_cylinders.push_back(*cylinder);
+    }
   }
   storeCylinders();
   storeCylinderInfos();
