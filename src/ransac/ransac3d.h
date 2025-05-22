@@ -34,6 +34,10 @@ class Ransac3d {
     return m_cylinderInfos;
   }
 
+  const std::vector<int>& getLeftoverIndices() const {
+    return m_leftoverIndices;
+  }
+
  private:
   easy3d::PointCloud* m_pointCloud;
   Pwn_vector m_pwnVector;
@@ -41,10 +45,12 @@ class Ransac3d {
   Efficient_ransac::Parameters m_params;
   std::vector<Cylinder> m_cylinders;
   std::vector<CylinderInfo> m_cylinderInfos;
+  std::vector<int> m_leftoverIndices;
 
   void pointCloudToPwnVector();
   void storeCylinders();
   void storeCylinderInfos();
+  void storeLeftoverIndices();
 };
 
 }  // namespace ransac

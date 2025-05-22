@@ -47,6 +47,7 @@ void Ransac3d::detect() {
   }
   storeCylinders();
   storeCylinderInfos();
+  storeLeftoverIndices();
 }
 
 void Ransac3d::storeCylinders() {
@@ -59,6 +60,49 @@ void Ransac3d::storeCylinders() {
   }
 }
 
-void Ransac3d::storeCylinderInfos() {}
+void Ransac3d::storeCylinderInfos() {
+  m_cylinderInfos.clear();
+  for (const auto& cylinder : m_cylinders) {
+    CylinderInfo info;
+    auto d = cylinder.axis().to_vector();
+    auto c = cylinder.axis().point(0);
+    easy3d::vec3 direction = easy3d::vec3(d.x(), d.y(), d.z());
+    easy3d::vec3 center = easy3d::vec3(c.x(), c.y(), c.z());
+    const std::vector<size_t>& inlierIndices =
+        cylinder.indices_of_assigned_points();
 
+    // get bbox of inlier points
+    easy3d::PointCloud* tempCloud = new easy3d::PointCloud;
+    for (const auto& index : inlierIndices) {
+      easy3d::PointCloud::Vertex v(index);
+      easy3d::vec3 p = m_pointCloud->position(v);
+      tempCloud->add_vertex(p);
+    }
+    const easy3d::Box3& bbox = tempCloud->bounding_box();
+    info.start = center - direction * bbox.radius();
+    info.end = center + direction * bbox.radius();
+    info.radius = cylinder.radius();
+    info.length = bbox.diagonal_length();
+
+    for (const auto& index : inlierIndices) {
+      info.inlierIndices.push_back(index);
+    }
+
+    m_cylinderInfos.push_back(info);
+  }
+}
+
+void Ransac3d::storeLeftoverIndices() {
+  m_leftoverIndices.clear();
+  for (const auto& v : m_pointCloud->vertices()) {
+    m_leftoverIndices.push_back(v.idx());
+  }
+  for (const auto& cyInfo : m_cylinderInfos) {
+    for (const auto& index : cyInfo.inlierIndices) {
+      m_leftoverIndices.erase(std::remove(m_leftoverIndices.begin(),
+                                          m_leftoverIndices.end(), index),
+                              m_leftoverIndices.end());
+    }
+  }
+}
 }  // namespace ransac
