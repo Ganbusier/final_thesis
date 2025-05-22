@@ -149,7 +149,7 @@ namespace CGAL {
       m_axis = this->m_traits.construct_line_3_object()(m_point_on_axis, axis);
 
       if (squared_distance(p1) > this->m_epsilon ||
-          (cos_to_normal(p1, n1) < this->m_normal_threshold) || m_radius > FT(2.0))
+          (cos_to_normal(p1, n1) < this->m_normal_threshold))
         return;
 
       this->m_is_valid = true;
