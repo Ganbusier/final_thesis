@@ -3,6 +3,8 @@ get_filename_component(PROJECT_NAME ${CMAKE_CURRENT_LIST_DIR} NAME)
 set(${PROJECT_NAME}_HEADERS
     ./ransac3d.h
     ./ransac3d2d.h
+    ./cgalDefines_ransac.h
+    ./customCylinder.h
 )
 
 set(${PROJECT_NAME}_SOURCES

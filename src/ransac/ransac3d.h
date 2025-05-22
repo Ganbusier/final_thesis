@@ -1,8 +1,16 @@
 #ifndef RANSAC3D_H
 #define RANSAC3D_H
 
+#include "cgalDefines_ransac.h"
 
 namespace ransac {
+    struct Cylinder {
+
+    };
+
+    class Ransac3d {
+
+    }
 
 }  // namespace ransac
 
