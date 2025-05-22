@@ -6,7 +6,7 @@
 #include <energyMinimization/energyMinimization.h>
 #include <graph/graph.h>
 #include <regionGrowing/regionGrowing.h>
-#include <myRansac/ransac3d.h>
+#include <ransac/ransac3d.h>
 
 #include "cgalDefines.h"
 

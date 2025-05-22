@@ -7,6 +7,7 @@
 #include <CGAL/Shape_detection/Efficient_RANSAC.h>
 #include "customCylinder.h"
 
+namespace ransac {
 using Kernel = CGAL::Exact_predicates_inexact_constructions_kernel;
 using FT = Kernel::FT;
 using Point_with_normal = std::pair<Kernel::Point_3, Kernel::Vector_3>;
@@ -17,11 +18,11 @@ using Normal_map = CGAL::Second_of_pair_property_map<Point_with_normal>;
 using Traits =
     CGAL::Shape_detection::Efficient_RANSAC_traits<Kernel, Pwn_vector, Point_map, Normal_map>;
 using Efficient_ransac = CGAL::Shape_detection::Efficient_RANSAC<Traits>;
-using Cylinder = ransac::CustomCylinder<Traits>;
+using Cylinder = CustomCylinder<Traits>;
 
 using Point_3 = CGAL::Point_3<CGAL::Epick>;
 using Vector_3 = CGAL::Vector_3<CGAL::Epick>;
-
+} // namespace ransac
 
 #endif // CGAL_DEFINES_RANSAC_H
 

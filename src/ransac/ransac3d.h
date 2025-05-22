@@ -4,13 +4,13 @@
 #include "cgalDefines_ransac.h"
 
 namespace ransac {
-    struct Cylinder {
+    struct CylinderInfo {
 
     };
 
     class Ransac3d {
 
-    }
+    };
 
 }  // namespace ransac
 
