@@ -11,8 +11,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 )
 
 # find CGAL
-set(CGAL_DIR ${Thesis_EXTERNAL_DIR}/CGAL)
-find_package(CGAL REQUIRED PATHS ${CGAL_DIR})
+find_package(CGAL REQUIRED)
 
 target_link_libraries(${PROJECT_NAME} 
     energyMinimization
