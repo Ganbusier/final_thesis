@@ -51,8 +51,7 @@ bool run_RegionGrowing(easy3d::Viewer* viewer, easy3d::Model* model,
   regionGrowing::CylinderRegionGrowing regionGrowing(pointSet, params);
   regionGrowing.detect();
 
-  std::vector<regionGrowing::Cylinder> cylinders;
-  regionGrowing.getCylinders(cylinders);
+  std::vector<regionGrowing::Cylinder> cylinders = regionGrowing.getCylinders();
 
   if (cylinders.empty()) {
     LOG(INFO) << "No cylinders found";

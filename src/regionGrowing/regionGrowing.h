@@ -6,7 +6,6 @@
 
 #include "cgalDefines_rg.h"
 
-
 namespace regionGrowing {
 
 struct Cylinder {
@@ -39,10 +38,12 @@ class CylinderRegionGrowing {
   std::vector<Primitive_and_region> m_regions;
   std::vector<Cylinder> m_cylinders;
   std::vector<size_t> m_unassignedIndices;
+  std::vector<easy3d::vec3> m_unassignedPoints;
 
  private:
   void constructCylinders();
   void constructUnassignedIndices();
+  void constructUnassignedPoints();
 
  public:
   CylinderRegionGrowing(const Point_set& pointSet,
@@ -63,8 +64,16 @@ class CylinderRegionGrowing {
         m_regionGrowing(m_pointSet, m_neighborQuery, m_regionType) {}
 
   void detect();
-  void getRegions(std::vector<Primitive_and_region>& regions) const;
-  void getCylinders(std::vector<Cylinder>& cylinders) const;
+  const std::vector<Primitive_and_region>& getRegions() const {
+    return m_regions;
+  }
+  const std::vector<Cylinder>& getCylinders() const { return m_cylinders; }
+  const std::vector<size_t>& getUnassignedIndices() const {
+    return m_unassignedIndices;
+  }
+  const std::vector<easy3d::vec3>& getUnassignedPoints() const {
+    return m_unassignedPoints;
+  }
 };
 
 }  // namespace regionGrowing

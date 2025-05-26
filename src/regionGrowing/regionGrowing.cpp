@@ -27,18 +27,13 @@ bool makePointSet(easy3d::PointCloud* pointCloud, Point_set& pointSet,
 void CylinderRegionGrowing::detect() {
   CGAL::Random random;
   m_regionGrowing.detect(std::back_inserter(m_regions));
+  if (m_regions.empty()) {
+    LOG(INFO) << "No regions found, all points are assigned";
+    return;
+  }
   constructCylinders();
   constructUnassignedIndices();
-}
-
-void CylinderRegionGrowing::getRegions(
-    std::vector<Primitive_and_region>& regions) const {
-  regions = m_regions;
-}
-
-void CylinderRegionGrowing::getCylinders(
-    std::vector<Cylinder>& cylinders) const {
-  cylinders = m_cylinders;
+  constructUnassignedPoints();
 }
 
 void CylinderRegionGrowing::constructCylinders() {
@@ -106,6 +101,14 @@ void CylinderRegionGrowing::constructUnassignedIndices() {
     if (!assigned[i]) {
       m_unassignedIndices.push_back(i);
     }
+  }
+}
+
+void CylinderRegionGrowing::constructUnassignedPoints() {
+  m_unassignedPoints.clear();
+  for (const auto& index : m_unassignedIndices) {
+    auto p = m_pointSet.point(index);
+    m_unassignedPoints.push_back(easy3d::vec3(p.x(), p.y(), p.z()));
   }
 }
 
