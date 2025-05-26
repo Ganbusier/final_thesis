@@ -3,6 +3,7 @@
 
 #include <easy3d/algo/point_cloud_normals.h>
 #include <easy3d/core/point_cloud.h>
+#include <easy3d/fileio/point_cloud_io.h>
 
 #include "cgalDefines_rg.h"
 
@@ -74,6 +75,8 @@ class CylinderRegionGrowing {
   const std::vector<easy3d::vec3>& getUnassignedPoints() const {
     return m_unassignedPoints;
   }
+  void saveCylinderInfos(const std::string& filename);
+  void saveUnassignedPoints(const std::string& filename);
 };
 
 }  // namespace regionGrowing

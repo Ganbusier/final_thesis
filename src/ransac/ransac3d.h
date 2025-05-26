@@ -2,6 +2,7 @@
 #define RANSAC3D_H
 
 #include <easy3d/core/point_cloud.h>
+#include <easy3d/fileio/point_cloud_io.h>
 
 #include "cgalDefines_ransac.h"
 
@@ -41,6 +42,9 @@ class Ransac3d {
   const std::vector<easy3d::vec3>& getLeftoverPoints() const {
     return m_leftoverPoints;
   }
+
+  void saveCylinderInfos(const std::string& filename);
+  void saveLeftoverPoints(const std::string& filename);
 
  private:
   easy3d::PointCloud* m_pointCloud;

@@ -112,4 +112,27 @@ void CylinderRegionGrowing::constructUnassignedPoints() {
   }
 }
 
+void CylinderRegionGrowing::saveCylinderInfos(const std::string& filename) {
+  // save the cylinder infos to a csv file
+  std::ofstream file(filename);
+  file << "radius,length,start_x,start_y,start_z,end_x,end_y,end_z\n";
+  for (const auto& cylinder : m_cylinders) {
+    file << cylinder.radius << "," << cylinder.length << ","
+         << cylinder.start.x() << "," << cylinder.start.y() << ","
+         << cylinder.start.z() << "," << cylinder.end.x() << ","
+         << cylinder.end.y() << "," << cylinder.end.z() << "\n";
+  }
+  file.close();
+  LOG(INFO) << "Cylinder infos saved to " << filename;
+}
+
+void CylinderRegionGrowing::saveUnassignedPoints(const std::string& filename) {
+  // save the unassigned points to a ply file
+  easy3d::PointCloud* unassignedCloud = new easy3d::PointCloud;
+  for (const auto& point : m_unassignedPoints) {
+    unassignedCloud->add_vertex(point);
+  }
+  easy3d::io::save_ply(filename, unassignedCloud, false);
+  LOG(INFO) << "Unassigned points saved to " << filename;
+}
 }  // namespace regionGrowing

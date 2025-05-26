@@ -28,7 +28,10 @@ bool run_EnergyMinimization(easy3d::Viewer* viewer, easy3d::Model* model,
   energyMinimization.setSmoothnessTerm();
   energyMinimization.optimize();
   energyMinimization.getResults();
-  energyMinimization.saveResults(saveFilePath);
+
+  std::string preservedFilename = saveFilePath + "gco_preserved.ply";
+  std::string removedFilename = saveFilePath + "gco_removed.ply";
+  energyMinimization.saveResults(preservedFilename, removedFilename);
 
   return true;
 }
@@ -82,6 +85,11 @@ bool run_RegionGrowing(easy3d::Viewer* viewer, easy3d::Model* model,
     drawables.push_back(cylinderDrawable);
   }
 
+  std::string cylinderInfosFilename = saveFilePath + "rg_cylinderInfos.csv";
+  std::string unassignedPointsFilename = saveFilePath + "rg_unassignedPoints.ply";
+  regionGrowing.saveCylinderInfos(cylinderInfosFilename);
+  regionGrowing.saveUnassignedPoints(unassignedPointsFilename);
+
   return true;
 }
 
@@ -129,6 +137,11 @@ bool run_Ransac3d(easy3d::Viewer* viewer, easy3d::Model* model,
     viewer->add_drawable(cylinderDrawable);
     drawables.push_back(cylinderDrawable);
   }
+
+  std::string cylinderInfosFilename = saveFilePath + "ransac3d_cylinderInfos.csv";
+  std::string leftoverPointsFilename = saveFilePath + "ransac3d_leftoverPoints.ply";
+  ransac3d.saveCylinderInfos(cylinderInfosFilename);
+  ransac3d.saveLeftoverPoints(leftoverPointsFilename);
 
   return true;
 }

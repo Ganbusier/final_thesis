@@ -338,12 +338,14 @@ void EnergyMinimization::getResults() {
             << removedEdgeCount << " removed edges";
 }
 
-void EnergyMinimization::saveResults(const std::string &filename) {
-  LOG(INFO) << "Saving results to " << filename;
-  easy3d::io::save_ply(filename + "_preserved.ply", m_preservedGraph, false);
-  easy3d::io::save_ply(filename + "_removed.ply", m_removedGraph, false);
-  LOG(INFO) << "Results saved to " << filename + "_preserved.ply"
-            << " and " << filename + "_removed.ply";
+void EnergyMinimization::saveResults(const std::string &preservedFilename,
+                                     const std::string &removedFilename) {
+  LOG(INFO) << "Saving results to " << preservedFilename << " and "
+            << removedFilename;
+  easy3d::io::save_ply(preservedFilename, m_preservedGraph, false);
+  easy3d::io::save_ply(removedFilename, m_removedGraph, false);
+  LOG(INFO) << "Results saved to " << preservedFilename << " and "
+            << removedFilename;
 }
 
 }  // namespace energyMinimization

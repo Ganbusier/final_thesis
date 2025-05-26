@@ -88,7 +88,8 @@ class EnergyMinimization {
   void setSmoothnessTerm();
   void optimize();
   void getResults();
-  void saveResults(const std::string &filename);
+  void saveResults(const std::string &preservedFilename,
+                  const std::string &removedFilename);
 };
 
 }  // namespace energyMinimization

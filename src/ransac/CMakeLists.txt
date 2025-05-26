@@ -24,6 +24,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     CGAL::CGAL
     easy3d::core
     easy3d::algo
+    easy3d::fileio
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES FOLDER "src")

@@ -127,4 +127,26 @@ void Ransac3d::storeLeftoverPoints() {
   }
 }
 
+void Ransac3d::saveCylinderInfos(const std::string& filename) {
+  std::ofstream file(filename);
+  file << "radius,length,start_x,start_y,start_z,end_x,end_y,end_z\n";
+  for (const auto& cylinder : m_cylinderInfos) {
+    file << cylinder.radius << "," << cylinder.length << ","
+         << cylinder.start.x << "," << cylinder.start.y << ","
+         << cylinder.start.z << "," << cylinder.end.x << ","
+         << cylinder.end.y << "," << cylinder.end.z << "\n";
+  }
+  file.close();
+  LOG(INFO) << "Cylinder infos saved to " << filename;
+}
+
+void Ransac3d::saveLeftoverPoints(const std::string& filename) {
+  easy3d::PointCloud* leftoverCloud = new easy3d::PointCloud;
+  for (const auto& point : m_leftoverPoints) {
+    leftoverCloud->add_vertex(point);
+  }
+  easy3d::io::save_ply(filename, leftoverCloud, false);
+  LOG(INFO) << "Leftover points saved to " << filename;
+}
+
 }  // namespace ransac
