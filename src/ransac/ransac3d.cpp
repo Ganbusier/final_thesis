@@ -56,6 +56,9 @@ void Ransac3d::detect() {
   storeCylinders();
   storeCylinderInfos();
   storeLeftoverIndices();
+  storeLeftoverPoints();
+  LOG(INFO) << "Cylinders detected: " << m_cylinders.size();
+  LOG(INFO) << "Leftover points: " << m_leftoverPoints.size();
 }
 
 void Ransac3d::storeCylinders() {
@@ -73,20 +76,21 @@ void Ransac3d::storeCylinderInfos() {
   for (const auto& cylinder : m_cylinders) {
     CylinderInfo info;
     auto d = cylinder.axis().to_vector();
-    auto c = cylinder.axis().point(0);
+    // auto c = cylinder.axis().point(0);
     easy3d::vec3 direction = easy3d::vec3(d.x(), d.y(), d.z());
-    easy3d::vec3 center = easy3d::vec3(c.x(), c.y(), c.z());
+    // easy3d::vec3 center = easy3d::vec3(c.x(), c.y(), c.z());
     const std::vector<size_t>& inlierIndices =
         cylinder.indices_of_assigned_points();
 
     // get bbox of inlier points
     easy3d::PointCloud* tempCloud = new easy3d::PointCloud;
     for (const auto& index : inlierIndices) {
-      easy3d::PointCloud::Vertex v(index);
-      easy3d::vec3 p = m_pointCloud->position(v);
-      tempCloud->add_vertex(p);
+      auto pwn = m_pwnVector[index];
+      auto p = pwn.first;
+      tempCloud->add_vertex(easy3d::vec3(p.x(), p.y(), p.z()));
     }
     const easy3d::Box3& bbox = tempCloud->bounding_box();
+    auto center = bbox.center();
     info.start = center - direction * bbox.radius();
     info.end = center + direction * bbox.radius();
     info.radius = cylinder.radius();
@@ -102,8 +106,8 @@ void Ransac3d::storeCylinderInfos() {
 
 void Ransac3d::storeLeftoverIndices() {
   m_leftoverIndices.clear();
-  for (const auto& v : m_pointCloud->vertices()) {
-    m_leftoverIndices.push_back(v.idx());
+  for (size_t i = 0; i < m_pwnVector.size(); ++i) {
+    m_leftoverIndices.push_back(i);
   }
   for (const auto& cyInfo : m_cylinderInfos) {
     for (const auto& index : cyInfo.inlierIndices) {
@@ -113,4 +117,14 @@ void Ransac3d::storeLeftoverIndices() {
     }
   }
 }
+
+void Ransac3d::storeLeftoverPoints() {
+  m_leftoverPoints.clear();
+  for (const auto& index : m_leftoverIndices) {
+    auto pwn = m_pwnVector[index];
+    auto p = pwn.first;
+    m_leftoverPoints.push_back(easy3d::vec3(p.x(), p.y(), p.z()));
+  }
+}
+
 }  // namespace ransac
