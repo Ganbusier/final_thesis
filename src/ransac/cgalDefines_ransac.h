@@ -20,6 +20,8 @@ using Traits =
 using Efficient_ransac = CGAL::Shape_detection::Efficient_RANSAC<Traits>;
 using Cylinder = CustomCylinder<Traits>;
 using Plane = CGAL::Shape_detection::Plane<Traits>;
+using Point_2 = CGAL::Point_2<CGAL::Epick>;
+using Point_3 = CGAL::Point_3<CGAL::Epick>;
 } // namespace ransac
 
 #endif // CGAL_DEFINES_RANSAC_H

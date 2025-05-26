@@ -44,7 +44,7 @@ class Ransac3d2d {
  public:
   Ransac3d2d(easy3d::PointCloud* pointCloud, const Params_ransac3d2d& params);
   void detect();
-  const std::vector<Line3d>& getLines3d() const { return m_lines3d; }
+  const std::vector<std::vector<Line3d>>& getLines3d() const { return m_lines3d; }
   const std::vector<int>& getLeftoverIndices() const {
     return m_leftoverIndices;
   }
@@ -57,11 +57,11 @@ class Ransac3d2d {
  private:
   easy3d::PointCloud* m_pointCloud;
   Pwn_vector m_pwnVector;
+  Params_ransac3d2d m_params;
   Efficient_ransac m_ransac3d;
-  Efficient_ransac::Parameters m_ransac3dParams;
   std::vector<Plane> m_planes;
-  std::vector<Line2d> m_lines2d;
-  std::vector<Line3d> m_lines3d;
+  std::vector<std::vector<Line2d>> m_lines2d;
+  std::vector<std::vector<Line3d>> m_lines3d;
   std::vector<int> m_leftoverIndices;
   std::vector<easy3d::vec3> m_leftoverPoints;
   std::mt19937 rng{std::random_device{}()};
@@ -70,8 +70,6 @@ class Ransac3d2d {
   void detectLines2d();
   void lines2dToLines3d();
   void pointCloudToPwnVector();
-  void storeLines2d();
-  void storeLines3d();
   void storeLeftoverIndices();
   void storeLeftoverPoints();
 
