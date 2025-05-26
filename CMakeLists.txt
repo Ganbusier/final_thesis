@@ -11,6 +11,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib)
 
 set(Thesis_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
+set(Thesis_SRC_DIR ${Thesis_ROOT}/src)
 set(Thesis_EXTERNAL_DIR ${Thesis_ROOT}/3rd_party)
 
 add_subdirectory(3rd_party)

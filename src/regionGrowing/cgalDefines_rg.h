@@ -8,7 +8,7 @@
 #include <CGAL/Shape_detection/Region_growing/Region_growing.h>
 #include <CGAL/Simple_cartesian.h>
 
-
+namespace regionGrowing {
 using Kernel = CGAL::Simple_cartesian<double>;
 using Point_3 = typename Kernel::Point_3;
 using Vector_3 = typename Kernel::Vector_3;
@@ -27,5 +27,6 @@ using Cylinder_Region_growing =
 
 using Primitive_and_region =
     typename Cylinder_Region_growing::Primitive_and_region;
+} // namespace region_growing
 
 #endif  // CGAL_DEFINES_RG_H
