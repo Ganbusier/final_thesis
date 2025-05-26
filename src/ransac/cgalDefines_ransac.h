@@ -19,6 +19,7 @@ using Traits =
     CGAL::Shape_detection::Efficient_RANSAC_traits<Kernel, Pwn_vector, Point_map, Normal_map>;
 using Efficient_ransac = CGAL::Shape_detection::Efficient_RANSAC<Traits>;
 using Cylinder = CustomCylinder<Traits>;
+using Plane = CGAL::Shape_detection::Plane<Traits>;
 } // namespace ransac
 
 #endif // CGAL_DEFINES_RANSAC_H
