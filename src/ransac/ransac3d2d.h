@@ -4,11 +4,19 @@
 #include <easy3d/core/point_cloud.h>
 #include <easy3d/fileio/point_cloud_io.h>
 
+#include <random>
+
 #include "cgalDefines_ransac.h"
+
 
 namespace ransac {
 struct Line2d {
-
+  double a;
+  double b;
+  double c;
+  easy3d::vec2 start;
+  easy3d::vec2 end;
+  std::vector<int> inlierIndices;
 };
 
 struct Line3d {
@@ -56,14 +64,25 @@ class Ransac3d2d {
   std::vector<Line3d> m_lines3d;
   std::vector<int> m_leftoverIndices;
   std::vector<easy3d::vec3> m_leftoverPoints;
+  std::mt19937 rng{std::random_device{}()};
 
   void detectPlanes();
   void detectLines2d();
   void lines2dToLines3d();
   void pointCloudToPwnVector();
+  void storeLines2d();
   void storeLines3d();
   void storeLeftoverIndices();
   void storeLeftoverPoints();
+
+  Line2d computeLineModel(const easy3d::vec2& p1, const easy3d::vec2& p2);
+  double distanceToLine(const easy3d::vec2& p, const Line2d& line);
+  void refineLineWithPCA(Line2d& line,
+                         const std::vector<easy3d::vec2>& inliers);
+  std::vector<Line2d> splitLine(
+      const Line2d& line,
+      const std::vector<std::pair<easy3d::vec2, int>>& inlierData,
+      double distanceThreshold = 5.0);
 };
 
 }  // namespace ransac
