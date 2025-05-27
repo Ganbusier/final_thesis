@@ -70,6 +70,7 @@ void Ransac3d2d::detectPlanes() {
       m_planes.push_back(*plane);
     }
   }
+  LOG(INFO) << "Detected " << m_planes.size() << " planes";
 }
 
 void Ransac3d2d::detectLines2d() {
@@ -89,7 +90,11 @@ void Ransac3d2d::detectLines2d() {
     std::iota(remainingIndices.begin(), remainingIndices.end(), 0);
     size_t inlierThres = std::floor(points2d.size() * 0.1);
     size_t minModelSamples = 2;
-    if (inlierThres <= minModelSamples) continue;
+    if (inlierThres <= minModelSamples) {
+      // Add empty lines vector for this plane to maintain consistency
+      m_lines2d.push_back(lines);
+      continue;
+    }
 
     while (inlierThres >= m_params.minInliers) {
       std::vector<Line2d> candidateLines;
@@ -174,7 +179,13 @@ void Ransac3d2d::lines2dToLines3d() {
   LOG(INFO) << "Converting lines in 2D to lines in 3D";
   for (size_t i = 0; i < m_planes.size(); ++i) {
     const auto& plane = m_planes[i];
+
     const std::vector<Line2d>& lines2d = m_lines2d[i];
+    if (lines2d.empty()) {
+      LOG(INFO) << "No lines found for plane " << i;
+      continue;
+    }
+
     std::vector<Line3d> lines3d;
     for (const auto& line2d : lines2d) {
       Line3d line3d;
@@ -290,8 +301,20 @@ std::vector<Line2d> Ransac3d2d::splitLine(
     for (size_t i = 1; i < projections.size(); ++i) {
       double prev_proj = std::get<0>(projections[i - 1]);
       double curr_proj = std::get<0>(projections[i]);
+
+      // Check if the distance between consecutive projections exceeds threshold
+      if (std::abs(curr_proj - prev_proj) > distanceThreshold) {
+        // Start a new cluster
+        if (!current_cluster.empty()) {
+          clusters.push_back(current_cluster);
+          current_cluster.clear();
+        }
+      }
+      current_cluster.push_back(projections[i]);
     }
-    clusters.push_back(current_cluster);
+    if (!current_cluster.empty()) {
+      clusters.push_back(current_cluster);
+    }
   }
 
   // generate new lines

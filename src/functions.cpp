@@ -4,6 +4,7 @@
 #include <energyMinimization/energyMinimization.h>
 #include <graph/graph.h>
 #include <ransac/ransac3d.h>
+#include <ransac/ransac3d2d.h>
 #include <regionGrowing/cgalDefines_rg.h>
 #include <regionGrowing/regionGrowing.h>
 
@@ -65,7 +66,6 @@ bool run_RegionGrowing(easy3d::Viewer* viewer, easy3d::Model* model,
     viewer->delete_drawable(drawable);
   }
   drawables.clear();
-  
 
   for (size_t i = 0; i < cylinders.size(); ++i) {
     auto cylinder = cylinders[i];
@@ -86,7 +86,8 @@ bool run_RegionGrowing(easy3d::Viewer* viewer, easy3d::Model* model,
   }
 
   std::string cylinderInfosFilename = saveFilePath + "rg_cylinderInfos.csv";
-  std::string unassignedPointsFilename = saveFilePath + "rg_unassignedPoints.ply";
+  std::string unassignedPointsFilename =
+      saveFilePath + "rg_unassignedPoints.ply";
   regionGrowing.saveCylinderInfos(cylinderInfosFilename);
   regionGrowing.saveUnassignedPoints(unassignedPointsFilename);
 
@@ -94,7 +95,7 @@ bool run_RegionGrowing(easy3d::Viewer* viewer, easy3d::Model* model,
 }
 
 bool run_Ransac3d(easy3d::Viewer* viewer, easy3d::Model* model,
-                const std::string& saveFilePath) {
+                  const std::string& saveFilePath) {
   if (!viewer || !model) return false;
   auto pointCloud = dynamic_cast<easy3d::PointCloud*>(model);
 
@@ -107,13 +108,11 @@ bool run_Ransac3d(easy3d::Viewer* viewer, easy3d::Model* model,
   params.minRadius = 0.01;
   params.maxRadius = 1.0;
 
-
   ransac::Ransac3d ransac3d(pointCloud, params);
   ransac3d.detect();
 
-  std::vector<ransac::CylinderInfo> cylinderInfos =
-      ransac3d.getCylinderInfos();
-  
+  std::vector<ransac::CylinderInfo> cylinderInfos = ransac3d.getCylinderInfos();
+
   if (cylinderInfos.empty()) {
     LOG(INFO) << "No cylinders found";
     return true;
@@ -141,10 +140,64 @@ bool run_Ransac3d(easy3d::Viewer* viewer, easy3d::Model* model,
     drawables.push_back(cylinderDrawable);
   }
 
-  std::string cylinderInfosFilename = saveFilePath + "ransac3d_cylinderInfos.csv";
-  std::string leftoverPointsFilename = saveFilePath + "ransac3d_leftoverPoints.ply";
+  std::string cylinderInfosFilename =
+      saveFilePath + "ransac3d_cylinderInfos.csv";
+  std::string leftoverPointsFilename =
+      saveFilePath + "ransac3d_leftoverPoints.ply";
   ransac3d.saveCylinderInfos(cylinderInfosFilename);
   ransac3d.saveLeftoverPoints(leftoverPointsFilename);
+
+  return true;
+}
+
+bool run_Ransac3d2d(easy3d::Viewer* viewer, easy3d::Model* model,
+                    const std::string& saveFilePath) {
+  if (!viewer || !model) return false;
+  auto pointCloud = dynamic_cast<easy3d::PointCloud*>(model);
+
+  ransac::Params_ransac3d2d params;
+  params.normalThreshold = 0.0;
+  params.probability = 0.01;
+  params.minPoints = 10;
+  params.epsilon = 0.05;
+  params.clusterEpsilon = 1.0;
+  params.maxIterations = 200;
+  params.minInliers = 4;
+  params.tolerance = 0.1;
+  params.splitDistanceThres = 2.0;
+
+  ransac::Ransac3d2d ransac3d2d(pointCloud, params);
+  ransac3d2d.detect();
+
+  std::vector<std::vector<ransac::Line3d>> lines3d = ransac3d2d.getLines3d();
+  if (lines3d.empty()) {
+    LOG(INFO) << "No lines found";
+    return true;
+  }
+
+  for (auto& drawable : drawables) {
+    viewer->delete_drawable(drawable);
+  }
+  drawables.clear();
+
+  for (size_t i = 0; i < lines3d.size(); ++i) {
+    std::vector<ransac::Line3d> lines = lines3d[i];
+    for (size_t j = 0; j < lines.size(); ++j) {
+      ransac::Line3d line = lines[j];
+      auto start = line.start;
+      auto end = line.end;
+      auto cylinderDrawable =
+          new easy3d::LinesDrawable("cylinder" + std::to_string(i));
+      cylinderDrawable->set_impostor_type(easy3d::LinesDrawable::CYLINDER);
+      cylinderDrawable->set_line_width(2.0f);
+      cylinderDrawable->set_uniform_coloring(
+          easy3d::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+      cylinderDrawable->update_vertex_buffer({start, end});
+      cylinderDrawable->update_element_buffer({0, 1});
+      viewer->add_drawable(cylinderDrawable);
+      drawables.push_back(cylinderDrawable);
+    }
+  }
 
   return true;
 }
