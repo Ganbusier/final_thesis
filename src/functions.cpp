@@ -12,6 +12,26 @@
 
 std::vector<easy3d::Drawable*> drawables;
 
+// Global line color variable
+static easy3d::vec4 current_line_color(0.984f, 0.333f, 0.490f, 1.0f); // Default pink #FB557D
+
+// Function to get current line color
+easy3d::vec4 get_current_line_color() {
+    return current_line_color;
+}
+
+// Function to set line color
+void set_line_drawable_color(const easy3d::vec4& color) {
+    current_line_color = color;
+    // Update color of all existing line drawables
+    for (auto& drawable : drawables) {
+        auto lines_drawable = dynamic_cast<easy3d::LinesDrawable*>(drawable);
+        if (lines_drawable) {
+            lines_drawable->set_uniform_coloring(color);
+        }
+    }
+}
+
 bool run_EnergyMinimization(easy3d::Viewer* viewer, easy3d::Model* model,
                             const std::string& saveFilePath) {
   if (!viewer || !model) return false;
@@ -30,8 +50,8 @@ bool run_EnergyMinimization(easy3d::Viewer* viewer, easy3d::Model* model,
   energyMinimization.optimize();
   energyMinimization.getResults();
 
-  std::string preservedFilename = saveFilePath + "gco_preserved.ply";
-  std::string removedFilename = saveFilePath + "gco_removed.ply";
+  std::string preservedFilename = saveFilePath + "/gco_preserved.ply";
+  std::string removedFilename = saveFilePath + "/gco_removed.ply";
   energyMinimization.saveResults(preservedFilename, removedFilename);
 
   return true;
@@ -77,17 +97,16 @@ bool run_RegionGrowing(easy3d::Viewer* viewer, easy3d::Model* model,
         new easy3d::LinesDrawable("cylinder" + std::to_string(i));
     cylinderDrawable->set_impostor_type(easy3d::LinesDrawable::CYLINDER);
     cylinderDrawable->set_line_width(cylinder.radius * 2.0f * 10.0f);
-    cylinderDrawable->set_uniform_coloring(
-        easy3d::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+    cylinderDrawable->set_uniform_coloring(get_current_line_color());
     cylinderDrawable->update_vertex_buffer({start, end});
     cylinderDrawable->update_element_buffer({0, 1});
     viewer->add_drawable(cylinderDrawable);
     drawables.push_back(cylinderDrawable);
   }
 
-  std::string cylinderInfosFilename = saveFilePath + "rg_cylinderInfos.csv";
+  std::string cylinderInfosFilename = saveFilePath + "/rg_cylinderInfos.csv";
   std::string unassignedPointsFilename =
-      saveFilePath + "rg_unassignedPoints.ply";
+      saveFilePath + "/rg_unassignedPoints.ply";
   regionGrowing.saveCylinderInfos(cylinderInfosFilename);
   regionGrowing.saveUnassignedPoints(unassignedPointsFilename);
 
@@ -132,8 +151,7 @@ bool run_Ransac3d(easy3d::Viewer* viewer, easy3d::Model* model,
         new easy3d::LinesDrawable("cylinder" + std::to_string(i));
     cylinderDrawable->set_impostor_type(easy3d::LinesDrawable::CYLINDER);
     cylinderDrawable->set_line_width(radius * 2.0f);
-    cylinderDrawable->set_uniform_coloring(
-        easy3d::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+    cylinderDrawable->set_uniform_coloring(get_current_line_color());
     cylinderDrawable->update_vertex_buffer({start, end});
     cylinderDrawable->update_element_buffer({0, 1});
     viewer->add_drawable(cylinderDrawable);
@@ -141,9 +159,9 @@ bool run_Ransac3d(easy3d::Viewer* viewer, easy3d::Model* model,
   }
 
   std::string cylinderInfosFilename =
-      saveFilePath + "ransac3d_cylinderInfos.csv";
+      saveFilePath + "/ransac3d_cylinderInfos.csv";
   std::string leftoverPointsFilename =
-      saveFilePath + "ransac3d_leftoverPoints.ply";
+      saveFilePath + "/ransac3d_leftoverPoints.ply";
   ransac3d.saveCylinderInfos(cylinderInfosFilename);
   ransac3d.saveLeftoverPoints(leftoverPointsFilename);
 
@@ -190,7 +208,7 @@ bool run_Ransac3d2d(easy3d::Viewer* viewer, easy3d::Model* model,
           "line_" + std::to_string(i) + "_" + std::to_string(j));
       lineDrawable->set_impostor_type(easy3d::LinesDrawable::CYLINDER);
       lineDrawable->set_line_width(2.0f);
-      lineDrawable->set_uniform_coloring(easy3d::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+      lineDrawable->set_uniform_coloring(get_current_line_color());
       lineDrawable->update_vertex_buffer({start, end});
       lineDrawable->update_element_buffer({0, 1});
       viewer->add_drawable(lineDrawable);
@@ -199,11 +217,15 @@ bool run_Ransac3d2d(easy3d::Viewer* viewer, easy3d::Model* model,
   }
 
   // Save results
-  std::string linesFilename = saveFilePath + "ransac3d2d_lines.ply";
+  std::string linesFilename = saveFilePath + "/ransac3d2d_lines.ply";
   std::string leftoverPointsFilename =
-      saveFilePath + "ransac3d2d_leftoverPoints.ply";
+      saveFilePath + "/ransac3d2d_leftoverPoints.ply";
   ransac3d2d.saveLines3d(linesFilename);
   ransac3d2d.saveLeftoverPoints(leftoverPointsFilename);
 
   return true;
+}
+
+void clear_algorithm_drawables() {
+  drawables.clear();
 }
