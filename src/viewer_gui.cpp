@@ -320,8 +320,8 @@ void ViewerGUI::draw_energy_minimization_panel() {
     if (ImGui::Begin("Energy Minimization", &show_energy_minimization_panel_)) {
         ImGui::Text("Parameters:");
         ImGui::SliderInt("K Neighbors", &em_params_.k_neighbors, 5, 50);
-        ImGui::SliderFloat("Radius", &em_params_.radius, 0.5f, 10.0f);
-        
+        ImGui::SliderFloat("Edge Length Threshold", &em_params_.edgeLengthThres, 0.1f, 10.0f);
+
         ImGui::Separator();
         if (ImGui::Button("Run Energy Minimization")) {
             if (current_model()) {

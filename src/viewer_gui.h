@@ -87,7 +87,7 @@ namespace easy3d {
         // Algorithm parameters
         struct EnergyMinimizationParams {
             int k_neighbors = 10;
-            float radius = 2.0f;
+            float edgeLengthThres = 2.0f;
         } em_params_;
 
         struct RegionGrowingParams {
