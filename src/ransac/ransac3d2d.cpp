@@ -1,4 +1,7 @@
 #include <easy3d/algo/point_cloud_normals.h>
+#include <easy3d/core/graph.h>
+#include <easy3d/fileio/graph_io.h>
+#include <easy3d/fileio/point_cloud_io.h>
 
 #include <Eigen/Dense>
 
@@ -47,6 +50,8 @@ void Ransac3d2d::detect() {
     return;
   }
   lines2dToLines3d();
+  storeLeftoverIndices();
+  storeLeftoverPoints();
 }
 
 void Ransac3d2d::detectPlanes() {
@@ -341,12 +346,100 @@ std::vector<Line2d> Ransac3d2d::splitLine(
   return split_lines.empty() ? std::vector{line} : split_lines;
 }
 
-void Ransac3d2d::storeLeftoverIndices() {}
+void Ransac3d2d::storeLeftoverIndices() {
+  m_leftoverIndices.clear();
 
-void Ransac3d2d::storeLeftoverPoints() {}
+  // Use a boolean vector to mark assigned points - O(n) space, O(1) lookup
+  std::vector<bool> assigned(m_pwnVector.size(), false);
 
-void Ransac3d2d::saveLines3d(const std::string& filename) {}
+  // Mark points assigned to planes
+  for (const auto& plane : m_planes) {
+    for (const auto& idx : plane.indices_of_assigned_points()) {
+      if (idx < assigned.size()) {
+        assigned[idx] = true;
+      }
+    }
+  }
 
-void Ransac3d2d::saveLeftoverPoints(const std::string& filename) {}
+  // Mark points assigned to lines
+  for (const auto& lines : m_lines2d) {
+    for (const auto& line : lines) {
+      for (const auto& idx : line.inlierIndices) {
+        if (static_cast<size_t>(idx) < assigned.size()) {
+          assigned[static_cast<size_t>(idx)] = true;
+        }
+      }
+    }
+  }
+
+  // Collect unassigned indices in a single pass
+  m_leftoverIndices.reserve(
+      m_pwnVector.size());  // Pre-allocate to avoid reallocations
+  for (size_t i = 0; i < assigned.size(); ++i) {
+    if (!assigned[i]) {
+      m_leftoverIndices.push_back(static_cast<int>(i));
+    }
+  }
+}
+
+void Ransac3d2d::storeLeftoverPoints() {
+  m_leftoverPoints.clear();
+  m_leftoverPoints.reserve(m_leftoverIndices.size());
+
+  for (const auto& idx : m_leftoverIndices) {
+    if (idx < m_pwnVector.size()) {
+      auto p = m_pwnVector[idx].first;
+      m_leftoverPoints.push_back(easy3d::vec3(p.x(), p.y(), p.z()));
+    } else {
+      LOG(ERROR) << "Leftover index out of range: " << idx;
+    }
+  }
+}
+
+void Ransac3d2d::saveLines3d(const std::string& filename) {
+  if (m_lines3d.empty()) {
+    LOG(WARNING) << "No 3D lines to save";
+    return;
+  }
+
+  // Create a graph to store the lines
+  easy3d::Graph* graph = new easy3d::Graph;
+
+  for (size_t plane_idx = 0; plane_idx < m_lines3d.size(); ++plane_idx) {
+    const auto& lines = m_lines3d[plane_idx];
+    for (size_t line_idx = 0; line_idx < lines.size(); ++line_idx) {
+      const auto& line = lines[line_idx];
+
+      // Add vertices for line endpoints
+      easy3d::Graph::Vertex v1 = graph->add_vertex(line.start);
+      easy3d::Graph::Vertex v2 = graph->add_vertex(line.end);
+
+      // Add edge connecting the vertices
+      graph->add_edge(v1, v2);
+    }
+  }
+
+  // Save the graph
+  easy3d::io::save_ply(filename, graph, false);
+  LOG(INFO) << "Lines saved to: " << filename;
+}
+
+void Ransac3d2d::saveLeftoverPoints(const std::string& filename) {
+  if (m_leftoverPoints.empty()) {
+    LOG(WARNING) << "No leftover points to save";
+    return;
+  }
+
+  // Create a point cloud for leftover points
+  auto leftoverCloud = new easy3d::PointCloud;
+
+  for (const auto& point : m_leftoverPoints) {
+    leftoverCloud->add_vertex(point);
+  }
+
+  // Save the point cloud
+  easy3d::io::save_ply(filename, leftoverCloud, false);
+  LOG(INFO) << "Leftover points saved to: " << filename;
+}
 
 }  // namespace ransac

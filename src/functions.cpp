@@ -186,18 +186,24 @@ bool run_Ransac3d2d(easy3d::Viewer* viewer, easy3d::Model* model,
       ransac::Line3d line = lines[j];
       auto start = line.start;
       auto end = line.end;
-      auto cylinderDrawable =
-          new easy3d::LinesDrawable("cylinder" + std::to_string(i));
-      cylinderDrawable->set_impostor_type(easy3d::LinesDrawable::CYLINDER);
-      cylinderDrawable->set_line_width(2.0f);
-      cylinderDrawable->set_uniform_coloring(
-          easy3d::vec4(1.0f, 0.0f, 0.0f, 1.0f));
-      cylinderDrawable->update_vertex_buffer({start, end});
-      cylinderDrawable->update_element_buffer({0, 1});
-      viewer->add_drawable(cylinderDrawable);
-      drawables.push_back(cylinderDrawable);
+      auto lineDrawable = new easy3d::LinesDrawable(
+          "line_" + std::to_string(i) + "_" + std::to_string(j));
+      lineDrawable->set_impostor_type(easy3d::LinesDrawable::CYLINDER);
+      lineDrawable->set_line_width(2.0f);
+      lineDrawable->set_uniform_coloring(easy3d::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+      lineDrawable->update_vertex_buffer({start, end});
+      lineDrawable->update_element_buffer({0, 1});
+      viewer->add_drawable(lineDrawable);
+      drawables.push_back(lineDrawable);
     }
   }
+
+  // Save results
+  std::string linesFilename = saveFilePath + "ransac3d2d_lines.ply";
+  std::string leftoverPointsFilename =
+      saveFilePath + "ransac3d2d_leftoverPoints.ply";
+  ransac3d2d.saveLines3d(linesFilename);
+  ransac3d2d.saveLeftoverPoints(leftoverPointsFilename);
 
   return true;
 }
