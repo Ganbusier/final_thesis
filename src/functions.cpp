@@ -104,6 +104,9 @@ bool run_Ransac3d(easy3d::Viewer* viewer, easy3d::Model* model,
   params.minPoints = 10;
   params.epsilon = 0.05;
   params.clusterEpsilon = 1.0;
+  params.minRadius = 0.01;
+  params.maxRadius = 1.0;
+
 
   ransac::Ransac3d ransac3d(pointCloud, params);
   ransac3d.detect();

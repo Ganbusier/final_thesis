@@ -10,13 +10,17 @@ class CustomCylinder : public CGAL::Shape_detection::Cylinder<Traits> {
   using Base = CGAL::Shape_detection::Cylinder<Traits>;
   using FT = typename Traits::FT;
 
-  CustomCylinder()
-      : Base(), m_minRadius(0.0), m_maxRadius(1.0) {}
+  // Static member variables for global radius range
+  static FT s_minRadius;
+  static FT s_maxRadius;
 
-  // set radius range
-  void set_radius_range(FT minRadius, FT maxRadius) {
-    m_minRadius = minRadius;
-    m_maxRadius = maxRadius;
+  CustomCylinder()
+      : Base(), m_minRadius(s_minRadius), m_maxRadius(s_maxRadius) {}
+
+  // Static method to set global radius range
+  static void set_radiusRange(FT minRadius, FT maxRadius) {
+    s_minRadius = minRadius;
+    s_maxRadius = maxRadius;
   }
 
   // get radius range
@@ -44,6 +48,14 @@ class CustomCylinder : public CGAL::Shape_detection::Cylinder<Traits> {
   FT m_minRadius;  // minimum radius
   FT m_maxRadius;  // maximum radius
 };
+
+// Static member variable definitions
+template <class Traits>
+typename CustomCylinder<Traits>::FT CustomCylinder<Traits>::s_minRadius = 0.0;
+
+template <class Traits>
+typename CustomCylinder<Traits>::FT CustomCylinder<Traits>::s_maxRadius = 1.0;
+
 }  // namespace ransac
 
 #endif  // CUSTOM_CYLINDER_H

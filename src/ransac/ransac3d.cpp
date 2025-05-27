@@ -5,11 +5,7 @@
 namespace ransac {
 Ransac3d::Ransac3d(easy3d::PointCloud* pointCloud, const Params& params) {
   m_pointCloud = pointCloud;
-  m_params.normal_threshold = params.normalThreshold;
-  m_params.probability = params.probability;
-  m_params.min_points = params.minPoints;
-  m_params.epsilon = params.epsilon;
-  m_params.cluster_epsilon = params.clusterEpsilon;
+  m_params = params;
   pointCloudToPwnVector();
 }
 
@@ -41,8 +37,18 @@ void Ransac3d::pointCloudToPwnVector() {
 void Ransac3d::detect() {
   LOG(INFO) << "Detecting cylinders using RANSAC";
   m_ransac.set_input(m_pwnVector);
+
+  Cylinder::set_radiusRange(m_params.minRadius, m_params.maxRadius);
+
+  Efficient_ransac::Parameters params;
+  params.probability = m_params.probability;
+  params.min_points = m_params.minPoints;
+  params.epsilon = m_params.epsilon;
+  params.cluster_epsilon = m_params.clusterEpsilon;
+  params.normal_threshold = m_params.normalThreshold;
+
   m_ransac.add_shape_factory<Cylinder>();
-  m_ransac.detect(m_params);
+  m_ransac.detect(params);
   if (m_ransac.shapes().empty()) {
     LOG(INFO) << "No cylinders detected";
     return;

@@ -21,6 +21,8 @@ struct Params {
   FT minPoints = 20;
   FT epsilon = 0.05;
   FT clusterEpsilon = 1.0;
+  FT minRadius = 0.1;
+  FT maxRadius = 1.0;
 };
 
 class Ransac3d {
@@ -50,7 +52,7 @@ class Ransac3d {
   easy3d::PointCloud* m_pointCloud;
   Pwn_vector m_pwnVector;
   Efficient_ransac m_ransac;
-  Efficient_ransac::Parameters m_params;
+  Params m_params;
   std::vector<Cylinder> m_cylinders;
   std::vector<CylinderInfo> m_cylinderInfos;
   std::vector<int> m_leftoverIndices;
