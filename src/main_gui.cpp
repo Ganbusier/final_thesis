@@ -14,8 +14,6 @@ int main(int argc, char** argv) {
     easy3d::ViewerGUI viewer("Geomatics Thesis - GUI Version");
     viewer.set_background_color(easy3d::vec4(1.0f, 1.0f, 1.0f, 1.0f));
     viewer.camera()->setType(easy3d::Camera::ORTHOGRAPHIC);
-    viewer.camera()->setZNearCoefficient(1e-10f);
-    viewer.camera()->setZClippingCoefficient(1e10f);
 
     // Load default model if provided
     if (argc >= 2) {
