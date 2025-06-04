@@ -1,4 +1,6 @@
 #include <easy3d/algo/point_cloud_normals.h>
+#include <easy3d/core/graph.h>
+#include <easy3d/fileio/graph_io.h>
 
 #include "ransac3d.h"
 
@@ -153,6 +155,17 @@ void Ransac3d::saveLeftoverPoints(const std::string& filename) {
   }
   easy3d::io::save_ply(filename, leftoverCloud, false);
   LOG(INFO) << "Leftover points saved to " << filename;
+}
+
+void Ransac3d::save3DLineSegments(const std::string& filename) {
+  easy3d::Graph* graph = new easy3d::Graph;
+  for (const auto& cylinder : m_cylinderInfos) {
+    easy3d::Graph::Vertex v1 = graph->add_vertex(cylinder.start);
+    easy3d::Graph::Vertex v2 = graph->add_vertex(cylinder.end);
+    graph->add_edge(v1, v2);
+  }
+  easy3d::io::save_ply(filename, graph, false);
+  LOG(INFO) << "3D line segments saved to " << filename;
 }
 
 }  // namespace ransac

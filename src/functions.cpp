@@ -162,8 +162,10 @@ bool run_Ransac3d(easy3d::Viewer* viewer, easy3d::Model* model,
       saveFilePath + "/ransac3d_cylinderInfos.csv";
   std::string leftoverPointsFilename =
       saveFilePath + "/ransac3d_leftoverPoints.ply";
+  std::string lines3dFilename = saveFilePath + "/ransac3d_lines3d.ply";
   ransac3d.saveCylinderInfos(cylinderInfosFilename);
   ransac3d.saveLeftoverPoints(leftoverPointsFilename);
+  ransac3d.save3DLineSegments(lines3dFilename);
 
   return true;
 }

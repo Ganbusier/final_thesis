@@ -47,6 +47,7 @@ class Ransac3d {
 
   void saveCylinderInfos(const std::string& filename);
   void saveLeftoverPoints(const std::string& filename);
+  void save3DLineSegments(const std::string& filename);
 
  private:
   easy3d::PointCloud* m_pointCloud;
