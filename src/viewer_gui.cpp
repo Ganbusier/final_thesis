@@ -318,14 +318,21 @@ void ViewerGUI::draw_menu_view() {
 void ViewerGUI::draw_energy_minimization_panel() {
     ImGui::SetNextWindowSize(ImVec2(300, 200), ImGuiCond_FirstUseEver);
     if (ImGui::Begin("Energy Minimization", &show_energy_minimization_panel_)) {
-        ImGui::Text("Parameters:");
+        ImGui::Text("Parameters for computing the dual graph:");
         ImGui::SliderInt("K Neighbors", &em_params_.k_neighbors, 5, 50);
         ImGui::SliderFloat("Edge Length Threshold", &em_params_.edgeLengthThres, 0.1f, 10.0f);
+        ImGui::Separator();
+        ImGui::Text("Parameters for energy minimization:");
+        ImGui::SliderFloat("Lambda", &em_params_.lambda, 0.0f, 1.0f);
+        ImGui::SliderFloat("Extend Factor", &em_params_.extendFactor, 1.0f, 10.0f);
+        ImGui::SliderFloat("Inlier Search Radius", &em_params_.inlierSearchRadius, 0.1f, 10.0f);
+        ImGui::SliderFloat("Min Angle", &em_params_.minAngleInDegrees, 0.0f, 90.0f);
+
 
         ImGui::Separator();
         if (ImGui::Button("Run Energy Minimization")) {
             if (current_model()) {
-                run_EnergyMinimization(this, current_model(), output_folder_path_);
+                run_EnergyMinimization(this, current_model(), output_folder_path_, em_params_);
             } else {
                 LOG(WARNING) << "No model loaded";
             }
@@ -348,7 +355,7 @@ void ViewerGUI::draw_region_growing_panel() {
         ImGui::Separator();
         if (ImGui::Button("Run Region Growing")) {
             if (current_model()) {
-                run_RegionGrowing(this, current_model(), output_folder_path_);
+                run_RegionGrowing(this, current_model(), output_folder_path_, rg_params_);
             } else {
                 LOG(WARNING) << "No model loaded";
             }
@@ -372,7 +379,7 @@ void ViewerGUI::draw_ransac3d_panel() {
         ImGui::Separator();
         if (ImGui::Button("Run RANSAC 3D")) {
             if (current_model()) {
-                run_Ransac3d(this, current_model(), output_folder_path_);
+                run_Ransac3d(this, current_model(), output_folder_path_, r3d_params_);
             } else {
                 LOG(WARNING) << "No model loaded";
             }
@@ -401,7 +408,7 @@ void ViewerGUI::draw_ransac3d2d_panel() {
         ImGui::Separator();
         if (ImGui::Button("Run RANSAC 3D2D")) {
             if (current_model()) {
-                run_Ransac3d2d(this, current_model(), output_folder_path_);
+                run_Ransac3d2d(this, current_model(), output_folder_path_, r3d2d_params_);
             } else {
                 LOG(WARNING) << "No model loaded";
             }

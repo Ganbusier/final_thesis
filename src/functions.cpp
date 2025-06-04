@@ -33,7 +33,8 @@ void set_line_drawable_color(const easy3d::vec4& color) {
 }
 
 bool run_EnergyMinimization(easy3d::Viewer* viewer, easy3d::Model* model,
-                            const std::string& saveFilePath) {
+                            const std::string& saveFilePath,
+                            const easy3d::EnergyMinimizationParams& params) {
   if (!viewer || !model) return false;
   auto pointCloud = dynamic_cast<easy3d::PointCloud*>(model);
 
@@ -43,8 +44,14 @@ bool run_EnergyMinimization(easy3d::Viewer* viewer, easy3d::Model* model,
   graph.buildDualGraph(mixGraph);
   auto dualGraph = graph.getDualGraph();
 
+  energyMinimization::EnergyMinimizationParams em_params;
+  em_params.lambda = params.lambda;
+  em_params.extendFactor = params.extendFactor;
+  em_params.inlierSearchRadius = params.inlierSearchRadius;
+  em_params.minAngleInDegrees = params.minAngleInDegrees;
+
   energyMinimization::EnergyMinimization energyMinimization(
-      dualGraph->n_vertices(), dualGraph->n_edges(), mixGraph, pointCloud);
+      dualGraph->n_vertices(), dualGraph->n_edges(), mixGraph, pointCloud, em_params);
   energyMinimization.setDataTerm();
   energyMinimization.setSmoothnessTerm();
   energyMinimization.optimize();
@@ -58,21 +65,22 @@ bool run_EnergyMinimization(easy3d::Viewer* viewer, easy3d::Model* model,
 }
 
 bool run_RegionGrowing(easy3d::Viewer* viewer, easy3d::Model* model,
-                       const std::string& saveFilePath) {
+                       const std::string& saveFilePath,
+                       const easy3d::RegionGrowingParams& params) {
   if (!viewer || !model) return false;
   auto pointCloud = dynamic_cast<easy3d::PointCloud*>(model);
 
   regionGrowing::Point_set pointSet;
   regionGrowing::makePointSet(pointCloud, pointSet, 16);
-  regionGrowing::CylinderRegionGrowingParams params;
-  params.k = 16;
-  params.maxDistance = 0.1;
-  params.maxAngle = 25;
-  params.minRadius = 0.01;
-  params.maxRadius = 1.0;
-  params.minRegionSize = 4;
+  regionGrowing::CylinderRegionGrowingParams rg_params;
+  rg_params.k = params.k;
+  rg_params.maxDistance = params.max_distance;
+  rg_params.maxAngle = params.max_angle;
+  rg_params.minRadius = params.min_radius;
+  rg_params.maxRadius = params.max_radius;
+  rg_params.minRegionSize = params.min_region_size;
 
-  regionGrowing::CylinderRegionGrowing regionGrowing(pointSet, params);
+  regionGrowing::CylinderRegionGrowing regionGrowing(pointSet, rg_params);
   regionGrowing.detect();
 
   std::vector<regionGrowing::Cylinder> cylinders = regionGrowing.getCylinders();
@@ -116,20 +124,21 @@ bool run_RegionGrowing(easy3d::Viewer* viewer, easy3d::Model* model,
 }
 
 bool run_Ransac3d(easy3d::Viewer* viewer, easy3d::Model* model,
-                  const std::string& saveFilePath) {
+                  const std::string& saveFilePath,
+                  const easy3d::Ransac3dParams& params) {
   if (!viewer || !model) return false;
   auto pointCloud = dynamic_cast<easy3d::PointCloud*>(model);
 
-  ransac::Params params;
-  params.normalThreshold = 0.9;
-  params.probability = 0.01;
-  params.minPoints = 10;
-  params.epsilon = 0.05;
-  params.clusterEpsilon = 1.0;
-  params.minRadius = 0.01;
-  params.maxRadius = 1.0;
+  ransac::Params r3d_params;
+  r3d_params.normalThreshold = params.normal_threshold;
+  r3d_params.probability = params.probability;
+  r3d_params.minPoints = params.min_points;
+  r3d_params.epsilon = params.epsilon;
+  r3d_params.clusterEpsilon = params.cluster_epsilon;
+  r3d_params.minRadius = params.min_radius;
+  r3d_params.maxRadius = params.max_radius;
 
-  ransac::Ransac3d ransac3d(pointCloud, params);
+  ransac::Ransac3d ransac3d(pointCloud, r3d_params);
   ransac3d.detect();
 
   std::vector<ransac::CylinderInfo> cylinderInfos = ransac3d.getCylinderInfos();
@@ -173,22 +182,23 @@ bool run_Ransac3d(easy3d::Viewer* viewer, easy3d::Model* model,
 }
 
 bool run_Ransac3d2d(easy3d::Viewer* viewer, easy3d::Model* model,
-                    const std::string& saveFilePath) {
+                    const std::string& saveFilePath,
+                    const easy3d::Ransac3d2dParams& params) {
   if (!viewer || !model) return false;
   auto pointCloud = dynamic_cast<easy3d::PointCloud*>(model);
 
-  ransac::Params_ransac3d2d params;
-  params.normalThreshold = 0.0;
-  params.probability = 0.01;
-  params.minPoints = 10;
-  params.epsilon = 0.05;
-  params.clusterEpsilon = 1.0;
-  params.maxIterations = 200;
-  params.minInliers = 4;
-  params.tolerance = 0.1;
-  params.splitDistanceThres = 2.0;
+  ransac::Params_ransac3d2d r3d2d_params;
+  r3d2d_params.normalThreshold = params.normal_threshold;
+  r3d2d_params.probability = params.probability;
+  r3d2d_params.minPoints = params.min_points;
+  r3d2d_params.epsilon = params.epsilon;
+  r3d2d_params.clusterEpsilon = params.cluster_epsilon;
+  r3d2d_params.maxIterations = params.max_iterations;
+  r3d2d_params.minInliers = params.min_inliers;
+  r3d2d_params.tolerance = params.tolerance;
+  r3d2d_params.splitDistanceThres = params.split_distance_threshold;
 
-  ransac::Ransac3d2d ransac3d2d(pointCloud, params);
+  ransac::Ransac3d2d ransac3d2d(pointCloud, r3d2d_params);
   ransac3d2d.detect();
 
   std::vector<std::vector<ransac::Line3d>> lines3d = ransac3d2d.getLines3d();

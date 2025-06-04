@@ -31,7 +31,8 @@ struct NeighborPair {
   float weight = 0.0f;
 };
 
-struct DataTermParams {
+struct EnergyMinimizationParams {
+  float lambda = 0.1f;
   float extendFactor = 2.0f;
   float inlierSearchRadius = 1.0f;
   float minAngleInDegrees = 10.0f;
@@ -59,10 +60,9 @@ class EnergyMinimization {
   int m_numNeighborPairs = 0;
   int m_scaleFactor = 100;
   int m_numLabels = 2;
-  float m_lambda = 0.1;
   int m_V[4] = {0, 1, 1, 0};
 
-  DataTermParams m_dataTermParams;
+  EnergyMinimizationParams m_params;
 
   GCoptimizationGeneralGraph *m_gc;
   easy3d::Graph *m_graph;
@@ -82,7 +82,8 @@ class EnergyMinimization {
 
  public:
   EnergyMinimization(int num_nodes, int num_neighborPairs, easy3d::Graph *graph,
-                     easy3d::PointCloud *pointCloud);
+                     easy3d::PointCloud *pointCloud,
+                     const EnergyMinimizationParams &params);
   ~EnergyMinimization();
   void setDataTerm();
   void setSmoothnessTerm();

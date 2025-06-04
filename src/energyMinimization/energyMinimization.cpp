@@ -4,7 +4,8 @@ namespace energyMinimization {
 
 EnergyMinimization::EnergyMinimization(int num_nodes, int num_neighborPairs,
                                        easy3d::Graph *graph,
-                                       easy3d::PointCloud *pointCloud)
+                                       easy3d::PointCloud *pointCloud,
+                                       const EnergyMinimizationParams &params)
     : m_numNodes(num_nodes),
       m_numNeighborPairs(num_neighborPairs),
       m_graph(graph),
@@ -15,6 +16,7 @@ EnergyMinimization::EnergyMinimization(int num_nodes, int num_neighborPairs,
   m_edgeLengthTerm = std::vector<float>(m_numNodes, 1.0f);
   m_preservedGraph = new easy3d::Graph;
   m_removedGraph = new easy3d::Graph;
+  m_params = params;
 }
 
 EnergyMinimization::~EnergyMinimization() {}
@@ -33,7 +35,7 @@ void EnergyMinimization::setSmoothnessTerm() {
   computeNeighborPairWeights();
   for (const auto &ng : m_neighborPairs) {
     int scaledWeight =
-        static_cast<int>(std::floor(ng.weight * m_scaleFactor * m_lambda));
+        static_cast<int>(std::floor(ng.weight * m_scaleFactor * m_params.lambda));
     m_gc->setNeighbors(ng.node1_idx, ng.node2_idx, scaledWeight);
   }
   m_gc->setSmoothCost(m_V);
@@ -98,16 +100,16 @@ void EnergyMinimization::computeInlierProbTerm() {
 
     // extend the source and target
     auto sourcePos_extended =
-        sourcePos - direction * meanSpacing * m_dataTermParams.extendFactor;
+        sourcePos - direction * meanSpacing * m_params.extendFactor;
     auto targetPos_extended =
-        targetPos + direction * meanSpacing * m_dataTermParams.extendFactor;
+        targetPos + direction * meanSpacing * m_params.extendFactor;
 
     // find the inliers in the extended cylinder
     std::vector<int> inlierIndices;
     std::vector<float> inlierSqrdDistances;
     tree.find_points_in_cylinder(sourcePos_extended, targetPos_extended,
-                                 m_dataTermParams.inlierSearchRadius,
-                                 inlierIndices, inlierSqrdDistances);
+                                 m_params.inlierSearchRadius, inlierIndices,
+                                 inlierSqrdDistances);
     if (inlierIndices.empty() || inlierSqrdDistances.empty()) {
       continue;
     }
@@ -126,7 +128,7 @@ void EnergyMinimization::computeInlierProbTerm() {
     std::vector<float> inlierProbabilities;
     for (const float sqrdDistance : inlierSqrdDistances_filtered) {
       float distance = std::sqrt(sqrdDistance);
-      float radius = m_dataTermParams.inlierSearchRadius;
+      float radius = m_params.inlierSearchRadius;
 
       // compute the sigma_squared
       float epsilon = 1e-6f;
@@ -180,7 +182,7 @@ void EnergyMinimization::computeEdgeLengthTerm() {
       auto currentEdgeLength = (currentTargetPos - currentSourcePos).length();
 
       auto processVertex = [&](easy3d::Graph::Vertex v) {
-        float minAngleInDegrees = m_dataTermParams.minAngleInDegrees;
+        float minAngleInDegrees = m_params.minAngleInDegrees;
         easy3d::Graph::Edge bestEdge;
         for (const auto &neighborEdge : m_graph->edges(v)) {
           if (visitedEdges.count(neighborEdge.idx())) continue;

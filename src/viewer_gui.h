@@ -6,6 +6,47 @@
 struct ImGuiContext;
 
 namespace easy3d {
+    // Parameter structures
+    struct EnergyMinimizationParams {
+        int k_neighbors = 10;
+        float edgeLengthThres = 2.0f;
+        float lambda = 0.1f;
+        float extendFactor = 2.0f;
+        float inlierSearchRadius = 1.0f;
+        float minAngleInDegrees = 10.0f;
+    };
+
+    struct RegionGrowingParams {
+        int k = 16;
+        float max_distance = 0.1f;
+        float max_angle = 25.0f;
+        float min_radius = 0.01f;
+        float max_radius = 1.0f;
+        int min_region_size = 4;
+    };
+
+    struct Ransac3dParams {
+        float normal_threshold = 0.9f;
+        float probability = 0.01f;
+        int min_points = 10;
+        float epsilon = 0.05f;
+        float cluster_epsilon = 1.0f;
+        float min_radius = 0.01f;
+        float max_radius = 1.0f;
+    };
+
+    struct Ransac3d2dParams {
+        float normal_threshold = 0.9f;
+        float probability = 0.01f;
+        int min_points = 10;
+        float epsilon = 0.05f;
+        float cluster_epsilon = 1.0f;
+        int max_iterations = 200;
+        int min_inliers = 4;
+        float tolerance = 0.1f;
+        float split_distance_threshold = 2.0f;
+    };
+
     class ViewerGUI : public Viewer {
     public:
         explicit ViewerGUI(
@@ -85,41 +126,10 @@ namespace easy3d {
         easy3d::vec3 line_color_;
 
         // Algorithm parameters
-        struct EnergyMinimizationParams {
-            int k_neighbors = 10;
-            float edgeLengthThres = 2.0f;
-        } em_params_;
-
-        struct RegionGrowingParams {
-            int k = 16;
-            float max_distance = 0.1f;
-            float max_angle = 25.0f;
-            float min_radius = 0.01f;
-            float max_radius = 1.0f;
-            int min_region_size = 4;
-        } rg_params_;
-
-        struct Ransac3dParams {
-            float normal_threshold = 0.9f;
-            float probability = 0.01f;
-            int min_points = 10;
-            float epsilon = 0.05f;
-            float cluster_epsilon = 1.0f;
-            float min_radius = 0.01f;
-            float max_radius = 1.0f;
-        } r3d_params_;
-
-        struct Ransac3d2dParams {
-            float normal_threshold = 0.9f;
-            float probability = 0.01f;
-            int min_points = 10;
-            float epsilon = 0.05f;
-            float cluster_epsilon = 1.0f;
-            int max_iterations = 200;
-            int min_inliers = 4;
-            float tolerance = 0.1f;
-            float split_distance_threshold = 2.0f;
-        } r3d2d_params_;
+        EnergyMinimizationParams em_params_;
+        RegionGrowingParams rg_params_;
+        Ransac3dParams r3d_params_;
+        Ransac3d2dParams r3d2d_params_;
 
         // Output folder path
         std::string output_folder_path_;
