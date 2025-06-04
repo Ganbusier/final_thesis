@@ -1,4 +1,8 @@
+#include <easy3d/core/graph.h>
+#include <easy3d/fileio/graph_io.h>
+
 #include "regionGrowing.h"
+
 
 namespace regionGrowing {
 
@@ -135,4 +139,20 @@ void CylinderRegionGrowing::saveUnassignedPoints(const std::string& filename) {
   easy3d::io::save_ply(filename, unassignedCloud, false);
   LOG(INFO) << "Unassigned points saved to " << filename;
 }
+
+void CylinderRegionGrowing::save3DLineSegments(const std::string& filename) {
+  easy3d::Graph* graph = new easy3d::Graph;
+  for (const auto& cylinder : m_cylinders) {
+    easy3d::vec3 start = easy3d::vec3(cylinder.start.x(), cylinder.start.y(),
+                                       cylinder.start.z());
+    easy3d::vec3 end = easy3d::vec3(cylinder.end.x(), cylinder.end.y(),
+                                     cylinder.end.z());
+    easy3d::Graph::Vertex v1 = graph->add_vertex(start);
+    easy3d::Graph::Vertex v2 = graph->add_vertex(end);
+    graph->add_edge(v1, v2);
+  }
+  easy3d::io::save_ply(filename, graph, false);
+  LOG(INFO) << "3D line segments saved to " << filename;
+}
+
 }  // namespace regionGrowing

@@ -77,6 +77,7 @@ class CylinderRegionGrowing {
   }
   void saveCylinderInfos(const std::string& filename);
   void saveUnassignedPoints(const std::string& filename);
+  void save3DLineSegments(const std::string& filename);
 };
 
 }  // namespace regionGrowing

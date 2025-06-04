@@ -107,8 +107,10 @@ bool run_RegionGrowing(easy3d::Viewer* viewer, easy3d::Model* model,
   std::string cylinderInfosFilename = saveFilePath + "/rg_cylinderInfos.csv";
   std::string unassignedPointsFilename =
       saveFilePath + "/rg_unassignedPoints.ply";
+  std::string lines3dFilename = saveFilePath + "/rg_lines3d.ply";
   regionGrowing.saveCylinderInfos(cylinderInfosFilename);
   regionGrowing.saveUnassignedPoints(unassignedPointsFilename);
+  regionGrowing.save3DLineSegments(lines3dFilename);
 
   return true;
 }
