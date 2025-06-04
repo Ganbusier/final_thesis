@@ -8,28 +8,48 @@
 #include <regionGrowing/cgalDefines_rg.h>
 #include <regionGrowing/regionGrowing.h>
 
+#include <chrono>
+#include <iomanip>
+#include <sstream>
+
 #include "functions.h"
+
 
 std::vector<easy3d::Drawable*> drawables;
 
 // Global line color variable
-static easy3d::vec4 current_line_color(0.984f, 0.333f, 0.490f, 1.0f); // Default pink #FB557D
+static easy3d::vec4 current_line_color(0.984f, 0.333f, 0.490f,
+                                       1.0f);  // Default pink #FB557D
 
 // Function to get current line color
-easy3d::vec4 get_current_line_color() {
-    return current_line_color;
-}
+easy3d::vec4 get_current_line_color() { return current_line_color; }
 
 // Function to set line color
 void set_line_drawable_color(const easy3d::vec4& color) {
-    current_line_color = color;
-    // Update color of all existing line drawables
-    for (auto& drawable : drawables) {
-        auto lines_drawable = dynamic_cast<easy3d::LinesDrawable*>(drawable);
-        if (lines_drawable) {
-            lines_drawable->set_uniform_coloring(color);
-        }
+  current_line_color = color;
+  // Update color of all existing line drawables
+  for (auto& drawable : drawables) {
+    auto lines_drawable = dynamic_cast<easy3d::LinesDrawable*>(drawable);
+    if (lines_drawable) {
+      lines_drawable->set_uniform_coloring(color);
     }
+  }
+}
+
+// Helper function to get timestamp string
+std::string get_timestamp_string() {
+  auto now = std::chrono::system_clock::now();
+  auto time = std::chrono::system_clock::to_time_t(now);
+  std::stringstream ss;
+  ss << std::put_time(std::localtime(&time), "%Y%m%d_%H%M%S");
+  return ss.str();
+}
+
+// Helper function to create filename with timestamp
+std::string create_timestamped_filename(const std::string& basePath,
+                                        const std::string& prefix,
+                                        const std::string& extension) {
+  return basePath + "/" + prefix + "_" + get_timestamp_string() + extension;
 }
 
 bool run_EnergyMinimization(easy3d::Viewer* viewer, easy3d::Model* model,
@@ -51,14 +71,17 @@ bool run_EnergyMinimization(easy3d::Viewer* viewer, easy3d::Model* model,
   em_params.minAngleInDegrees = params.minAngleInDegrees;
 
   energyMinimization::EnergyMinimization energyMinimization(
-      dualGraph->n_vertices(), dualGraph->n_edges(), mixGraph, pointCloud, em_params);
+      dualGraph->n_vertices(), dualGraph->n_edges(), mixGraph, pointCloud,
+      em_params);
   energyMinimization.setDataTerm();
   energyMinimization.setSmoothnessTerm();
   energyMinimization.optimize();
   energyMinimization.getResults();
 
-  std::string preservedFilename = saveFilePath + "/gco_preserved.ply";
-  std::string removedFilename = saveFilePath + "/gco_removed.ply";
+  std::string preservedFilename =
+      create_timestamped_filename(saveFilePath, "gco_preserved", ".ply");
+  std::string removedFilename =
+      create_timestamped_filename(saveFilePath, "gco_removed", ".ply");
   energyMinimization.saveResults(preservedFilename, removedFilename);
 
   return true;
@@ -112,10 +135,12 @@ bool run_RegionGrowing(easy3d::Viewer* viewer, easy3d::Model* model,
     drawables.push_back(cylinderDrawable);
   }
 
-  std::string cylinderInfosFilename = saveFilePath + "/rg_cylinderInfos.csv";
+  std::string cylinderInfosFilename =
+      create_timestamped_filename(saveFilePath, "rg_cylinderInfos", ".csv");
   std::string unassignedPointsFilename =
-      saveFilePath + "/rg_unassignedPoints.ply";
-  std::string lines3dFilename = saveFilePath + "/rg_lines3d.ply";
+      create_timestamped_filename(saveFilePath, "rg_unassignedPoints", ".ply");
+  std::string lines3dFilename =
+      create_timestamped_filename(saveFilePath, "rg_lines3d", ".ply");
   regionGrowing.saveCylinderInfos(cylinderInfosFilename);
   regionGrowing.saveUnassignedPoints(unassignedPointsFilename);
   regionGrowing.save3DLineSegments(lines3dFilename);
@@ -169,11 +194,12 @@ bool run_Ransac3d(easy3d::Viewer* viewer, easy3d::Model* model,
     drawables.push_back(cylinderDrawable);
   }
 
-  std::string cylinderInfosFilename =
-      saveFilePath + "/ransac3d_cylinderInfos.csv";
-  std::string leftoverPointsFilename =
-      saveFilePath + "/ransac3d_leftoverPoints.ply";
-  std::string lines3dFilename = saveFilePath + "/ransac3d_lines3d.ply";
+  std::string cylinderInfosFilename = create_timestamped_filename(
+      saveFilePath, "ransac3d_cylinderInfos", ".csv");
+  std::string leftoverPointsFilename = create_timestamped_filename(
+      saveFilePath, "ransac3d_leftoverPoints", ".ply");
+  std::string lines3dFilename =
+      create_timestamped_filename(saveFilePath, "ransac3d_lines3d", ".ply");
   ransac3d.saveCylinderInfos(cylinderInfosFilename);
   ransac3d.saveLeftoverPoints(leftoverPointsFilename);
   ransac3d.save3DLineSegments(lines3dFilename);
@@ -231,15 +257,14 @@ bool run_Ransac3d2d(easy3d::Viewer* viewer, easy3d::Model* model,
   }
 
   // Save results
-  std::string linesFilename = saveFilePath + "/ransac3d2d_lines.ply";
-  std::string leftoverPointsFilename =
-      saveFilePath + "/ransac3d2d_leftoverPoints.ply";
+  std::string linesFilename =
+      create_timestamped_filename(saveFilePath, "ransac3d2d_lines", ".ply");
+  std::string leftoverPointsFilename = create_timestamped_filename(
+      saveFilePath, "ransac3d2d_leftoverPoints", ".ply");
   ransac3d2d.saveLines3d(linesFilename);
   ransac3d2d.saveLeftoverPoints(leftoverPointsFilename);
 
   return true;
 }
 
-void clear_algorithm_drawables() {
-  drawables.clear();
-}
+void clear_algorithm_drawables() { drawables.clear(); }
