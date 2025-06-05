@@ -114,18 +114,18 @@ void Analysis::angleAnalysis() {
 
 void Analysis::calculateStatistics() {
   // Clear previous results
-  m_analysisResults.minDistance = 0.0f;
-  m_analysisResults.maxDistance = 0.0f;
-  m_analysisResults.minAngle = 0.0f;
-  m_analysisResults.maxAngle = 0.0f;
-  m_analysisResults.meanDistance = 0.0f;
-  m_analysisResults.meanAngle = 0.0f;
-  m_analysisResults.medianDistance = 0.0f;
-  m_analysisResults.medianAngle = 0.0f;
-  m_analysisResults.stdDistance = 0.0f;
-  m_analysisResults.stdAngle = 0.0f;
-  m_analysisResults.RMSEofMeanDistances = 0.0f;
-  m_analysisResults.RMSEofMeanAngles = 0.0f;
+  m_analysisResults.minDistance = -1.0f;
+  m_analysisResults.maxDistance = -1.0f;
+  m_analysisResults.minAngle = -1.0f;
+  m_analysisResults.maxAngle = -1.0f;
+  m_analysisResults.meanDistance = -1.0f;
+  m_analysisResults.meanAngle = -1.0f;
+  m_analysisResults.medianDistance = -1.0f;
+  m_analysisResults.medianAngle = -1.0f;
+  m_analysisResults.stdDistance = -1.0f;
+  m_analysisResults.stdAngle = -1.0f;
+  m_analysisResults.RMSEofMeanDistances = -1.0f;
+  m_analysisResults.RMSEofMeanAngles = -1.0f;
 
   // Calculate min, max, mean, median, std
   if (m_meanDistances.empty() || m_meanAngles.empty()) {

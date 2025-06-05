@@ -319,15 +319,14 @@ void ViewerGUI::draw_energy_minimization_panel() {
     ImGui::SetNextWindowSize(ImVec2(300, 200), ImGuiCond_FirstUseEver);
     if (ImGui::Begin("Energy Minimization", &show_energy_minimization_panel_)) {
         ImGui::Text("Parameters for computing the dual graph:");
-        ImGui::SliderInt("K Neighbors", &em_params_.k_neighbors, 5, 50);
-        ImGui::SliderFloat("Edge Length Threshold", &em_params_.edgeLengthThres, 0.1f, 10.0f);
+        ImGui::DragInt("K Neighbors", &em_params_.k_neighbors, 1.0f, 5, 50);
+        ImGui::DragFloat("Edge Length Threshold", &em_params_.edgeLengthThres, 0.01f, 0.1f, 10.0f, "%.3f");
         ImGui::Separator();
         ImGui::Text("Parameters for energy minimization:");
-        ImGui::SliderFloat("Lambda", &em_params_.lambda, 0.0f, 1.0f);
-        ImGui::SliderFloat("Extend Factor", &em_params_.extendFactor, 1.0f, 10.0f);
-        ImGui::SliderFloat("Inlier Search Radius", &em_params_.inlierSearchRadius, 0.1f, 10.0f);
-        ImGui::SliderFloat("Min Angle", &em_params_.minAngleInDegrees, 0.0f, 90.0f);
-
+        ImGui::DragFloat("Lambda", &em_params_.lambda, 0.01f, 0.0f, 1.0f, "%.3f");
+        ImGui::DragFloat("Extend Factor", &em_params_.extendFactor, 0.1f, 1.0f, 10.0f, "%.2f");
+        ImGui::DragFloat("Inlier Search Radius", &em_params_.inlierSearchRadius, 0.01f, 0.1f, 10.0f, "%.3f");
+        ImGui::DragFloat("Min Angle", &em_params_.minAngleInDegrees, 1.0f, 0.0f, 90.0f, "%.1f");
 
         ImGui::Separator();
         if (ImGui::Button("Run Energy Minimization")) {
@@ -345,12 +344,12 @@ void ViewerGUI::draw_region_growing_panel() {
     ImGui::SetNextWindowSize(ImVec2(300, 300), ImGuiCond_FirstUseEver);
     if (ImGui::Begin("Region Growing", &show_region_growing_panel_)) {
         ImGui::Text("Parameters:");
-        ImGui::SliderInt("K", &rg_params_.k, 8, 32);
-        ImGui::SliderFloat("Max Distance", &rg_params_.max_distance, 0.01f, 1.0f);
-        ImGui::SliderFloat("Max Angle", &rg_params_.max_angle, 5.0f, 45.0f);
-        ImGui::SliderFloat("Min Radius", &rg_params_.min_radius, 0.001f, 0.1f);
-        ImGui::SliderFloat("Max Radius", &rg_params_.max_radius, 0.1f, 5.0f);
-        ImGui::SliderInt("Min Region Size", &rg_params_.min_region_size, 2, 20);
+        ImGui::DragInt("K", &rg_params_.k, 1.0f, 8, 32);
+        ImGui::DragFloat("Max Distance", &rg_params_.max_distance, 0.001f, 0.01f, 1.0f, "%.4f");
+        ImGui::DragFloat("Max Angle", &rg_params_.max_angle, 1.0f, 5.0f, 45.0f, "%.1f");
+        ImGui::DragFloat("Min Radius", &rg_params_.min_radius, 0.0001f, 0.001f, 0.1f, "%.5f");
+        ImGui::DragFloat("Max Radius", &rg_params_.max_radius, 0.01f, 0.1f, 5.0f, "%.3f");
+        ImGui::DragInt("Min Region Size", &rg_params_.min_region_size, 1.0f, 2, 20);
         
         ImGui::Separator();
         if (ImGui::Button("Run Region Growing")) {
@@ -368,13 +367,13 @@ void ViewerGUI::draw_ransac3d_panel() {
     ImGui::SetNextWindowSize(ImVec2(300, 350), ImGuiCond_FirstUseEver);
     if (ImGui::Begin("RANSAC 3D", &show_ransac3d_panel_)) {
         ImGui::Text("Parameters:");
-        ImGui::SliderFloat("Normal Threshold", &r3d_params_.normal_threshold, 0.1f, 1.0f);
-        ImGui::SliderFloat("Probability", &r3d_params_.probability, 0.001f, 0.1f, "%.3f");
-        ImGui::SliderInt("Min Points", &r3d_params_.min_points, 5, 50);
-        ImGui::SliderFloat("Epsilon", &r3d_params_.epsilon, 0.01f, 0.2f);
-        ImGui::SliderFloat("Cluster Epsilon", &r3d_params_.cluster_epsilon, 0.1f, 5.0f);
-        ImGui::SliderFloat("Min Radius", &r3d_params_.min_radius, 0.001f, 0.1f);
-        ImGui::SliderFloat("Max Radius", &r3d_params_.max_radius, 0.1f, 5.0f);
+        ImGui::DragFloat("Normal Threshold", &r3d_params_.normal_threshold, 0.01f, 0.0f, 1.0f, "%.3f");
+        ImGui::DragFloat("Probability", &r3d_params_.probability, 0.0001f, 0.001f, 0.1f, "%.4f");
+        ImGui::DragInt("Min Points", &r3d_params_.min_points, 1.0f, 5, 50);
+        ImGui::DragFloat("Epsilon", &r3d_params_.epsilon, 0.001f, 0.01f, 0.2f, "%.4f");
+        ImGui::DragFloat("Cluster Epsilon", &r3d_params_.cluster_epsilon, 0.01f, 0.1f, 5.0f, "%.3f");
+        ImGui::DragFloat("Min Radius", &r3d_params_.min_radius, 0.0001f, 0.001f, 0.1f, "%.5f");
+        ImGui::DragFloat("Max Radius", &r3d_params_.max_radius, 0.01f, 0.1f, 5.0f, "%.3f");
         
         ImGui::Separator();
         if (ImGui::Button("Run RANSAC 3D")) {
@@ -392,18 +391,18 @@ void ViewerGUI::draw_ransac3d2d_panel() {
     ImGui::SetNextWindowSize(ImVec2(300, 400), ImGuiCond_FirstUseEver);
     if (ImGui::Begin("RANSAC 3D2D", &show_ransac3d2d_panel_)) {
         ImGui::Text("3D Parameters:");
-        ImGui::SliderFloat("Normal Threshold", &r3d2d_params_.normal_threshold, 0.1f, 1.0f);
-        ImGui::SliderFloat("Probability", &r3d2d_params_.probability, 0.001f, 0.1f, "%.3f");
-        ImGui::SliderInt("Min Points", &r3d2d_params_.min_points, 5, 50);
-        ImGui::SliderFloat("Epsilon", &r3d2d_params_.epsilon, 0.01f, 0.2f);
-        ImGui::SliderFloat("Cluster Epsilon", &r3d2d_params_.cluster_epsilon, 0.1f, 5.0f);
+        ImGui::DragFloat("Normal Threshold", &r3d2d_params_.normal_threshold, 0.01f, 0.1f, 1.0f, "%.3f");
+        ImGui::DragFloat("Probability", &r3d2d_params_.probability, 0.0001f, 0.001f, 0.1f, "%.4f");
+        ImGui::DragInt("Min Points", &r3d2d_params_.min_points, 1.0f, 5, 50);
+        ImGui::DragFloat("Epsilon", &r3d2d_params_.epsilon, 0.001f, 0.01f, 0.2f, "%.4f");
+        ImGui::DragFloat("Cluster Epsilon", &r3d2d_params_.cluster_epsilon, 0.01f, 0.1f, 5.0f, "%.3f");
         
         ImGui::Separator();
         ImGui::Text("2D Parameters:");
-        ImGui::SliderInt("Max Iterations", &r3d2d_params_.max_iterations, 50, 500);
-        ImGui::SliderInt("Min Inliers", &r3d2d_params_.min_inliers, 2, 20);
-        ImGui::SliderFloat("Tolerance", &r3d2d_params_.tolerance, 0.01f, 1.0f);
-        ImGui::SliderFloat("Split Distance", &r3d2d_params_.split_distance_threshold, 0.5f, 10.0f);
+        ImGui::DragInt("Max Iterations", &r3d2d_params_.max_iterations, 5.0f, 50, 500);
+        ImGui::DragInt("Min Inliers", &r3d2d_params_.min_inliers, 1.0f, 2, 20);
+        ImGui::DragFloat("Tolerance", &r3d2d_params_.tolerance, 0.001f, 0.01f, 1.0f, "%.4f");
+        ImGui::DragFloat("Split Distance", &r3d2d_params_.split_distance_threshold, 0.01f, 0.5f, 10.0f, "%.3f");
         
         ImGui::Separator();
         if (ImGui::Button("Run RANSAC 3D2D")) {

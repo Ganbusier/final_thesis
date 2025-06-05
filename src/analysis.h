@@ -11,18 +11,18 @@
 namespace myAnalysis {
 
 struct AnalysisResults {
-  float minDistance = 0.0f;
-  float maxDistance = 0.0f;
-  float minAngle = 0.0f;
-  float maxAngle = 0.0f;
-  float meanDistance = 0.0f;
-  float meanAngle = 0.0f;
-  float medianDistance = 0.0f;
-  float medianAngle = 0.0f;
-  float stdDistance = 0.0f;
-  float stdAngle = 0.0f;
-  float RMSEofMeanDistances = 0.0f;
-  float RMSEofMeanAngles = 0.0f;
+  float minDistance = -1.0f;
+  float maxDistance = -1.0f;
+  float minAngle = -1.0f;
+  float maxAngle = -1.0f;
+  float meanDistance = -1.0f;
+  float meanAngle = -1.0f;
+  float medianDistance = -1.0f;
+  float medianAngle = -1.0f;
+  float stdDistance = -1.0f;
+  float stdAngle = -1.0f;
+  float RMSEofMeanDistances = -1.0f;
+  float RMSEofMeanAngles = -1.0f;
 };
 
 class Analysis {
