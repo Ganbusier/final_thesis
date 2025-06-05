@@ -9,12 +9,26 @@ add_executable(${PROJECT_NAME}_GUI main_gui.cpp functions.cpp viewer_gui.cpp)
 # Analysis version
 add_executable(${PROJECT_NAME}_Analysis main_analysis.cpp analysis.cpp)
 
+# Parameter search version
+add_executable(${PROJECT_NAME}_ParamSearch main_paramSearch.cpp analysis.cpp)
+
+# Disable default crash handler and log file for ParamSearch
+target_compile_definitions(${PROJECT_NAME}_ParamSearch PRIVATE 
+    ELPP_DISABLE_DEFAULT_CRASH_HANDLER
+    ELPP_NO_DEFAULT_LOG_FILE
+)
+
 target_include_directories(${PROJECT_NAME}_GUI PRIVATE 
     ${Thesis_EXTERNAL_DIR}
     ${CMAKE_CURRENT_LIST_DIR}
 )
 
 target_include_directories(${PROJECT_NAME}_Analysis PRIVATE 
+    ${Thesis_EXTERNAL_DIR}
+    ${CMAKE_CURRENT_LIST_DIR}
+)
+
+target_include_directories(${PROJECT_NAME}_ParamSearch PRIVATE 
     ${Thesis_EXTERNAL_DIR}
     ${CMAKE_CURRENT_LIST_DIR}
 )
@@ -48,5 +62,9 @@ target_link_libraries(${PROJECT_NAME}_GUI
 )
 
 target_link_libraries(${PROJECT_NAME}_Analysis 
+    ${COMMON_LIBRARIES}
+)
+
+target_link_libraries(${PROJECT_NAME}_ParamSearch 
     ${COMMON_LIBRARIES}
 )
