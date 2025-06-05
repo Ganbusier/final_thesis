@@ -11,7 +11,6 @@
 #include <unordered_set>
 #include <vector>
 
-
 // define a has function for std::pair<int, int> to use in std::unordered_set
 namespace std {
 template <>
@@ -90,7 +89,10 @@ class EnergyMinimization {
   void optimize();
   void getResults();
   void saveResults(const std::string &preservedFilename,
-                  const std::string &removedFilename);
+                   const std::string &removedFilename);
+
+  easy3d::Graph *getPreservedGraph() const { return m_preservedGraph; }
+  easy3d::Graph *getRemovedGraph() const { return m_removedGraph; }
 };
 
 }  // namespace energyMinimization

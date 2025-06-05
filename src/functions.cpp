@@ -14,7 +14,6 @@
 
 #include "functions.h"
 
-
 std::vector<easy3d::Drawable*> drawables;
 
 // Global line color variable
@@ -77,6 +76,44 @@ bool run_EnergyMinimization(easy3d::Viewer* viewer, easy3d::Model* model,
   energyMinimization.setSmoothnessTerm();
   energyMinimization.optimize();
   energyMinimization.getResults();
+
+  easy3d::Graph* preservedGraph = energyMinimization.getPreservedGraph();
+  for (auto& drawable : drawables) {
+    viewer->delete_drawable(drawable);
+  }
+  drawables.clear();
+  
+  if (preservedGraph->n_edges() > 0) {
+    // Collect all vertices and edges into single buffers
+    std::vector<easy3d::vec3> vertices;
+    std::vector<unsigned int> indices;
+    
+    for (auto& edge : preservedGraph->edges()) {
+      auto source = preservedGraph->source(edge);
+      auto target = preservedGraph->target(edge);
+      auto start = preservedGraph->position(source);
+      auto end = preservedGraph->position(target);
+      
+      // Add vertices
+      unsigned int start_idx = vertices.size();
+      vertices.push_back(start);
+      vertices.push_back(end);
+      
+      // Add line indices
+      indices.push_back(start_idx);
+      indices.push_back(start_idx + 1);
+    }
+    
+    // Create single drawable for all preserved edges
+    auto lineDrawable = new easy3d::LinesDrawable("preserved_edges");
+    lineDrawable->set_impostor_type(easy3d::LinesDrawable::CYLINDER);
+    lineDrawable->set_line_width(2.0f);
+    lineDrawable->set_uniform_coloring(get_current_line_color());
+    lineDrawable->update_vertex_buffer(vertices);
+    lineDrawable->update_element_buffer(indices);
+    viewer->add_drawable(lineDrawable);
+    drawables.push_back(lineDrawable);
+  }
 
   std::string preservedFilename =
       create_timestamped_filename(saveFilePath, "gco_preserved", ".ply");
@@ -238,22 +275,38 @@ bool run_Ransac3d2d(easy3d::Viewer* viewer, easy3d::Model* model,
   }
   drawables.clear();
 
+  // Collect all vertices and indices into single buffers
+  std::vector<easy3d::vec3> vertices;
+  std::vector<unsigned int> indices;
+  
   for (size_t i = 0; i < lines3d.size(); ++i) {
     std::vector<ransac::Line3d> lines = lines3d[i];
     for (size_t j = 0; j < lines.size(); ++j) {
       ransac::Line3d line = lines[j];
       auto start = line.start;
       auto end = line.end;
-      auto lineDrawable = new easy3d::LinesDrawable(
-          "line_" + std::to_string(i) + "_" + std::to_string(j));
-      lineDrawable->set_impostor_type(easy3d::LinesDrawable::CYLINDER);
-      lineDrawable->set_line_width(2.0f);
-      lineDrawable->set_uniform_coloring(get_current_line_color());
-      lineDrawable->update_vertex_buffer({start, end});
-      lineDrawable->update_element_buffer({0, 1});
-      viewer->add_drawable(lineDrawable);
-      drawables.push_back(lineDrawable);
+      
+      // Add vertices
+      unsigned int start_idx = vertices.size();
+      vertices.push_back(start);
+      vertices.push_back(end);
+      
+      // Add line indices
+      indices.push_back(start_idx);
+      indices.push_back(start_idx + 1);
     }
+  }
+  
+  if (!vertices.empty()) {
+    // Create single drawable for all lines
+    auto lineDrawable = new easy3d::LinesDrawable("ransac3d2d_lines");
+    lineDrawable->set_impostor_type(easy3d::LinesDrawable::CYLINDER);
+    lineDrawable->set_line_width(2.0f);
+    lineDrawable->set_uniform_coloring(get_current_line_color());
+    lineDrawable->update_vertex_buffer(vertices);
+    lineDrawable->update_element_buffer(indices);
+    viewer->add_drawable(lineDrawable);
+    drawables.push_back(lineDrawable);
   }
 
   // Save results
