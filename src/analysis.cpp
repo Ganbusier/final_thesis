@@ -1,16 +1,221 @@
+#include <algorithm>
+#include <cmath>
+#include <limits>
+#include <numeric>
+#include <set>
+
 #include "analysis.h"
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 namespace myAnalysis {
 void Analysis::analyze() {
   matchEdges();
   distanceAnalysis();
   angleAnalysis();
+  calculateStatistics();
 }
 
-// TODO: Implement these three functions
-void Analysis::matchEdges() {}
-void Analysis::distanceAnalysis() {}
-void Analysis::angleAnalysis() {}
+void Analysis::matchEdges() {
+  // Clear previous matching results
+  m_matchedEdges.clear();
+  m_unmatchedEstimatedEdges.clear();
+  m_unmatchedGroundTruthEdges.clear();
+
+  // Distance threshold
+  const float maxDistance = 0.5f;
+
+  // Track which edges have been matched
+  std::set<easy3d::Graph::Edge> matchedEstimatedEdges;
+  std::set<easy3d::Graph::Edge> matchedGroundTruthEdges;
+
+  // Iterate through each edge in the estimated graph
+  for (auto estimatedEdge : m_estimatedGraph->edges()) {
+    float minDistance = std::numeric_limits<float>::max();
+    easy3d::Graph::Edge bestMatchEdge;
+    bool foundMatch = false;
+
+    // Iterate through each edge in the ground truth graph to find the nearest
+    // edge
+    for (auto groundTruthEdge : m_groundTruthGraph->edges()) {
+      float distance = distanceBetweenTwoEdges(estimatedEdge, groundTruthEdge);
+
+      if (distance < minDistance) {
+        minDistance = distance;
+        bestMatchEdge = groundTruthEdge;
+        foundMatch = true;
+      }
+    }
+
+    // Save the matching result if found match and distance is within threshold
+    if (foundMatch && minDistance <= maxDistance) {
+      m_matchedEdges[bestMatchEdge].push_back(estimatedEdge);
+      matchedEstimatedEdges.insert(estimatedEdge);
+      matchedGroundTruthEdges.insert(bestMatchEdge);
+    }
+  }
+
+  // Find unmatched estimated edges
+  for (auto estimatedEdge : m_estimatedGraph->edges()) {
+    if (matchedEstimatedEdges.find(estimatedEdge) ==
+        matchedEstimatedEdges.end()) {
+      m_unmatchedEstimatedEdges.push_back(estimatedEdge);
+    }
+  }
+
+  // Find unmatched ground truth edges
+  for (auto groundTruthEdge : m_groundTruthGraph->edges()) {
+    if (matchedGroundTruthEdges.find(groundTruthEdge) ==
+        matchedGroundTruthEdges.end()) {
+      m_unmatchedGroundTruthEdges.push_back(groundTruthEdge);
+    }
+  }
+}
+
+void Analysis::distanceAnalysis() {
+  // Clear previous results
+  m_meanDistances.clear();
+
+  // Calculate average distance for each ground truth edge
+  for (const auto& group : m_matchedEdges) {
+    easy3d::Graph::Edge groundTruthEdge = group.first;
+    const std::vector<easy3d::Graph::Edge>& estimatedEdges = group.second;
+
+    float totalDistance = 0.0f;
+    for (const auto& estimatedEdge : estimatedEdges) {
+      totalDistance += distanceBetweenTwoEdges(estimatedEdge, groundTruthEdge);
+    }
+
+    float averageDistance = totalDistance / estimatedEdges.size();
+    m_meanDistances.push_back(averageDistance);
+  }
+}
+
+void Analysis::angleAnalysis() {
+  // Clear previous results
+  m_meanAngles.clear();
+
+  // Calculate average angle for each ground truth edge
+  for (const auto& group : m_matchedEdges) {
+    easy3d::Graph::Edge groundTruthEdge = group.first;
+    const std::vector<easy3d::Graph::Edge>& estimatedEdges = group.second;
+
+    float totalAngle = 0.0f;
+    for (const auto& estimatedEdge : estimatedEdges) {
+      totalAngle += angleBetweenTwoEdges(estimatedEdge, groundTruthEdge);
+    }
+
+    float averageAngle = totalAngle / estimatedEdges.size();
+    m_meanAngles.push_back(averageAngle);
+  }
+}
+
+void Analysis::calculateStatistics() {
+  // Clear previous results
+  m_analysisResults.minDistance = 0.0f;
+  m_analysisResults.maxDistance = 0.0f;
+  m_analysisResults.minAngle = 0.0f;
+  m_analysisResults.maxAngle = 0.0f;
+  m_analysisResults.meanDistance = 0.0f;
+  m_analysisResults.meanAngle = 0.0f;
+  m_analysisResults.medianDistance = 0.0f;
+  m_analysisResults.medianAngle = 0.0f;
+  m_analysisResults.stdDistance = 0.0f;
+  m_analysisResults.stdAngle = 0.0f;
+  m_analysisResults.RMSEofMeanDistances = 0.0f;
+  m_analysisResults.RMSEofMeanAngles = 0.0f;
+
+  // Calculate min, max, mean, median, std
+  if (m_meanDistances.empty() || m_meanAngles.empty()) {
+    // LOG(WARNING) << "Mean distances or angles are empty";
+    return;
+  }
+  
+  std::vector<float> sortedDistances = m_meanDistances;
+  std::vector<float> sortedAngles = m_meanAngles;
+  std::sort(sortedDistances.begin(), sortedDistances.end());
+  std::sort(sortedAngles.begin(), sortedAngles.end());
+
+  // Min and Max
+  m_analysisResults.minDistance = sortedDistances.front();
+  m_analysisResults.maxDistance = sortedDistances.back();
+  m_analysisResults.minAngle = sortedAngles.front();
+  m_analysisResults.maxAngle = sortedAngles.back();
+  
+  // Mean
+  m_analysisResults.meanDistance =
+      std::accumulate(sortedDistances.begin(), sortedDistances.end(), 0.0f) /
+      sortedDistances.size();
+  m_analysisResults.meanAngle =
+      std::accumulate(sortedAngles.begin(), sortedAngles.end(), 0.0f) /
+      sortedAngles.size();
+      
+  // Median (handle even/odd cases)
+  if (sortedDistances.size() % 2 == 0) {
+    m_analysisResults.medianDistance = 
+        (sortedDistances[sortedDistances.size() / 2 - 1] + 
+         sortedDistances[sortedDistances.size() / 2]) / 2.0f;
+  } else {
+    m_analysisResults.medianDistance = sortedDistances[sortedDistances.size() / 2];
+  }
+  
+  if (sortedAngles.size() % 2 == 0) {
+    m_analysisResults.medianAngle = 
+        (sortedAngles[sortedAngles.size() / 2 - 1] + 
+         sortedAngles[sortedAngles.size() / 2]) / 2.0f;
+  } else {
+    m_analysisResults.medianAngle = sortedAngles[sortedAngles.size() / 2];
+  }
+  
+  // Standard deviation (properly calculated)
+  float sumSquaredDiffDistances = 0.0f;
+  float sumSquaredDiffAngles = 0.0f;
+  
+  for (const auto& distance : m_meanDistances) {
+    float diff = distance - m_analysisResults.meanDistance;
+    sumSquaredDiffDistances += diff * diff;
+  }
+  
+  for (const auto& angle : m_meanAngles) {
+    float diff = angle - m_analysisResults.meanAngle;
+    sumSquaredDiffAngles += diff * diff;
+  }
+  
+  m_analysisResults.stdDistance = 
+      std::sqrt(sumSquaredDiffDistances / m_meanDistances.size());
+  m_analysisResults.stdAngle = 
+      std::sqrt(sumSquaredDiffAngles / m_meanAngles.size());
+
+  /*
+   * RMSE = sqrt(1/n * sum(x_i^2))
+   * x_i: mean distance or angle difference between a ground truth edge and its
+   *      matched estimated edges. Ideal value is 0 (perfect match), so we
+   *      calculate RMSE against zero.
+   *
+   * n: number of ground truth edges with matches.
+   */
+
+  float sumSquaredDistances = 0.0f;
+  float sumSquaredAngles = 0.0f;
+
+  // Calculate sum of squared distances (ideal value is 0)
+  for (const auto& distance : m_meanDistances) {
+    sumSquaredDistances += distance * distance;
+  }
+
+  // Calculate sum of squared angles (ideal value is 0)
+  for (const auto& angle : m_meanAngles) {
+    sumSquaredAngles += angle * angle;
+  }
+
+  // Calculate RMSE
+  m_analysisResults.RMSEofMeanDistances =
+      std::sqrt(sumSquaredDistances / m_meanDistances.size());
+  m_analysisResults.RMSEofMeanAngles =
+      std::sqrt(sumSquaredAngles / m_meanAngles.size());
+}
 
 float Analysis::angleBetweenTwoEdges(easy3d::Graph::Edge estimatedEdge,
                                      easy3d::Graph::Edge groundTruthEdge) {

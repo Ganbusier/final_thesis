@@ -17,8 +17,24 @@ int main(int argc, char** argv) {
   easy3d::Graph* estimatedGraph = easy3d::GraphIO::load(estimatedFile);
   easy3d::Graph* groundTruthGraph = easy3d::GraphIO::load(groundTruthFile);
 
-  // TODO: Compare the two graphs
-  // TODO: Log the results
+  // Analyze the two graphs
+  myAnalysis::Analysis analysis(estimatedGraph, groundTruthGraph);
+  analysis.analyze();
+
+  // Log the results
+  myAnalysis::AnalysisResults results = analysis.getAnalysisResults();
+  LOG(INFO) << "Min distance: " << results.minDistance;
+  LOG(INFO) << "Max distance: " << results.maxDistance;
+  LOG(INFO) << "Min angle: " << results.minAngle;
+  LOG(INFO) << "Max angle: " << results.maxAngle;
+  LOG(INFO) << "Mean distance: " << results.meanDistance;
+  LOG(INFO) << "Mean angle: " << results.meanAngle;
+  LOG(INFO) << "Median distance: " << results.medianDistance;
+  LOG(INFO) << "Median angle: " << results.medianAngle;
+  LOG(INFO) << "Std distance: " << results.stdDistance;
+  LOG(INFO) << "Std angle: " << results.stdAngle;
+  LOG(INFO) << "RMSE of mean distances: " << results.RMSEofMeanDistances;
+  LOG(INFO) << "RMSE of mean angles: " << results.RMSEofMeanAngles;
 
   return 0;
 }

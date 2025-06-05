@@ -3,7 +3,28 @@
 
 #include <easy3d/core/graph.h>
 
+#include <map>
+#include <set>
+#include <utility>
+#include <vector>
+
 namespace myAnalysis {
+
+struct AnalysisResults {
+  float minDistance = 0.0f;
+  float maxDistance = 0.0f;
+  float minAngle = 0.0f;
+  float maxAngle = 0.0f;
+  float meanDistance = 0.0f;
+  float meanAngle = 0.0f;
+  float medianDistance = 0.0f;
+  float medianAngle = 0.0f;
+  float stdDistance = 0.0f;
+  float stdAngle = 0.0f;
+  float RMSEofMeanDistances = 0.0f;
+  float RMSEofMeanAngles = 0.0f;
+};
+
 class Analysis {
  public:
   Analysis(easy3d::Graph* estimatedGraph, easy3d::Graph* groundTruthGraph)
@@ -12,29 +33,48 @@ class Analysis {
   ~Analysis() {}
 
   void analyze();
+  std::vector<float> getMeanDistances() const { return m_meanDistances; }
+  std::vector<float> getMeanAngles() const { return m_meanAngles; }
+  std::vector<easy3d::Graph::Edge> getUnmatchedEstimatedEdges() const {
+    return m_unmatchedEstimatedEdges;
+  }
+  std::vector<easy3d::Graph::Edge> getUnmatchedGroundTruthEdges() const {
+    return m_unmatchedGroundTruthEdges;
+  }
+  AnalysisResults getAnalysisResults() const { return m_analysisResults; }
 
  private:
   easy3d::Graph* m_estimatedGraph;
   easy3d::Graph* m_groundTruthGraph;
-  std::vector<float> m_distances;
-  std::vector<float> m_angles;
-  std::vector<std::vector<easy3d::Graph::Edge>> m_matchedEdges;
+  std::vector<float> m_meanDistances;
+  std::vector<float> m_meanAngles;
+  AnalysisResults m_analysisResults;
+
+  // Storage for grouped matches: ground truth edge -> vector of matched
+  // estimated edges
+  std::map<easy3d::Graph::Edge, std::vector<easy3d::Graph::Edge>>
+      m_matchedEdges;
+
+  // Storage for unmatched edges
+  std::vector<easy3d::Graph::Edge> m_unmatchedEstimatedEdges;
+  std::vector<easy3d::Graph::Edge> m_unmatchedGroundTruthEdges;
 
   void distanceAnalysis();
   void angleAnalysis();
   void matchEdges();
+  void calculateStatistics();
   float distanceBetweenTwoEdges(easy3d::Graph::Edge estimatedEdge,
                                 easy3d::Graph::Edge groundTruthEdge);
   float angleBetweenTwoEdges(easy3d::Graph::Edge estimatedEdge,
-                            easy3d::Graph::Edge groundTruthEdge);
-  
+                             easy3d::Graph::Edge groundTruthEdge);
+
   // Helper functions for distance calculation
-  float pointToLineDistance(const easy3d::vec3& point, 
-                           const easy3d::vec3& lineStart, 
-                           const easy3d::vec3& lineEnd);
+  float pointToLineDistance(const easy3d::vec3& point,
+                            const easy3d::vec3& lineStart,
+                            const easy3d::vec3& lineEnd);
   bool isPointOnSegment(const easy3d::vec3& point,
-                       const easy3d::vec3& segmentStart,
-                       const easy3d::vec3& segmentEnd);
+                        const easy3d::vec3& segmentStart,
+                        const easy3d::vec3& segmentEnd);
 };
 }  // namespace myAnalysis
 #endif  // ANALYSIS_H
