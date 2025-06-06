@@ -53,6 +53,8 @@ void Ransac3d::detect() {
   m_ransac.detect(params);
   if (m_ransac.shapes().empty()) {
     LOG(INFO) << "No cylinders detected";
+    storeLeftoverIndices();
+    storeLeftoverPoints();
     return;
   }
   auto shapes = m_ransac.shapes();
@@ -116,6 +118,9 @@ void Ransac3d::storeLeftoverIndices() {
   m_leftoverIndices.clear();
   for (size_t i = 0; i < m_pwnVector.size(); ++i) {
     m_leftoverIndices.push_back(i);
+  }
+  if (m_cylinderInfos.empty()) {
+    return;
   }
   for (const auto& cyInfo : m_cylinderInfos) {
     for (const auto& index : cyInfo.inlierIndices) {

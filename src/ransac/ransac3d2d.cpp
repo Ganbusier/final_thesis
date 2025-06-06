@@ -43,12 +43,16 @@ void Ransac3d2d::pointCloudToPwnVector() {
 void Ransac3d2d::detect() {
   detectPlanes();
   if (m_planes.empty()) {
+    storeLeftoverIndicesForPlane();
     return;
   }
+  storeLeftoverIndicesForPlane();
   detectLines2d();
   if (m_lines2d.empty()) {
+    storeLeftoverIndicesForLine();
     return;
   }
+  storeLeftoverIndicesForLine();
   lines2dToLines3d();
   storeLeftoverIndices();
   storeLeftoverPoints();
@@ -440,6 +444,70 @@ void Ransac3d2d::saveLeftoverPoints(const std::string& filename) {
   // Save the point cloud
   easy3d::io::save_ply(filename, leftoverCloud, false);
   LOG(INFO) << "Leftover points saved to: " << filename;
+}
+
+void Ransac3d2d::storeLeftoverIndicesForPlane() {
+  m_leftoverIndicesForPlane.clear();
+  
+  // Use a boolean vector to mark points assigned to planes
+  std::vector<bool> assignedToPlane(m_pwnVector.size(), false);
+
+  // handle the case that no planes are detected
+  if (m_planes.empty()) {
+    for (size_t i = 0; i < m_pwnVector.size(); ++i) {
+      m_leftoverIndicesForPlane.push_back(static_cast<int>(i));
+    }
+    return;
+  }
+  
+  // Mark points assigned to planes
+  for (const auto& plane : m_planes) {
+    for (const auto& idx : plane.indices_of_assigned_points()) {
+      if (idx < assignedToPlane.size()) {
+        assignedToPlane[idx] = true;
+      }
+    }
+  }
+  
+  // Collect indices not assigned to any plane
+  m_leftoverIndicesForPlane.reserve(m_pwnVector.size());
+  for (size_t i = 0; i < assignedToPlane.size(); ++i) {
+    if (!assignedToPlane[i]) {
+      m_leftoverIndicesForPlane.push_back(static_cast<int>(i));
+    }
+  }
+  
+  LOG(INFO) << "Leftover indices after plane detection: " << m_leftoverIndicesForPlane.size();
+}
+
+void Ransac3d2d::storeLeftoverIndicesForLine() {
+  m_leftoverIndicesForLine.clear();
+  
+  // Use a boolean vector to mark points assigned to lines
+  std::vector<bool> assignedToLine(m_pwnVector.size(), false);
+
+  // Mark points assigned to lines
+  if (!m_lines2d.empty()) {
+    for (const auto& lines : m_lines2d) {
+      for (const auto& line : lines) {
+        for (const auto& idx : line.inlierIndices) {
+          if (static_cast<size_t>(idx) < assignedToLine.size()) {
+            assignedToLine[static_cast<size_t>(idx)] = true;
+          }
+        }
+      }
+    }
+  }
+  
+  // Collect indices not assigned to any line (from the remaining points after plane detection)
+  m_leftoverIndicesForLine.reserve(m_leftoverIndicesForPlane.size());
+  for (const auto& idx : m_leftoverIndicesForPlane) {
+    if (!assignedToLine[static_cast<size_t>(idx)]) {
+      m_leftoverIndicesForLine.push_back(idx);
+    }
+  }
+  
+  LOG(INFO) << "Leftover indices after line detection: " << m_leftoverIndicesForLine.size();
 }
 
 }  // namespace ransac

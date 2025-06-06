@@ -34,8 +34,8 @@ int main(int argc, char** argv) {
   easy3d::PointCloud* pointCloud = easy3d::PointCloudIO::load(estimatedFile);
 
   ransac3d_paramSearch(pointCloud);
-  ransac3d2d_paramSearch(pointCloud);
   regionGrowing_paramSearch(pointCloud);
+  ransac3d2d_paramSearch(pointCloud);
   // energyMinimization_paramSearch(pointCloud);
 
   return 0;
@@ -43,15 +43,18 @@ int main(int argc, char** argv) {
 
 void ransac3d_paramSearch(easy3d::PointCloud* pointCloud) {
   ransac::Params best_params;
-  int num_ouptuts = 0;
+  float best_score = 1e20;
+  int best_leftoverPoints = 1e20;
+  int best_numPrimitives = 0;
+
+  float weight_primitives = 1.0;
+  float weight_leftovers = 1.0;
 
   float probability = 0.01;
   float minRadius = 0.01;
   float maxRadius = 1.0;
-  std::vector<float> normalThresholds = {0.0, 0.1, 0.2, 0.3, 0.4,
-                                         0.5, 0.6, 0.7, 0.8, 0.9};
-  std::vector<float> epsilonValues = {0.01, 0.02, 0.03, 0.04, 0.05,
-                                      0.06, 0.07, 0.08, 0.09, 0.1};
+  std::vector<float> normalThresholds = {0.0, 0.3, 0.5, 0.7, 0.9};
+  std::vector<float> epsilonValues = {0.01, 0.02, 0.03, 0.04, 0.05};
   std::vector<float> clusterEpsilonValues = {0.1, 0.3, 0.5, 0.7, 0.9,
                                              1.0, 1.3, 1.5, 2.0};
   std::vector<int> minPointsValues = {5, 10, 15, 20, 25, 30, 35, 40, 45, 50};
@@ -60,6 +63,10 @@ void ransac3d_paramSearch(easy3d::PointCloud* pointCloud) {
                            clusterEpsilonValues.size() * minPointsValues.size();
   std::cout << "Starting parameter search for Ransac3D with "
             << total_combinations << " combinations..." << std::endl;
+  std::cout << "Optimization targets: maximize primitives (weight="
+            << weight_primitives
+            << ") + minimize leftover points (weight=" << weight_leftovers
+            << ")" << std::endl;
 
   for (float normalThreshold : normalThresholds) {
     for (float epsilon : epsilonValues) {
@@ -79,20 +86,22 @@ void ransac3d_paramSearch(easy3d::PointCloud* pointCloud) {
 
           std::vector<ransac::CylinderInfo> cylinderInfos =
               ransac3d.getCylinderInfos();
-          if (cylinderInfos.size() < num_ouptuts) {
-            continue;
-          }
+          std::vector<int> leftovers = ransac3d.getLeftoverIndices();
 
-          easy3d::Graph* estimatedGraph = new easy3d::Graph;
-          for (const auto& cylinderInfo : cylinderInfos) {
-            easy3d::Graph::Vertex v1 =
-                estimatedGraph->add_vertex(cylinderInfo.start);
-            easy3d::Graph::Vertex v2 =
-                estimatedGraph->add_vertex(cylinderInfo.end);
-            estimatedGraph->add_edge(v1, v2);
-          }
+          int numPrimitives = cylinderInfos.size();
+          int leftoverPoints = leftovers.size();
 
-          num_ouptuts = cylinderInfos.size();
+          // Objective: maximize number of primitives, minimize leftover points
+          // score = penalty for leftover points - reward for primitives
+          float score = weight_leftovers * leftoverPoints -
+                        weight_primitives * numPrimitives;
+
+          if (score < best_score) {
+            best_score = score;
+            best_leftoverPoints = leftoverPoints;
+            best_numPrimitives = numPrimitives;
+            best_params = params;
+          }
         }
       }
     }
@@ -107,25 +116,33 @@ void ransac3d_paramSearch(easy3d::PointCloud* pointCloud) {
             << "probability: " << best_params.probability << ", "
             << "minRadius: " << best_params.minRadius << ", "
             << "maxRadius: " << best_params.maxRadius << std::endl;
-  std::cout << "Number of outputs: " << num_ouptuts << std::endl;
+  std::cout << "Number of primitives: " << best_numPrimitives << std::endl;
+  std::cout << "Number of leftover points: " << best_leftoverPoints
+            << std::endl;
+  std::cout << "Combined score: " << best_score << std::endl;
   std::cout << "=== Search Complete ===" << std::endl;
 }
 
 void ransac3d2d_paramSearch(easy3d::PointCloud* pointCloud) {
   ransac::Params_ransac3d2d best_params;
-  int num_outputs = 0;
+  float best_score = 1e20;
+  int best_leftoverPoints = 1e20;
+  int best_numPrimitives = 0;
+
+  float weight_primitives = 1.0;
+  float weight_leftovers = 1.0;
 
   // 3D RANSAC parameters
   float probability = 0.01;
-  std::vector<float> normalThresholds = {0.0, 0.3, 0.5, 0.7, 0.9};
-  std::vector<int> minPointsValues = {10, 15, 20, 25, 30};
-  std::vector<float> epsilonValues = {0.01, 0.02, 0.03, 0.04, 0.05};
+  std::vector<float> normalThresholds = {0.0, 0.5, 0.9};
+  std::vector<int> minPointsValues = {5, 10, 15, 20};
+  std::vector<float> epsilonValues = {0.01, 0.03, 0.05};
   std::vector<float> clusterEpsilonValues = {0.5, 1.0, 1.5, 2.0};
 
   // 2D RANSAC parameters
-  std::vector<int> maxIterationsValues = {100, 200, 300};
+  std::vector<int> maxIterationsValues = {100, 300, 500};
   std::vector<int> minInliersValues = {4, 10, 16, 20};
-  std::vector<float> toleranceValues = {0.05, 0.1, 0.15, 0.2};
+  std::vector<float> toleranceValues = {0.01, 0.03, 0.05};
   std::vector<float> splitDistanceValues = {0.5, 1.0, 1.5, 2.0};
 
   int total_combinations = normalThresholds.size() * minPointsValues.size() *
@@ -136,6 +153,10 @@ void ransac3d2d_paramSearch(easy3d::PointCloud* pointCloud) {
 
   std::cout << "Starting parameter search for Ransac3D2D with "
             << total_combinations << " combinations..." << std::endl;
+  std::cout << "Optimization targets: minimize primitives (weight="
+            << weight_primitives
+            << ") + minimize leftover points (weight=" << weight_leftovers
+            << ")" << std::endl;
 
   for (float normalThreshold : normalThresholds) {
     for (int minPoints : minPointsValues) {
@@ -159,16 +180,21 @@ void ransac3d2d_paramSearch(easy3d::PointCloud* pointCloud) {
                   ransac::Ransac3d2d ransac3d2d(pointCloud, params);
                   ransac3d2d.detect();
 
-                  std::vector<std::vector<ransac::Line3d>> lines3d =
-                      ransac3d2d.getLines3d();
-
-                  int total_lines = 0;
-                  for (const auto& line_group : lines3d) {
-                    total_lines += line_group.size();
+                  int numPrimitives = 0;
+                  for (std::vector<ransac::Line3d> lines : ransac3d2d.getLines3d()) {
+                    numPrimitives += lines.size();
                   }
+                  int leftoverPoints = ransac3d2d.getLeftoverIndices().size();
 
-                  if (total_lines > num_outputs) {
-                    num_outputs = total_lines;
+                  // Objective: maximize number of primitives, minimize leftover
+                  // points
+                  float score = weight_leftovers * leftoverPoints -
+                                weight_primitives * numPrimitives;
+
+                  if (score < best_score) {
+                    best_score = score;
+                    best_leftoverPoints = leftoverPoints;
+                    best_numPrimitives = numPrimitives;
                     best_params = params;
                   }
                 }
@@ -192,16 +218,24 @@ void ransac3d2d_paramSearch(easy3d::PointCloud* pointCloud) {
             << "tolerance: " << best_params.tolerance << ", "
             << "splitDistanceThres: " << best_params.splitDistanceThres
             << std::endl;
-  std::cout << "Number of outputs: " << num_outputs << std::endl;
+  std::cout << "Number of primitives: " << best_numPrimitives << std::endl;
+  std::cout << "Number of leftover points: " << best_leftoverPoints
+            << std::endl;
+  std::cout << "Combined score: " << best_score << std::endl;
   std::cout << "=== Search Complete ===" << std::endl;
 }
 
 void regionGrowing_paramSearch(easy3d::PointCloud* pointCloud) {
   regionGrowing::CylinderRegionGrowingParams best_params;
-  int num_outputs = 0;
+  float best_score = 1e20;
+  int best_leftoverPoints = 1e20;
+  int best_numPrimitives = 0;
+
+  float weight_primitives = 1.0;
+  float weight_leftovers = 1.0;
 
   std::vector<int> kValues = {12, 16, 20, 24, 28};
-  std::vector<float> maxDistanceValues = {0.01, 0.05, 0.1, 0.15};
+  std::vector<float> maxDistanceValues = {0.01, 0.02, 0.03, 0.04, 0.05};
   std::vector<float> maxAngleValues = {15, 20, 25, 30, 35};
   std::vector<int> minRegionSizeValues = {4, 10, 16, 20};
   float minRadius = 0.01;
@@ -212,6 +246,10 @@ void regionGrowing_paramSearch(easy3d::PointCloud* pointCloud) {
 
   std::cout << "Starting parameter search for Region Growing with "
             << total_combinations << " combinations..." << std::endl;
+  std::cout << "Optimization targets: minimize primitives (weight="
+            << weight_primitives
+            << ") + minimize leftover points (weight=" << weight_leftovers
+            << ")" << std::endl;
 
   for (int k : kValues) {
     for (float maxDistance : maxDistanceValues) {
@@ -233,11 +271,17 @@ void regionGrowing_paramSearch(easy3d::PointCloud* pointCloud) {
           regionGrowing::CylinderRegionGrowing regionGrowing(pointSet, params);
           regionGrowing.detect();
 
-          std::vector<regionGrowing::Cylinder> cylinders =
-              regionGrowing.getCylinders();
+          int numPrimitives = regionGrowing.getCylinders().size();
+          int leftoverPoints = regionGrowing.getUnassignedIndices().size();
 
-          if (cylinders.size() > num_outputs) {
-            num_outputs = cylinders.size();
+          // Objective: maximize number of primitives, minimize leftover points
+          float score = weight_leftovers * leftoverPoints -
+                        weight_primitives * numPrimitives;
+
+          if (score < best_score) {
+            best_score = score;
+            best_leftoverPoints = leftoverPoints;
+            best_numPrimitives = numPrimitives;
             best_params = params;
           }
         }
@@ -253,7 +297,10 @@ void regionGrowing_paramSearch(easy3d::PointCloud* pointCloud) {
             << "minRadius: " << best_params.minRadius << ", "
             << "maxRadius: " << best_params.maxRadius << ", "
             << "minRegionSize: " << best_params.minRegionSize << std::endl;
-  std::cout << "Number of outputs: " << num_outputs << std::endl;
+  std::cout << "Number of primitives: " << best_numPrimitives << std::endl;
+  std::cout << "Number of leftover points: " << best_leftoverPoints
+            << std::endl;
+  std::cout << "Combined score: " << best_score << std::endl;
   std::cout << "=== Search Complete ===" << std::endl;
 }
 

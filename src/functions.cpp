@@ -150,6 +150,10 @@ bool run_RegionGrowing(easy3d::Viewer* viewer, easy3d::Model* model,
     return true;
   }
 
+  // Log infos
+  LOG(INFO) << "Number of cylinders: " << cylinders.size();
+  LOG(INFO) << "Number of leftover points: " << regionGrowing.getUnassignedIndices().size();
+
   for (auto& drawable : drawables) {
     viewer->delete_drawable(drawable);
   }
@@ -164,7 +168,7 @@ bool run_RegionGrowing(easy3d::Viewer* viewer, easy3d::Model* model,
     auto cylinderDrawable =
         new easy3d::LinesDrawable("cylinder" + std::to_string(i));
     cylinderDrawable->set_impostor_type(easy3d::LinesDrawable::CYLINDER);
-    cylinderDrawable->set_line_width(cylinder.radius * 2.0f * 10.0f);
+    cylinderDrawable->set_line_width(2.0f);
     cylinderDrawable->set_uniform_coloring(get_current_line_color());
     cylinderDrawable->update_vertex_buffer({start, end});
     cylinderDrawable->update_element_buffer({0, 1});
@@ -210,6 +214,10 @@ bool run_Ransac3d(easy3d::Viewer* viewer, easy3d::Model* model,
     return true;
   }
 
+  // Log infos
+  LOG(INFO) << "Number of cylinders: " << cylinderInfos.size();
+  LOG(INFO) << "Number of leftover points: " << ransac3d.getLeftoverIndices().size();
+
   for (auto& drawable : drawables) {
     viewer->delete_drawable(drawable);
   }
@@ -223,7 +231,7 @@ bool run_Ransac3d(easy3d::Viewer* viewer, easy3d::Model* model,
     auto cylinderDrawable =
         new easy3d::LinesDrawable("cylinder" + std::to_string(i));
     cylinderDrawable->set_impostor_type(easy3d::LinesDrawable::CYLINDER);
-    cylinderDrawable->set_line_width(radius * 2.0f);
+    cylinderDrawable->set_line_width(2.0f);
     cylinderDrawable->set_uniform_coloring(get_current_line_color());
     cylinderDrawable->update_vertex_buffer({start, end});
     cylinderDrawable->update_element_buffer({0, 1});
@@ -269,6 +277,18 @@ bool run_Ransac3d2d(easy3d::Viewer* viewer, easy3d::Model* model,
     LOG(INFO) << "No lines found";
     return true;
   }
+
+  int numLines = 0;
+  for (std::vector<ransac::Line3d> lines : lines3d) {
+    numLines += lines.size();
+  }
+
+  // Log infos
+  LOG(INFO) << "Number of planes: " << ransac3d2d.getPlanes().size();
+  LOG(INFO) << "Number of lines: " << numLines;
+  LOG(INFO) << "Number of leftover points: " << ransac3d2d.getLeftoverIndices().size();
+  LOG(INFO) << "Number of leftover points for plane: " << ransac3d2d.getLeftoverIndicesForPlane().size();
+  LOG(INFO) << "Number of leftover points for line: " << ransac3d2d.getLeftoverIndicesForLine().size();
 
   for (auto& drawable : drawables) {
     viewer->delete_drawable(drawable);

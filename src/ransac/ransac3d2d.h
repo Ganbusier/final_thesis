@@ -45,11 +45,18 @@ class Ransac3d2d {
   Ransac3d2d(easy3d::PointCloud* pointCloud, const Params_ransac3d2d& params);
   void detect();
   const std::vector<std::vector<Line3d>>& getLines3d() const { return m_lines3d; }
+  const std::vector<Plane>& getPlanes() const { return m_planes; }
   const std::vector<int>& getLeftoverIndices() const {
     return m_leftoverIndices;
   }
   const std::vector<easy3d::vec3>& getLeftoverPoints() const {
     return m_leftoverPoints;
+  }
+  const std::vector<int>& getLeftoverIndicesForPlane() const {
+    return m_leftoverIndicesForPlane;
+  }
+  const std::vector<int>& getLeftoverIndicesForLine() const {
+    return m_leftoverIndicesForLine;
   }
   void saveLines3d(const std::string& filename);
   void saveLeftoverPoints(const std::string& filename);
@@ -64,6 +71,8 @@ class Ransac3d2d {
   std::vector<std::vector<Line3d>> m_lines3d;
   std::vector<int> m_leftoverIndices;
   std::vector<easy3d::vec3> m_leftoverPoints;
+  std::vector<int> m_leftoverIndicesForPlane;
+  std::vector<int> m_leftoverIndicesForLine;
   std::mt19937 rng{std::random_device{}()};
 
   void detectPlanes();
@@ -72,6 +81,8 @@ class Ransac3d2d {
   void pointCloudToPwnVector();
   void storeLeftoverIndices();
   void storeLeftoverPoints();
+  void storeLeftoverIndicesForPlane();
+  void storeLeftoverIndicesForLine();
 
   Line2d computeLineModel(const easy3d::vec2& p1, const easy3d::vec2& p2);
   double distanceToLine(const easy3d::vec2& p, const Line2d& line);
