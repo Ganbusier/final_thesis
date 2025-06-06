@@ -140,8 +140,8 @@ void ransac3d2d_paramSearch(easy3d::PointCloud* pointCloud) {
   std::vector<float> clusterEpsilonValues = {0.5, 1.0, 1.5, 2.0};
 
   // 2D RANSAC parameters
-  std::vector<int> maxIterationsValues = {100, 300, 500};
-  std::vector<int> minInliersValues = {4, 10, 16, 20};
+  std::vector<int> maxIterationsValues = {100, 300};
+  std::vector<int> minInliersValues = {4, 10};
   std::vector<float> toleranceValues = {0.01, 0.03, 0.05};
   std::vector<float> splitDistanceValues = {0.5, 1.0, 1.5, 2.0};
 
