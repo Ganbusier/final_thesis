@@ -24,21 +24,31 @@ int main(int argc, char** argv) {
   // Configure logging to suppress logging from other libraries
   configure_logging_for_main_param_search();
 
-  if (argc != 2) {
-    std::cout << "ERROR: Usage: " << argv[0] << " <input_pointcloud_ply_file>"
+  if (argc != 3) {
+    std::cout << "ERROR: Usage: " << argv[0]
+              << " <input_pointcloud_ply_file> <parameter_search_type (0: "
+                 "ransac3d, 1: ransac3d2d, 2: regionGrowing, 3: all)>"
               << std::endl;
     return 1;
   }
   std::string estimatedFile = argv[1];
+  int parameterSearchType = std::stoi(argv[2]);
 
   easy3d::PointCloud* pointCloud = easy3d::PointCloudIO::load(estimatedFile);
 
-  ransac3d_paramSearch(pointCloud);
-  regionGrowing_paramSearch(pointCloud);
-  ransac3d2d_paramSearch(pointCloud);
-  // energyMinimization_paramSearch(pointCloud);
+  if (parameterSearchType == 0) {
+    ransac3d_paramSearch(pointCloud);
+  } else if (parameterSearchType == 1) {
+    ransac3d2d_paramSearch(pointCloud);
+  } else if (parameterSearchType == 2) {
+    regionGrowing_paramSearch(pointCloud);
+  } else if (parameterSearchType == 3) {
+    ransac3d_paramSearch(pointCloud);
+    ransac3d2d_paramSearch(pointCloud);
+    regionGrowing_paramSearch(pointCloud);
 
-  return 0;
+    return 0;
+  }
 }
 
 void ransac3d_paramSearch(easy3d::PointCloud* pointCloud) {
@@ -91,8 +101,9 @@ void ransac3d_paramSearch(easy3d::PointCloud* pointCloud) {
           int numPrimitives = cylinderInfos.size();
           int leftoverPoints = leftovers.size();
 
-          // Objective: maximize number of primitives, minimize leftover points
-          // score = penalty for leftover points - reward for primitives
+          // Objective: maximize number of primitives, minimize leftover
+          // points score = penalty for leftover points - reward for
+          // primitives
           float score = weight_leftovers * leftoverPoints -
                         weight_primitives * numPrimitives;
 
@@ -181,13 +192,14 @@ void ransac3d2d_paramSearch(easy3d::PointCloud* pointCloud) {
                   ransac3d2d.detect();
 
                   int numPrimitives = 0;
-                  for (std::vector<ransac::Line3d> lines : ransac3d2d.getLines3d()) {
+                  for (std::vector<ransac::Line3d> lines :
+                       ransac3d2d.getLines3d()) {
                     numPrimitives += lines.size();
                   }
                   int leftoverPoints = ransac3d2d.getLeftoverIndices().size();
 
-                  // Objective: maximize number of primitives, minimize leftover
-                  // points
+                  // Objective: maximize number of primitives, minimize
+                  // leftover points
                   float score = weight_leftovers * leftoverPoints -
                                 weight_primitives * numPrimitives;
 
@@ -274,7 +286,8 @@ void regionGrowing_paramSearch(easy3d::PointCloud* pointCloud) {
           int numPrimitives = regionGrowing.getCylinders().size();
           int leftoverPoints = regionGrowing.getUnassignedIndices().size();
 
-          // Objective: maximize number of primitives, minimize leftover points
+          // Objective: maximize number of primitives, minimize leftover
+          // points
           float score = weight_leftovers * leftoverPoints -
                         weight_primitives * numPrimitives;
 
