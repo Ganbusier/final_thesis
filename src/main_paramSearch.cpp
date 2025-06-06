@@ -196,9 +196,6 @@ void ransac3d2d_paramSearch(easy3d::PointCloud* pointCloud) {
               for (float tolerance : toleranceValues) {
                 for (float splitDistance : splitDistanceValues) {
                   current_combination++;
-                  std::cout << "Current process: " << current_combination
-                            << std::endl;
-
                   // Progress reporting every 10%
                   if (current_combination % progress_milestone == 0 ||
                       current_combination == total_combinations) {
