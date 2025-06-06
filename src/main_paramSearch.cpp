@@ -79,7 +79,7 @@ void ransac3d_paramSearch(easy3d::PointCloud* pointCloud) {
             << ")" << std::endl;
 
   int current_combination = 0;
-  int progress_milestone = total_combinations / 5;  // 20% increments
+  int progress_milestone = total_combinations / 10;  // 10% increments
 
   for (float normalThreshold : normalThresholds) {
     for (float epsilon : epsilonValues) {
@@ -87,7 +87,7 @@ void ransac3d_paramSearch(easy3d::PointCloud* pointCloud) {
         for (int minPoints : minPointsValues) {
           current_combination++;
 
-          // Progress reporting every 20%
+          // Progress reporting every 10%
           if (current_combination % progress_milestone == 0 ||
               current_combination == total_combinations) {
             int progress_percent =
@@ -160,16 +160,16 @@ void ransac3d2d_paramSearch(easy3d::PointCloud* pointCloud) {
 
   // 3D RANSAC parameters
   float probability = 0.01;
-  std::vector<float> normalThresholds = {0.0, 0.5, 0.9};
-  std::vector<int> minPointsValues = {5, 10, 15, 20};
+  std::vector<float> normalThresholds = {0.0, 0.5};
+  std::vector<int> minPointsValues = {5, 10};
   std::vector<float> epsilonValues = {0.01, 0.03, 0.05};
-  std::vector<float> clusterEpsilonValues = {0.5, 1.0, 1.5, 2.0};
+  std::vector<float> clusterEpsilonValues = {0.5, 1.0, 2.0};
 
   // 2D RANSAC parameters
   std::vector<int> maxIterationsValues = {100, 300};
   std::vector<int> minInliersValues = {4, 10};
   std::vector<float> toleranceValues = {0.01, 0.03, 0.05};
-  std::vector<float> splitDistanceValues = {0.5, 1.0, 1.5, 2.0};
+  std::vector<float> splitDistanceValues = {1.0, 1.5, 2.0};
 
   int total_combinations = normalThresholds.size() * minPointsValues.size() *
                            epsilonValues.size() * clusterEpsilonValues.size() *
@@ -185,7 +185,7 @@ void ransac3d2d_paramSearch(easy3d::PointCloud* pointCloud) {
             << ")" << std::endl;
 
   int current_combination = 0;
-  int progress_milestone = total_combinations / 5;  // 20% increments
+  int progress_milestone = total_combinations / 10;  // 10% increments
 
   for (float normalThreshold : normalThresholds) {
     for (int minPoints : minPointsValues) {
@@ -196,8 +196,10 @@ void ransac3d2d_paramSearch(easy3d::PointCloud* pointCloud) {
               for (float tolerance : toleranceValues) {
                 for (float splitDistance : splitDistanceValues) {
                   current_combination++;
+                  std::cout << "Current process: " << current_combination
+                            << std::endl;
 
-                  // Progress reporting every 20%
+                  // Progress reporting every 10%
                   if (current_combination % progress_milestone == 0 ||
                       current_combination == total_combinations) {
                     int progress_percent =
@@ -295,7 +297,7 @@ void regionGrowing_paramSearch(easy3d::PointCloud* pointCloud) {
             << ")" << std::endl;
 
   int current_combination = 0;
-  int progress_milestone = total_combinations / 5;  // 20% increments
+  int progress_milestone = total_combinations / 10;  // 10% increments
 
   for (int k : kValues) {
     for (float maxDistance : maxDistanceValues) {
@@ -303,7 +305,7 @@ void regionGrowing_paramSearch(easy3d::PointCloud* pointCloud) {
         for (int minRegionSize : minRegionSizeValues) {
           current_combination++;
 
-          // Progress reporting every 20%
+          // Progress reporting every 10%
           if (current_combination % progress_milestone == 0 ||
               current_combination == total_combinations) {
             int progress_percent =
@@ -387,7 +389,7 @@ void energyMinimization_paramSearch(easy3d::PointCloud* pointCloud) {
             << total_combinations << " combinations..." << std::endl;
 
   int current_combination = 0;
-  int progress_milestone = total_combinations / 5;  // 20% increments
+  int progress_milestone = total_combinations / 10;  // 10% increments
 
   for (int kNeighbors : kNeighborsValues) {
     for (float edgeLengthThres : edgeLengthThresValues) {
@@ -397,7 +399,7 @@ void energyMinimization_paramSearch(easy3d::PointCloud* pointCloud) {
             for (float minAngle : minAngleValues) {
               current_combination++;
 
-              // Progress reporting every 20%
+              // Progress reporting every 10%
               if (current_combination % progress_milestone == 0 ||
                   current_combination == total_combinations) {
                 int progress_percent =
