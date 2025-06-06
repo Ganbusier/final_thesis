@@ -44,8 +44,8 @@ int main(int argc, char** argv) {
     regionGrowing_paramSearch(pointCloud);
   } else if (parameterSearchType == 3) {
     ransac3d_paramSearch(pointCloud);
-    ransac3d2d_paramSearch(pointCloud);
     regionGrowing_paramSearch(pointCloud);
+    ransac3d2d_paramSearch(pointCloud);
 
     return 0;
   }
@@ -57,20 +57,20 @@ void ransac3d_paramSearch(easy3d::PointCloud* pointCloud) {
   int best_leftoverPoints = 1e20;
   int best_numPrimitives = 0;
 
-  float weight_primitives = 1.0;
+  float weight_primitives = 0.1;
   float weight_leftovers = 1.0;
 
   float probability = 0.01;
   float minRadius = 0.01;
   float maxRadius = 1.0;
-  std::vector<float> normalThresholds = {0.0, 0.3, 0.5, 0.7, 0.9};
+  float normalThreshold = 0.9;
   std::vector<float> epsilonValues = {0.01, 0.02, 0.03, 0.04, 0.05};
   std::vector<float> clusterEpsilonValues = {0.1, 0.3, 0.5, 0.7, 0.9,
                                              1.0, 1.3, 1.5, 2.0};
   std::vector<int> minPointsValues = {5, 10, 15, 20, 25, 30, 35, 40, 45, 50};
 
-  int total_combinations = normalThresholds.size() * epsilonValues.size() *
-                           clusterEpsilonValues.size() * minPointsValues.size();
+  int total_combinations = epsilonValues.size() * clusterEpsilonValues.size() *
+                           minPointsValues.size();
   std::cout << "Starting parameter search for Ransac3D with "
             << total_combinations << " combinations..." << std::endl;
   std::cout << "Optimization targets: maximize primitives (weight="
@@ -81,53 +81,51 @@ void ransac3d_paramSearch(easy3d::PointCloud* pointCloud) {
   int current_combination = 0;
   int progress_milestone = total_combinations / 10;  // 10% increments
 
-  for (float normalThreshold : normalThresholds) {
-    for (float epsilon : epsilonValues) {
-      for (float clusterEpsilon : clusterEpsilonValues) {
-        for (int minPoints : minPointsValues) {
-          current_combination++;
+  for (float epsilon : epsilonValues) {
+    for (float clusterEpsilon : clusterEpsilonValues) {
+      for (int minPoints : minPointsValues) {
+        current_combination++;
 
-          // Progress reporting every 10%
-          if (current_combination % progress_milestone == 0 ||
-              current_combination == total_combinations) {
-            int progress_percent =
-                (current_combination * 100) / total_combinations;
-            std::cout << "Progress: " << progress_percent << "% ("
-                      << current_combination << "/" << total_combinations
-                      << " combinations completed)" << std::endl;
-          }
+        // Progress reporting every 10%
+        if (current_combination % progress_milestone == 0 ||
+            current_combination == total_combinations) {
+          int progress_percent =
+              (current_combination * 100) / total_combinations;
+          std::cout << "Progress: " << progress_percent << "% ("
+                    << current_combination << "/" << total_combinations
+                    << " combinations completed)" << std::endl;
+        }
 
-          ransac::Params params;
-          params.normalThreshold = normalThreshold;
-          params.probability = probability;
-          params.minRadius = minRadius;
-          params.maxRadius = maxRadius;
-          params.epsilon = epsilon;
-          params.clusterEpsilon = clusterEpsilon;
-          params.minPoints = minPoints;
+        ransac::Params params;
+        params.normalThreshold = normalThreshold;
+        params.probability = probability;
+        params.minRadius = minRadius;
+        params.maxRadius = maxRadius;
+        params.epsilon = epsilon;
+        params.clusterEpsilon = clusterEpsilon;
+        params.minPoints = minPoints;
 
-          ransac::Ransac3d ransac3d(pointCloud, params);
-          ransac3d.detect();
+        ransac::Ransac3d ransac3d(pointCloud, params);
+        ransac3d.detect();
 
-          std::vector<ransac::CylinderInfo> cylinderInfos =
-              ransac3d.getCylinderInfos();
-          std::vector<int> leftovers = ransac3d.getLeftoverIndices();
+        std::vector<ransac::CylinderInfo> cylinderInfos =
+            ransac3d.getCylinderInfos();
+        std::vector<int> leftovers = ransac3d.getLeftoverIndices();
 
-          int numPrimitives = cylinderInfos.size();
-          int leftoverPoints = leftovers.size();
+        int numPrimitives = cylinderInfos.size();
+        int leftoverPoints = leftovers.size();
 
-          // Objective: maximize number of primitives, minimize leftover
-          // points score = penalty for leftover points - reward for
-          // primitives
-          float score = weight_leftovers * leftoverPoints -
-                        weight_primitives * numPrimitives;
+        // Objective: maximize number of primitives, minimize leftover
+        // points score = penalty for leftover points - reward for
+        // primitives
+        float score = weight_leftovers * leftoverPoints -
+                      weight_primitives * numPrimitives;
 
-          if (score < best_score) {
-            best_score = score;
-            best_leftoverPoints = leftoverPoints;
-            best_numPrimitives = numPrimitives;
-            best_params = params;
-          }
+        if (score < best_score) {
+          best_score = score;
+          best_leftoverPoints = leftoverPoints;
+          best_numPrimitives = numPrimitives;
+          best_params = params;
         }
       }
     }
@@ -155,24 +153,24 @@ void ransac3d2d_paramSearch(easy3d::PointCloud* pointCloud) {
   int best_leftoverPoints = 1e20;
   int best_numPrimitives = 0;
 
-  float weight_primitives = 1.0;
+  float weight_primitives = 0.1;
   float weight_leftovers = 1.0;
 
   // 3D RANSAC parameters
   float probability = 0.01;
-  std::vector<float> normalThresholds = {0.0, 0.5};
+  float normalThreshold = 0.0;
   std::vector<int> minPointsValues = {5, 10, 20};
-  std::vector<float> epsilonValues = {0.01, 0.05, 0.1};
+  std::vector<float> epsilonValues = {0.05, 0.1};
   std::vector<float> clusterEpsilonValues = {0.5, 1.0, 2.0};
 
   // 2D RANSAC parameters
   std::vector<int> maxIterationsValues = {100, 300};
   std::vector<int> minInliersValues = {4, 10};
-  std::vector<float> toleranceValues = {0.01, 0.03, 0.05};
+  std::vector<float> toleranceValues = {0.05, 0.1};
   std::vector<float> splitDistanceValues = {1.0, 1.5, 2.0};
 
-  int total_combinations = normalThresholds.size() * minPointsValues.size() *
-                           epsilonValues.size() * clusterEpsilonValues.size() *
+  int total_combinations = minPointsValues.size() * epsilonValues.size() *
+                           clusterEpsilonValues.size() *
                            maxIterationsValues.size() *
                            minInliersValues.size() * toleranceValues.size() *
                            splitDistanceValues.size();
@@ -187,58 +185,55 @@ void ransac3d2d_paramSearch(easy3d::PointCloud* pointCloud) {
   int current_combination = 0;
   int progress_milestone = total_combinations / 10;  // 10% increments
 
-  for (float normalThreshold : normalThresholds) {
-    for (int minPoints : minPointsValues) {
-      for (float epsilon : epsilonValues) {
-        for (float clusterEpsilon : clusterEpsilonValues) {
-          for (int maxIterations : maxIterationsValues) {
-            for (int minInliers : minInliersValues) {
-              for (float tolerance : toleranceValues) {
-                for (float splitDistance : splitDistanceValues) {
-                  current_combination++;
-                  // Progress reporting every 10%
-                  if (current_combination % progress_milestone == 0 ||
-                      current_combination == total_combinations) {
-                    int progress_percent =
-                        (current_combination * 100) / total_combinations;
-                    std::cout << "Progress: " << progress_percent << "% ("
-                              << current_combination << "/"
-                              << total_combinations
-                              << " combinations completed)" << std::endl;
-                  }
+  for (int minPoints : minPointsValues) {
+    for (float epsilon : epsilonValues) {
+      for (float clusterEpsilon : clusterEpsilonValues) {
+        for (int maxIterations : maxIterationsValues) {
+          for (int minInliers : minInliersValues) {
+            for (float tolerance : toleranceValues) {
+              for (float splitDistance : splitDistanceValues) {
+                current_combination++;
+                // Progress reporting every 10%
+                if (current_combination % progress_milestone == 0 ||
+                    current_combination == total_combinations) {
+                  int progress_percent =
+                      (current_combination * 100) / total_combinations;
+                  std::cout << "Progress: " << progress_percent << "% ("
+                            << current_combination << "/" << total_combinations
+                            << " combinations completed)" << std::endl;
+                }
 
-                  ransac::Params_ransac3d2d params;
-                  params.normalThreshold = normalThreshold;
-                  params.probability = probability;
-                  params.minPoints = minPoints;
-                  params.epsilon = epsilon;
-                  params.clusterEpsilon = clusterEpsilon;
-                  params.maxIterations = maxIterations;
-                  params.minInliers = minInliers;
-                  params.tolerance = tolerance;
-                  params.splitDistanceThres = splitDistance;
+                ransac::Params_ransac3d2d params;
+                params.normalThreshold = normalThreshold;
+                params.probability = probability;
+                params.minPoints = minPoints;
+                params.epsilon = epsilon;
+                params.clusterEpsilon = clusterEpsilon;
+                params.maxIterations = maxIterations;
+                params.minInliers = minInliers;
+                params.tolerance = tolerance;
+                params.splitDistanceThres = splitDistance;
 
-                  ransac::Ransac3d2d ransac3d2d(pointCloud, params);
-                  ransac3d2d.detect();
+                ransac::Ransac3d2d ransac3d2d(pointCloud, params);
+                ransac3d2d.detect();
 
-                  int numPrimitives = 0;
-                  for (std::vector<ransac::Line3d> lines :
-                       ransac3d2d.getLines3d()) {
-                    numPrimitives += lines.size();
-                  }
-                  int leftoverPoints = ransac3d2d.getLeftoverIndices().size();
+                int numPrimitives = 0;
+                for (std::vector<ransac::Line3d> lines :
+                     ransac3d2d.getLines3d()) {
+                  numPrimitives += lines.size();
+                }
+                int leftoverPoints = ransac3d2d.getLeftoverIndices().size();
 
-                  // Objective: maximize number of primitives, minimize
-                  // leftover points
-                  float score = weight_leftovers * leftoverPoints -
-                                weight_primitives * numPrimitives;
+                // Objective: maximize number of primitives, minimize
+                // leftover points
+                float score = weight_leftovers * leftoverPoints -
+                              weight_primitives * numPrimitives;
 
-                  if (score < best_score) {
-                    best_score = score;
-                    best_leftoverPoints = leftoverPoints;
-                    best_numPrimitives = numPrimitives;
-                    best_params = params;
-                  }
+                if (score < best_score) {
+                  best_score = score;
+                  best_leftoverPoints = leftoverPoints;
+                  best_numPrimitives = numPrimitives;
+                  best_params = params;
                 }
               }
             }
@@ -273,7 +268,7 @@ void regionGrowing_paramSearch(easy3d::PointCloud* pointCloud) {
   int best_leftoverPoints = 1e20;
   int best_numPrimitives = 0;
 
-  float weight_primitives = 1.0;
+  float weight_primitives = 0.1;
   float weight_leftovers = 1.0;
 
   std::vector<int> kValues = {12, 16, 20, 24, 28};

@@ -33,6 +33,8 @@ void CylinderRegionGrowing::detect() {
   m_regionGrowing.detect(std::back_inserter(m_regions));
   if (m_regions.empty()) {
     LOG(INFO) << "No regions found, all points are assigned";
+    constructUnassignedIndices();
+    constructUnassignedPoints();
     return;
   }
   constructCylinders();
