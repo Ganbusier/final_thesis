@@ -108,8 +108,8 @@ void Ransac3d2d::detectLines2d() {
     while (inlierThres >= m_params.minInliers) {
       std::vector<Line2d> candidateLines;
       size_t mainIter = 0;
-      size_t ramdomSampleIter = 0;
-      while (mainIter < m_params.maxIterations && ramdomSampleIter < 10000 &&
+      // size_t ramdomSampleIter = 0;
+      while (mainIter < m_params.maxIterations &&
              remainingIndices.size() > inlierThres &&
              inlierThres > m_params.minInliers) {
         // sample two points randomly
@@ -119,15 +119,16 @@ void Ransac3d2d::detectLines2d() {
         const easy3d::vec2& p1 = points2d[sampleIndices[0]];
         const easy3d::vec2& p2 = points2d[sampleIndices[1]];
 
-        // pass if points are overlapped or too far
+        // pass if points are overlapped
         if (std::hypot(p1.x - p2.x, p1.y - p2.y) < 1e-6) {
-          ramdomSampleIter++;
+          // ramdomSampleIter++;
+          mainIter++;
           continue;
         }
-        if (std::hypot(p1.x - p2.x, p1.y - p2.y) > 0.5) {
-          ramdomSampleIter++;
-          continue;
-        }
+        // if (std::hypot(p1.x - p2.x, p1.y - p2.y) > 0.5) {
+        //   ramdomSampleIter++;
+        //   continue;
+        // }
 
         // compute candidate line
         Line2d candidateLine = computeLineModel(p1, p2);
