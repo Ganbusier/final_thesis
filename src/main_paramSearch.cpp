@@ -222,7 +222,7 @@ void ransac3d2d_paramSearch(easy3d::PointCloud* pointCloud) {
                      ransac3d2d.getLines3d()) {
                   numPrimitives += lines.size();
                 }
-                int leftoverPoints = ransac3d2d.getLeftoverIndices().size();
+                int leftoverPoints = ransac3d2d.getLeftoverIndicesForLine().size();
 
                 // Objective: maximize number of primitives, minimize
                 // leftover points
