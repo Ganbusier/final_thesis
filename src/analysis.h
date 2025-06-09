@@ -23,6 +23,8 @@ struct AnalysisResults {
   float stdAngle = -1.0f;
   float RMSEofMeanDistances = -1.0f;
   float RMSEofMeanAngles = -1.0f;
+  int unmatchedEstimatedEdgesCount = 0;
+  int unmatchedGroundTruthEdgesCount = 0;
 };
 
 class Analysis {

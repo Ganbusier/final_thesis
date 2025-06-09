@@ -126,6 +126,8 @@ void Analysis::calculateStatistics() {
   m_analysisResults.stdAngle = -1.0f;
   m_analysisResults.RMSEofMeanDistances = -1.0f;
   m_analysisResults.RMSEofMeanAngles = -1.0f;
+  m_analysisResults.unmatchedEstimatedEdgesCount = 0;
+  m_analysisResults.unmatchedGroundTruthEdgesCount = 0;
 
   // Calculate min, max, mean, median, std
   if (m_meanDistances.empty() || m_meanAngles.empty()) {
@@ -215,6 +217,12 @@ void Analysis::calculateStatistics() {
       std::sqrt(sumSquaredDistances / m_meanDistances.size());
   m_analysisResults.RMSEofMeanAngles =
       std::sqrt(sumSquaredAngles / m_meanAngles.size());
+      
+  // Calculate unmatched edges count
+  m_analysisResults.unmatchedEstimatedEdgesCount = 
+      static_cast<int>(m_unmatchedEstimatedEdges.size());
+  m_analysisResults.unmatchedGroundTruthEdgesCount = 
+      static_cast<int>(m_unmatchedGroundTruthEdges.size());
 }
 
 float Analysis::angleBetweenTwoEdges(easy3d::Graph::Edge estimatedEdge,
@@ -239,7 +247,8 @@ float Analysis::angleBetweenTwoEdges(easy3d::Graph::Edge estimatedEdge,
   easy3d::vec3 dir2 = (targetGroundTruthPos - sourceGroundTruthPos).normalize();
 
   float cosine = easy3d::dot(dir1, dir2);
-  float angle = std::acos(std::clamp(cosine, -1.0f, 1.0f)) * 180.0f / M_PI;
+  // Take absolute value to ignore direction - always return acute angle (0° to 90°)
+  float angle = std::acos(std::clamp(std::abs(cosine), 0.0f, 1.0f)) * 180.0f / M_PI;
   return angle;
 }
 

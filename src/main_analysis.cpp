@@ -35,6 +35,8 @@ int main(int argc, char** argv) {
   LOG(INFO) << "Std angle: " << results.stdAngle;
   LOG(INFO) << "RMSE of mean distances: " << results.RMSEofMeanDistances;
   LOG(INFO) << "RMSE of mean angles: " << results.RMSEofMeanAngles;
+  LOG(INFO) << "Unmatched estimated edges count: " << results.unmatchedEstimatedEdgesCount;
+  LOG(INFO) << "Unmatched ground truth edges count: " << results.unmatchedGroundTruthEdgesCount;
 
   return 0;
 }
