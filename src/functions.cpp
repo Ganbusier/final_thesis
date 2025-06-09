@@ -57,7 +57,7 @@ bool run_EnergyMinimization(easy3d::Viewer* viewer, easy3d::Model* model,
   if (!viewer || !model) return false;
   auto pointCloud = dynamic_cast<easy3d::PointCloud*>(model);
 
-  graph::Graph graph(pointCloud, 10, 2.0f);
+  graph::Graph graph(pointCloud, 16, 2.0f);
   graph.buildMixGraph();
   auto mixGraph = graph.getMixGraph();
   graph.buildDualGraph(mixGraph);

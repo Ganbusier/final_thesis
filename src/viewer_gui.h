@@ -8,7 +8,7 @@ struct ImGuiContext;
 namespace easy3d {
     // Parameter structures
     struct EnergyMinimizationParams {
-        int k_neighbors = 10;
+        int k_neighbors = 16;
         float edgeLengthThres = 2.0f;
         float lambda = 0.1f;
         float extendFactor = 2.0f;
