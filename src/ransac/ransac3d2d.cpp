@@ -42,20 +42,20 @@ void Ransac3d2d::pointCloudToPwnVector() {
 
 void Ransac3d2d::detect() {
   detectPlanes();
-  if (m_planes.empty()) {
-    storeLeftoverIndicesForPlane();
-    return;
-  }
-  storeLeftoverIndicesForPlane();
   detectLines2d();
-  if (m_lines2d.empty()) {
-    storeLeftoverIndicesForLine();
-    return;
-  }
-  storeLeftoverIndicesForLine();
   lines2dToLines3d();
+
+  // Store leftover indices first (these are needed by storeLeftoverIndices)
+  storeLeftoverIndicesForPlane();
+  storeLeftoverIndicesForLine();
+
+  // Store combined leftover indices and points
   storeLeftoverIndices();
   storeLeftoverPoints();
+
+  // Store leftover points for individual stages
+  storeLeftoverPointsForPlane();
+  storeLeftoverPointsForLine();
 }
 
 void Ransac3d2d::detectPlanes() {
@@ -84,6 +84,13 @@ void Ransac3d2d::detectPlanes() {
 
 void Ransac3d2d::detectLines2d() {
   LOG(INFO) << "Detecting lines in 2D using RANSAC";
+
+  // Handle the case when no planes are detected
+  if (m_planes.empty()) {
+    LOG(INFO) << "No planes detected, skipping line detection";
+    return;
+  }
+
   for (const auto& plane : m_planes) {
     std::vector<size_t> planeInlierIndices = plane.indices_of_assigned_points();
     std::vector<easy3d::vec2> points2d;
@@ -142,7 +149,9 @@ void Ransac3d2d::detectLines2d() {
           if (distanceToLine(p, candidateLine) < m_params.tolerance) {
             candidateInliers.push_back(idx);
             candidateInlierPoints.push_back(p);
-            inlierData.emplace_back(p, idx);
+            // Convert 2D index back to original point cloud index
+            int originalIdx = static_cast<int>(planeInlierIndices[idx]);
+            inlierData.emplace_back(p, originalIdx);
           }
         }
         if (candidateInliers.size() < inlierThres) {
@@ -187,6 +196,13 @@ void Ransac3d2d::detectLines2d() {
 
 void Ransac3d2d::lines2dToLines3d() {
   LOG(INFO) << "Converting lines in 2D to lines in 3D";
+
+  // Handle the case when no lines are detected
+  if (m_lines2d.empty()) {
+    LOG(INFO) << "No 2D lines detected, skipping conversion to 3D";
+    return;
+  }
+
   for (size_t i = 0; i < m_planes.size(); ++i) {
     const auto& plane = m_planes[i];
 
@@ -449,7 +465,7 @@ void Ransac3d2d::saveLeftoverPoints(const std::string& filename) {
 
 void Ransac3d2d::storeLeftoverIndicesForPlane() {
   m_leftoverIndicesForPlane.clear();
-  
+
   // Use a boolean vector to mark points assigned to planes
   std::vector<bool> assignedToPlane(m_pwnVector.size(), false);
 
@@ -460,7 +476,7 @@ void Ransac3d2d::storeLeftoverIndicesForPlane() {
     }
     return;
   }
-  
+
   // Mark points assigned to planes
   for (const auto& plane : m_planes) {
     for (const auto& idx : plane.indices_of_assigned_points()) {
@@ -469,7 +485,7 @@ void Ransac3d2d::storeLeftoverIndicesForPlane() {
       }
     }
   }
-  
+
   // Collect indices not assigned to any plane
   m_leftoverIndicesForPlane.reserve(m_pwnVector.size());
   for (size_t i = 0; i < assignedToPlane.size(); ++i) {
@@ -477,13 +493,14 @@ void Ransac3d2d::storeLeftoverIndicesForPlane() {
       m_leftoverIndicesForPlane.push_back(static_cast<int>(i));
     }
   }
-  
-  LOG(INFO) << "Leftover indices after plane detection: " << m_leftoverIndicesForPlane.size();
+
+  LOG(INFO) << "Leftover indices after plane detection: "
+            << m_leftoverIndicesForPlane.size();
 }
 
 void Ransac3d2d::storeLeftoverIndicesForLine() {
   m_leftoverIndicesForLine.clear();
-  
+
   // Use a boolean vector to mark points assigned to lines
   std::vector<bool> assignedToLine(m_pwnVector.size(), false);
 
@@ -499,16 +516,79 @@ void Ransac3d2d::storeLeftoverIndicesForLine() {
       }
     }
   }
-  
-  // Collect indices not assigned to any line (from the remaining points after plane detection)
-  m_leftoverIndicesForLine.reserve(m_leftoverIndicesForPlane.size());
-  for (const auto& idx : m_leftoverIndicesForPlane) {
-    if (!assignedToLine[static_cast<size_t>(idx)]) {
-      m_leftoverIndicesForLine.push_back(idx);
+
+  // Collect ALL indices not assigned to any line (regardless of plane
+  // assignment)
+  m_leftoverIndicesForLine.reserve(m_pwnVector.size());
+  for (size_t i = 0; i < assignedToLine.size(); ++i) {
+    if (!assignedToLine[i]) {
+      m_leftoverIndicesForLine.push_back(static_cast<int>(i));
     }
   }
-  
-  LOG(INFO) << "Leftover indices after line detection: " << m_leftoverIndicesForLine.size();
+
+  LOG(INFO) << "Leftover indices after line detection: "
+            << m_leftoverIndicesForLine.size();
+}
+
+void Ransac3d2d::storeLeftoverPointsForPlane() {
+  m_leftoverPointsForPlane.clear();
+  m_leftoverPointsForPlane.reserve(m_leftoverIndicesForPlane.size());
+
+  for (const auto& idx : m_leftoverIndicesForPlane) {
+    if (idx < m_pwnVector.size()) {
+      auto p = m_pwnVector[idx].first;
+      m_leftoverPointsForPlane.push_back(easy3d::vec3(p.x(), p.y(), p.z()));
+    }
+  }
+}
+
+void Ransac3d2d::storeLeftoverPointsForLine() {
+  m_leftoverPointsForLine.clear();
+  m_leftoverPointsForLine.reserve(m_leftoverIndicesForLine.size());
+
+  for (const auto& idx : m_leftoverIndicesForLine) {
+    if (idx < m_pwnVector.size()) {
+      auto p = m_pwnVector[idx].first;
+      m_leftoverPointsForLine.push_back(easy3d::vec3(p.x(), p.y(), p.z()));
+    }
+  }
+}
+
+void Ransac3d2d::saveLeftoverPointsForPlane(const std::string& filename) {
+  if (m_leftoverPointsForPlane.empty()) {
+    LOG(WARNING) << "No leftover points for plane to save";
+    return;
+  }
+
+  // Create a point cloud for leftover points
+
+  auto leftoverCloud = new easy3d::PointCloud;
+
+  for (const auto& point : m_leftoverPointsForPlane) {
+    leftoverCloud->add_vertex(point);
+  }
+
+  // Save the point cloud
+  easy3d::io::save_ply(filename, leftoverCloud, false);
+  LOG(INFO) << "Leftover points for plane saved to: " << filename;
+}
+
+void Ransac3d2d::saveLeftoverPointsForLine(const std::string& filename) {
+  if (m_leftoverPointsForLine.empty()) {
+    LOG(WARNING) << "No leftover points for line to save";
+    return;
+  }
+
+  // Create a point cloud for leftover points
+  auto leftoverCloud = new easy3d::PointCloud;
+
+  for (const auto& point : m_leftoverPointsForLine) {
+    leftoverCloud->add_vertex(point);
+  }
+
+  // Save the point cloud
+  easy3d::io::save_ply(filename, leftoverCloud, false);
+  LOG(INFO) << "Leftover points for line saved to: " << filename;
 }
 
 }  // namespace ransac

@@ -334,8 +334,14 @@ bool run_Ransac3d2d(easy3d::Viewer* viewer, easy3d::Model* model,
       create_timestamped_filename(saveFilePath, "ransac3d2d_lines", ".ply");
   std::string leftoverPointsFilename = create_timestamped_filename(
       saveFilePath, "ransac3d2d_leftoverPoints", ".ply");
+  std::string leftoverPointsForPlaneFilename = create_timestamped_filename(
+      saveFilePath, "ransac3d2d_leftoverPointsForPlane", ".ply");
+  std::string leftoverPointsForLineFilename = create_timestamped_filename(
+      saveFilePath, "ransac3d2d_leftoverPointsForLine", ".ply");
   ransac3d2d.saveLines3d(linesFilename);
   ransac3d2d.saveLeftoverPoints(leftoverPointsFilename);
+  ransac3d2d.saveLeftoverPointsForPlane(leftoverPointsForPlaneFilename);
+  ransac3d2d.saveLeftoverPointsForLine(leftoverPointsForLineFilename);
 
   return true;
 }

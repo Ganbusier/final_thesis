@@ -60,6 +60,8 @@ class Ransac3d2d {
   }
   void saveLines3d(const std::string& filename);
   void saveLeftoverPoints(const std::string& filename);
+  void saveLeftoverPointsForPlane(const std::string& filename);
+  void saveLeftoverPointsForLine(const std::string& filename);
 
  private:
   easy3d::PointCloud* m_pointCloud;
@@ -70,9 +72,11 @@ class Ransac3d2d {
   std::vector<std::vector<Line2d>> m_lines2d;
   std::vector<std::vector<Line3d>> m_lines3d;
   std::vector<int> m_leftoverIndices;
-  std::vector<easy3d::vec3> m_leftoverPoints;
   std::vector<int> m_leftoverIndicesForPlane;
   std::vector<int> m_leftoverIndicesForLine;
+  std::vector<easy3d::vec3> m_leftoverPoints;
+  std::vector<easy3d::vec3> m_leftoverPointsForPlane;
+  std::vector<easy3d::vec3> m_leftoverPointsForLine;
   std::mt19937 rng{std::random_device{}()};
 
   void detectPlanes();
@@ -83,6 +87,8 @@ class Ransac3d2d {
   void storeLeftoverPoints();
   void storeLeftoverIndicesForPlane();
   void storeLeftoverIndicesForLine();
+  void storeLeftoverPointsForPlane();
+  void storeLeftoverPointsForLine();
 
   Line2d computeLineModel(const easy3d::vec2& p1, const easy3d::vec2& p2);
   double distanceToLine(const easy3d::vec2& p, const Line2d& line);
