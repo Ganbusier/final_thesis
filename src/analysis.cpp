@@ -25,7 +25,7 @@ void Analysis::matchEdges() {
   m_unmatchedGroundTruthEdges.clear();
 
   // Distance threshold
-  const float maxDistance = 0.5f;
+  const float maxDistance = 0.1f;
 
   // Track which edges have been matched
   std::set<easy3d::Graph::Edge> matchedEstimatedEdges;
