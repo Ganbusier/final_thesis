@@ -1,0 +1,14 @@
+ply
+format ascii 1.0
+comment Saved by Easy3D (liangliang.nan@gmail.com)
+element vertex 6
+property float x
+property float y
+property float z
+end_header
+161.628 0.3716 4.938
+1.67646 -0.180262 -0.0329971
+74.5175 0.0459937 0.146004
+92.3922 0.0495171 0.755005
+92.8818 0.187646 0.751007
+161.362 0.239716 5.006
