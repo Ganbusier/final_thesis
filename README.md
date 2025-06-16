@@ -47,8 +47,9 @@ Alternatively, you can download and install manually:
 - Boost: Download from [Boost website](https://www.boost.org/)
 
 #### macOS
+For mac users, please switch the branch `mac`. Mac users need to install cgal package, instead of using the one provided in the `3rd_party` directory.
 ```bash
-brew install gmp mpfr eigen boost
+brew install gmp mpfr eigen boost cgal
 ```
 
 ## Building the Project
@@ -66,12 +67,24 @@ cd build
 ```
 
 3. Configure and build the project:
-```bash
-cmake ..
-cmake --build .
-```
 
-The compiled binaries will be placed in the `bin/` directory.
+- Windows
+    
+    if use `Visual Studio 17 2022` as generator (use `cmake --help` to check available generators on the platform.)
+
+    ```bash
+    cmake -G "Visual Studio 17 2022" ..
+    cmake --build .
+    ```
+
+    The compiled binaries will be placed in the `bin/` directory.
+
+- macOS
+    ```bash
+    cmake ..
+    make
+    ```
+    The compiled binaries will be placed in the `bin/` directory.
 
 ## Usage
 
@@ -84,19 +97,19 @@ The project provides several executables:
 ### Running the GUI
 
 ```bash
-./bin/main_gui
+./bin/Thesis_GUI
 ```
 
 ### Running Analysis
 
 ```bash
-./bin/main_analysis [input_file] [options]
+./bin/Thesis_Analysis [input_file] [options]
 ```
 
 ### Parameter Search
 
 ```bash
-./bin/main_paramSearch [input_file] [options]
+./bin/Thesis_ParamSearch [input_file] [options]
 ```
 
 ## Features
@@ -108,13 +121,6 @@ The project provides several executables:
   - Hough Transform
   - Energy minimization for Markov Random Field
 
-- GUI visualization tools
-- Parameter optimization and analysis
-
-## License
-
-[Specify your license here]
-
-## Contributing
-
-[Specify contribution guidelines if applicable] 
+- GUI tools for running algorithms
+- Parameter optimization
+- Result analysis
