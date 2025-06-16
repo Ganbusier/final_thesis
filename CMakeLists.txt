@@ -14,5 +14,8 @@ set(Thesis_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
 set(Thesis_SRC_DIR ${Thesis_ROOT}/src)
 set(Thesis_EXTERNAL_DIR ${Thesis_ROOT}/3rd_party)
 
+# explicitly include Eigen dir
+include_directories("/opt/homebrew/include/eigen3/")
+
 add_subdirectory(3rd_party)
 add_subdirectory(src)

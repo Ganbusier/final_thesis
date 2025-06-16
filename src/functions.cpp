@@ -88,7 +88,7 @@ bool run_EnergyMinimization(easy3d::Viewer* viewer, easy3d::Model* model,
     std::vector<easy3d::vec3> vertices;
     std::vector<unsigned int> indices;
     
-    for (auto& edge : preservedGraph->edges()) {
+    for (const auto& edge : preservedGraph->edges()) {
       auto source = preservedGraph->source(edge);
       auto target = preservedGraph->target(edge);
       auto start = preservedGraph->position(source);

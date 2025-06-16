@@ -3,3 +3,6 @@
 /bin
 /lib
 # /output
+/.cache
+.DS_Store
+.clangd

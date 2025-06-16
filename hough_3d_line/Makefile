@@ -11,7 +11,7 @@
 #DEMOMODE = -DWEBDEMO
 
 # include directory of libeigen
-LIBEIGEN = D:/vcpkg/installed/x64-windows/include/eigen3
+LIBEIGEN = /opt/homebrew/include/eigen3
 
 # settings for GNU C compiler
 CC = g++
